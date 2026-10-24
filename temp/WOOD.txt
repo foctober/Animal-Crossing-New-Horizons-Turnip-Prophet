@@ -1,15 +1,15 @@
 Review only. Not used by the app. The window still uses www/wood.png.
 
-All four are 1408x1408 squares from Imagine. Nothing was edited after that. Current app wood is 879x879.
+Plain wood grain. No planks. All four are 1408x1408. Nothing was edited after they were made. The current app wood is 879x879 and more orange.
 
-1 wood-1-wide-planks.jpg
-   Wider boards. Closest color to the title wood. Left and right meet. Top and bottom do not meet as cleanly.
+1 wood-1-fine-brown.jpg
+   Fine grain, medium brown, close to the title. Edges meet about evenly.
 
-2 wood-2-narrow-planks.jpg
-   More, narrower boards, so the grain looks smaller. Best match on all four edges. A bit lighter and more golden than the title.
+2 wood-2-golden.jpg
+   Finer golden grain, closer to the orange of the current app wood. Top and bottom meet a little worse than the sides.
 
-3 wood-3-dark-boards.jpg
-   About eight darker boards. Edges meet. Darker than the title.
+3 wood-3-dark.jpg
+   Fine grain, darker than the title. Edges meet the best of the four.
 
-4 wood-4-mixed-boards.jpg
-   Mixed light and dark boards, closest to the title's mix of boards. Left and right meet. Top and bottom do not meet as cleanly.
+4 wood-4-title-brown.jpg
+   Medium brown closest to the title color. Edges meet about evenly.
