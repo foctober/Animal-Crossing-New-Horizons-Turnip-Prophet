@@ -6,7 +6,9 @@ The price math is the same engine as [turnipprophet.io](https://turnipprophet.io
 
 ## What it looks like
 
-The left side is the week list. The right side is where you type the prices.
+The left side is the week list, on close-up grass with a turnip in the middle. The right side is where you type the prices.
+
+![The left side. A turnip sits in the grass, leaves in the sky.](www/field.jpg)
 
 ![Entering the week's prices. The shop window that is open now is pumpkin orange.](docs/prices.jpg)
 
