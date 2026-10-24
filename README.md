@@ -12,7 +12,13 @@ See [INSTALL.md](INSTALL.md). Short version, from this folder:
 powershell -ExecutionPolicy Bypass -File .\Install.ps1
 ```
 
-That copies the app to `C:\Tools\Turnips` and puts **Turnip Prophet** on your desktop.
+That copies the app to `C:\Tools\Turnips` and puts **Turnip Prophet** on your desktop. The shortcut, the tray icon, and the window icon are the teal leaf.
+
+## What you see
+
+The left side is the week you are editing. Across the top is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**. Under that you pick the Sunday, whether this is your first time buying, last week's pattern, and when you sold. The price boxes are the rest of the week.
+
+The right side is the prediction: the banner, the odds, the chart, the twelve sell slots, and the full pattern table if you open it.
 
 ## What you do each week
 
@@ -87,9 +93,9 @@ That link is:
 
 `https://turnipprophet.io/?prices=96...77...64..132.172.191.149.&first=true`
 
-With "First time buying" on, the engine says **small spike, 100%**. Friday afternoon at 191 was the peak (just under 2× 96). Saturday morning is already down at 149. Saturday afternoon only comes out between **39 and 97**.
+With "First time buying" on, the engine says **small spike, 100%**. Friday, 12:00 PM – 10:00 PM at 191 was the peak (just under 2× 96). Saturday, 8:00 AM – 11:59 AM is already down at 149. Saturday, 12:00 PM – 10:00 PM only comes out between **39 and 97**.
 
-Sell on Saturday morning if you still have any. Waiting for the afternoon loses bells. The website's guaranteed minimum for what is left is 39, and the potential maximum is 97.
+Sell during Saturday morning if you still have any. Waiting for the afternoon loses bells. The website's guaranteed minimum for what is left is 39, and the potential maximum is 97. The seed week records that sale as Friday afternoon, so the banner says it was a good job.
 
 You can paste that link into the import box on any week and the app fills the grid.
 
@@ -106,9 +112,10 @@ Or double-click `Run.cmd` in that folder. A second launch does not start a secon
 | File | What it is |
 | --- | --- |
 | `Turnips.ps1` | The Windows app. Local page plus the tray icon. |
+| `TurnipProphet.ico` | The leaf icon for the desktop shortcut, the tray, and the window. |
 | `Install.ps1` | Copies everything to `C:\Tools\Turnips` and makes the shortcut. |
 | `Launch.vbs` / `Run.cmd` | Starts the app with no PowerShell window. |
-| `www\` | The window you actually look at. |
+| `www\` | The window you actually look at. `logo.png` is the wide title art. |
 | `predictions.js` | Unmodified Turnip Prophet engine. |
 | `turnips.json` | Your weeks. Created on the PC. Not in git. |
 

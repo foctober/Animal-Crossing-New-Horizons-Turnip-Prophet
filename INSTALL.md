@@ -32,7 +32,7 @@ What that does:
 - Creates `C:\Tools\Turnips`
 - Copies the app into it
 - Does **not** delete `turnips.json` if you already have weeks saved
-- Puts a **Turnip Prophet** shortcut on your desktop
+- Puts a **Turnip Prophet** shortcut on your desktop, using `TurnipProphet.ico`
 - Opens the app
 
 The shortcut runs `Launch.vbs`, which starts PowerShell hidden and opens the tracker.
@@ -80,6 +80,8 @@ powershell -ExecutionPolicy Bypass -File .\Install.ps1
 
 Open the shortcut again. `turnips.json` stays where it is.
 
+If the desktop icon still looks like Edge after an update, Windows cached the old picture. Delete the shortcut and run `Install.ps1` again.
+
 ## 6. Remove it
 
 Quit, delete the desktop shortcut, delete `C:\Tools\Turnips`. Take a copy of `turnips.json` first if you care about the old weeks.
@@ -91,6 +93,7 @@ Quit, delete the desktop shortcut, delete `C:\Tools\Turnips`. Take a copy of `tu
 | Target | `wscript.exe` |
 | Arguments | `C:\Tools\Turnips\Launch.vbs` |
 | Working directory | `C:\Tools\Turnips` |
+| Icon | `C:\Tools\Turnips\TurnipProphet.ico` |
 
 `Launch.vbs` runs:
 
@@ -120,6 +123,8 @@ One file, one island:
       "firstBuy": true,
       "previousPattern": -1,
       "prices": [96, null, null, 77, null, null, 64, null, 132, 172, 191, 149, null],
+      "soldAt": 10,
+      "likelyPattern": 3,
       "note": ""
     }
   ],
@@ -127,4 +132,10 @@ One file, one island:
 }
 ```
 
-`id` is the Sunday that starts the week. `prices` is 13 numbers: Sunday buy, then Monday morning, Monday afternoon, Tuesday morning, and so on through Saturday afternoon. `null` means you did not type that one. `previousPattern` is -1 unknown, 0 fluctuating, 1 large spike, 2 decreasing, 3 small spike.
+`id` is the Sunday that starts the week. `prices` is 13 numbers: Sunday buy, then Monday morning, Monday afternoon, Tuesday morning, and so on through Saturday afternoon. `null` means you did not type that one.
+
+Morning is 8:00 AM – 11:59 AM. Afternoon is 12:00 PM – 10:00 PM. Nook's Cranny is open 8:00 AM – 10:00 PM, and the sell price changes at noon.
+
+`soldAt` is when you sold. `null` means you are still holding. `"spoil"` means they rotted. A number is the sell window: 1 is Monday morning, 2 is Monday afternoon, and so on. 10 is Friday, 12:00 PM – 10:00 PM. 12 is Saturday afternoon.
+
+`previousPattern` is -1 unknown, 0 fluctuating, 1 large spike, 2 decreasing, 3 small spike. `likelyPattern` is the pattern this week is almost certainly on (80% or more), or -1 if it is still mixed. A new week copies that into "last week's pattern."
