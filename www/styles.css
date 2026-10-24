@@ -242,10 +242,10 @@ input[type="number"], input[type="text"], input[type="date"], select, textarea {
 
 input:focus, select:focus, textarea:focus { border-color: #2a86b8; }
 
-input.due {
+input[type="number"].due {
   border-color: #f58220;
-  box-shadow: 0 0 0 2px #f58220;
-  background: #fff3e6;
+  box-shadow: 0 0 0 3px #f58220;
+  background: #ffd7a8;
 }
 
 .buy-line { display: flex; align-items: center; gap: 10px; }

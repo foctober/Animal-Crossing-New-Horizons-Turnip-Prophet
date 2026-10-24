@@ -171,8 +171,6 @@ function fillForm(week) {
 }
 
 function dueSlotId() {
-  var week = active();
-  if (!week || week.id !== thisSunday()) return null;
   var now = new Date();
   var day = now.getDay();
   var mins = now.getHours() * 60 + now.getMinutes();
