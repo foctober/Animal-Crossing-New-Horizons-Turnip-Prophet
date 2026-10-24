@@ -51,7 +51,21 @@ button.primary {
   font-weight: 700;
 }
 
-button.danger { color: var(--bad); border-color: #f0c2b6; background: #fff6f3; }
+button.danger {
+  background: #d10f0f;
+  color: #111;
+  border-color: var(--line);
+  font-weight: 700;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 -1px 0 #fff,
+    0 1px 0 #fff,
+    -1px 0 0 #fff,
+    1px 0 0 #fff;
+}
 
 button:disabled { opacity: 0.45; cursor: default; }
 
@@ -141,11 +155,20 @@ aside {
 .week .date { color: #fff; font-weight: 700; text-shadow: none; }
 .week .marks { display: inline-flex; gap: 4px; align-items: baseline; margin-left: auto; color: #fff; font-weight: 700; text-shadow: none; }
 .week .tag { color: #fff; font-weight: 700; text-shadow: none; }
-.week .buy { color: #ff2d2d; font-weight: 700; text-shadow: none; }
+.week .buy {
+  color: var(--grass);
+  font-weight: 700;
+  animation: buyglow 1.5s ease-in-out infinite;
+}
 .week .best {
   color: var(--animal);
   font-weight: 800;
   animation: bellglow 1.5s ease-in-out infinite;
+}
+
+@keyframes buyglow {
+  0%, 100% { text-shadow: 0 0 4px var(--grass); }
+  50% { text-shadow: 0 0 10px #e7ffd4, 0 0 16px var(--grass); }
 }
 
 @keyframes bellglow {
@@ -159,7 +182,6 @@ aside {
   text-shadow: none;
 }
 .week.on .date { color: #fff; text-shadow: none; }
-.week.on .buy { text-shadow: none; }
 
 #newWeek { width: 100%; }
 
@@ -308,9 +330,26 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 .buy-row { margin-bottom: 8px; }
 .import { display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; }
 .import-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
-.import input, .import button { height: 38px; box-sizing: border-box; }
+.import input, .import button {
+  height: 38px;
+  box-sizing: border-box;
+}
+.import button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  line-height: 1;
+  font-size: 18px;
+  font-weight: 700;
+}
 .import input { padding: 0 8px; }
 #saveState {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  line-height: 1;
   color: #d10f0f;
   font-size: 18px;
   font-weight: 700;
