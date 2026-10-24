@@ -171,6 +171,11 @@ function fillForm(week) {
 }
 
 function dueSlotId() {
+  var week = active();
+  if (!week) return null;
+  var todayWeek = thisSunday();
+  if (week.id > todayWeek) return "buy";
+  if (week.id < todayWeek) return null;
   var now = new Date();
   var day = now.getDay();
   var mins = now.getHours() * 60 + now.getMinutes();
