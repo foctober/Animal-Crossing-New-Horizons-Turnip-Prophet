@@ -18,7 +18,7 @@ That copies the app to `C:\Tools\Turnips` and puts **Turnip Prophet** on your de
 
 The left side is the week list, on a field that fades into sky. The grass is the bottom quarter. The right side is where you type the prices, on wood. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**.
 
-The saved-in path stays on one line at the left of the footer. The link and Quit sit together on the right.
+Week starting Sunday stays on the left. Last week's pattern sits in the middle. When did you sell sits on the right, lined up with the cards.
 
 Under the prices is the prediction: the banner, the odds, the chart, the twelve sell slots, and the full pattern table if you open it.
 
