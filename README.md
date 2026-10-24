@@ -18,7 +18,7 @@ That copies the app to `C:\Tools\Turnips` and puts **Turnip Prophet** on your de
 
 The left side is the week list, on a field that fades into sky. The grass is the bottom quarter. The right side is where you type the prices, on wood. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**.
 
-On the wood you pick the Sunday, whether this is your first time buying, last week's pattern, and when you sold. The price boxes are under that. Text that sits on the wood is black with a white outline. Bold stays bold. Text inside the white boxes is unchanged.
+On the wood you pick the Sunday, whether this is your first time buying, last week's pattern, and when you sold. The price boxes are under that. Text that sits on the wood or the field is black with a soft white edge, and the type is larger than the first build. Bold stays bold. Text inside the white boxes is the same size step up, with the same weights.
 
 Under the prices is the prediction: the banner, the odds, the chart, the twelve sell slots, and the full pattern table if you open it.
 

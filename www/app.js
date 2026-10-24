@@ -497,13 +497,13 @@ function drawChart() {
   hi = Math.ceil((hi + 15) / 10) * 10;
   if (hi <= lo) hi = lo + 40;
 
-  var padL = 40, padR = 12, padT = 14, padB = 36;
+  var padL = 48, padR = 12, padT = 16, padB = 44;
   var iw = w - padL - padR;
   var ih = h - padT - padB;
   function x(i) { return padL + (i + 0.5) * (iw / n); }
   function y(v) { return padT + (1 - (v - lo) / (hi - lo)) * ih; }
 
-  g.font = "11px Segoe UI";
+  g.font = "14px Segoe UI";
   g.fillStyle = "#4d6844";
   g.strokeStyle = "#d5e8bc";
   g.lineWidth = 1;
@@ -576,11 +576,11 @@ function drawChart() {
   });
 
   g.fillStyle = "#4d6844";
-  g.font = "10px Segoe UI";
+  g.font = "13px Segoe UI";
   g.textAlign = "center";
   disp.forEach(function (_v, i) {
-    g.fillText(i % 2 === 0 ? "AM" : "PM", x(i), h - 16);
-    if (i % 2 === 0) g.fillText(SHORT[i / 2], x(i) + (iw / n) / 2, h - 4);
+    g.fillText(i % 2 === 0 ? "AM" : "PM", x(i), h - 22);
+    if (i % 2 === 0) g.fillText(SHORT[i / 2], x(i) + (iw / n) / 2, h - 6);
   });
   g.textAlign = "left";
 }

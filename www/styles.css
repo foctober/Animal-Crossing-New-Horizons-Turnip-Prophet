@@ -12,11 +12,8 @@
   --good: #2f8a3a;
   --bad: #d4533a;
   --halo:
+    0 0 5px #fffef6,
     0 0 2px #fff,
-    -1px -1px 0 #fff,
-    1px -1px 0 #fff,
-    -1px 1px 0 #fff,
-    1px 1px 0 #fff,
     0 -1px 0 #fff,
     0 1px 0 #fff,
     -1px 0 0 #fff,
@@ -31,7 +28,7 @@ html, body {
   min-height: 100%;
   background: linear-gradient(180deg, #b7e6fb 0px, #e9f7c8 240px, #f6fbea 100%);
   color: var(--ink);
-  font: 15px/1.4 "Segoe UI", Candara, sans-serif;
+  font: 19px/1.45 "Segoe UI", Candara, sans-serif;
 }
 
 button, input, select, textarea { font: inherit; color: var(--ink); text-shadow: none; }
@@ -40,7 +37,7 @@ button {
   background: #fff;
   border: 2px solid var(--line);
   border-radius: 12px;
-  padding: 7px 12px;
+  padding: 8px 14px;
   cursor: pointer;
 }
 
@@ -91,7 +88,7 @@ aside {
 
 .brand h1 {
   margin: 0;
-  font-size: 15px;
+  font-size: 19px;
   line-height: 1.25;
   font-weight: 750;
   color: #111;
@@ -101,7 +98,7 @@ aside {
 
 .brand .app-name {
   margin: -4px 0 0;
-  font-size: 22px;
+  font-size: 28px;
   line-height: 1.15;
   font-weight: 750;
   color: #111;
@@ -131,7 +128,7 @@ aside {
 }
 
 .week strong { display: block; font-weight: 700; }
-.week small { display: block; color: #111; font-size: 12px; }
+.week small { display: block; color: #111; font-size: 15px; }
 
 .week.on {
   background: #fff;
@@ -166,40 +163,40 @@ main {
   align-items: end;
 }
 
-label { display: flex; flex-direction: column; gap: 4px; color: #111; font-size: 12px; font-weight: 650; text-shadow: var(--halo); }
-label.check { flex-direction: row; align-items: center; gap: 8px; color: #111; font-size: 14px; padding-bottom: 6px; }
+label { display: flex; flex-direction: column; gap: 4px; color: #111; font-size: 15px; font-weight: 650; text-shadow: var(--halo); }
+label.check { flex-direction: row; align-items: center; gap: 8px; color: #111; font-size: 18px; padding-bottom: 6px; }
 
 input[type="number"], input[type="text"], input[type="date"], select, textarea {
   background: #fff;
   border: 2px solid #b7d98a;
   border-radius: 10px;
-  padding: 6px 8px;
+  padding: 8px 10px;
   outline: none;
 }
 
 input:focus, select:focus, textarea:focus { border-color: #2a86b8; }
 
 input[type="number"] { width: 5rem; }
-#soldAt { max-width: 320px; }
+#soldAt { max-width: 440px; }
 #importUrl { width: min(420px, 46vw); }
 textarea { width: min(640px, 100%); resize: vertical; }
 
-.hint { margin: 0; color: #111; font-size: 12px; font-weight: 500; text-shadow: var(--halo); }
+.hint { margin: 0; color: #111; font-size: 15px; font-weight: 500; text-shadow: var(--halo); }
 
 .price-head, .price-row {
   display: grid;
-  grid-template-columns: 120px 112px 124px;
+  grid-template-columns: 136px 124px 136px;
   gap: 8px;
   align-items: center;
   margin-bottom: 6px;
 }
 
-.price-head { color: #111; font-size: 12px; text-shadow: var(--halo); }
+.price-head { color: #111; font-size: 15px; text-shadow: var(--halo); }
 .price-row span { color: #111; font-weight: 650; text-shadow: var(--halo); }
 
 .buy-row { margin-bottom: 8px; }
 .import { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-#saveState { color: #111; font-size: 13px; font-weight: 700; min-width: 4rem; text-shadow: var(--halo); }
+#saveState { color: #111; font-size: 17px; font-weight: 700; min-width: 4rem; text-shadow: var(--halo); }
 
 .banner {
   padding: 12px 14px;
@@ -211,16 +208,16 @@ textarea { width: min(640px, 100%); resize: vertical; }
 .banner.soon { background: #fff3d2; border-color: #e9a514; }
 .banner.late, .banner.sell { background: #ffe6de; border-color: #e07a5f; }
 .banner.wait { background: #e5f6ff; border-color: #7ec8ef; }
-.banner h2 { margin: 0 0 4px; font-size: 22px; font-weight: 750; color: #21461f; }
+.banner h2 { margin: 0 0 4px; font-size: 28px; font-weight: 750; color: #21461f; }
 .banner p { margin: 0; }
 
 .odds { display: flex; flex-direction: column; gap: 4px; }
 .odd {
   display: grid;
-  grid-template-columns: 110px minmax(80px, 280px) 64px;
+  grid-template-columns: 128px minmax(80px, 280px) 76px;
   gap: 8px;
   align-items: center;
-  font-size: 13px;
+  font-size: 17px;
   color: #111;
   text-shadow: var(--halo);
 }
@@ -249,8 +246,8 @@ textarea { width: min(640px, 100%); resize: vertical; }
   padding: 7px 8px;
   min-width: 0;
 }
-.slot .when { color: var(--muted); font-size: 11px; font-weight: 650; }
-.slot .val { font-size: 15px; font-variant-numeric: tabular-nums; font-weight: 650; }
+.slot .when { color: var(--muted); font-size: 14px; font-weight: 650; }
+.slot .val { font-size: 19px; font-variant-numeric: tabular-nums; font-weight: 650; }
 .slot.known .val { color: #c4840a; }
 .slot.future { border-color: var(--gold); }
 .slot.pastblank { opacity: 0.6; }
@@ -274,7 +271,7 @@ summary { cursor: pointer; color: #111; font-weight: 700; text-shadow: var(--hal
   background: #fff;
 }
 
-table { border-collapse: collapse; font-size: 12px; white-space: nowrap; }
+table { border-collapse: collapse; font-size: 15px; white-space: nowrap; }
 th, td { padding: 4px 7px; text-align: right; border-bottom: 1px solid #e5f2d4; }
 th { position: sticky; top: 0; background: #e7f6c9; text-align: right; font-weight: 750; color: #2f4a28; }
 td.pat, th.pat { text-align: left; }
@@ -290,7 +287,7 @@ footer {
   align-items: center;
   margin-top: 4px;
   color: #111;
-  font-size: 12px;
+  font-size: 15px;
   text-shadow: var(--halo);
 }
 footer a { color: #111; font-weight: 700; text-decoration: underline; }
@@ -300,7 +297,7 @@ footer a { color: #111; font-weight: 700; text-decoration: underline; }
   max-width: 36rem;
   margin: 15vh auto;
   padding: 0 20px;
-  font-size: 18px;
+  font-size: 23px;
 }
 
 @media (max-width: 860px) {
