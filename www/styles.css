@@ -191,7 +191,7 @@ main {
   flex-direction: column;
   gap: 12px;
   min-width: 0;
-  background: #5c3a22 url("/wood.png") 0 0 / 520px 520px repeat;
+  background: #c4893a url("/wood.png") 0 0 / 360px 180px repeat;
 }
 
 .top {
