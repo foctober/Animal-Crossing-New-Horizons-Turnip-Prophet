@@ -17,7 +17,7 @@ That copies the app to `C:\Tools\Turnips` and puts **Turnip Prophet** on your de
 ## What you do each week
 
 1. Sunday morning, type what Daisy Mae charges. It is always 90–110.
-2. When you check Nook's Cranny, type that price in the morning or afternoon box. Morning is before noon. Afternoon is a new price. Do not wipe the morning number.
+2. When you check Nook's Cranny, type that price in the morning or afternoon box. Morning is 8:00 AM – 11:59 AM. Afternoon is 12:00 PM – 10:00 PM. Do not wipe the morning number.
 3. Read the banner. It says sell or wait, in plain words.
 4. Next Sunday, click **New week**. If this week was a sure pattern, the new week starts with that filled in as "last week's pattern."
 
@@ -29,7 +29,7 @@ It saves by itself, about a second after you change a price, the note, or the se
 
 ## When you sold
 
-Pick **When did you sell?** Friday night is **Friday afternoon / night** (the price after noon). The banner then says:
+Pick **When did you sell?** Every day has the same two windows: 8:00 AM – 11:59 AM, then 12:00 PM – 10:00 PM. That is when Nook's Cranny is open, and the price changes at noon. The banner then says:
 
 - **Good job** if that was the best price of the week, or within 10 bells of it, and nothing later can beat it.
 - **Too soon** if a later price was higher.

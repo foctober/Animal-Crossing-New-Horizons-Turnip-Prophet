@@ -69,7 +69,8 @@ function snapSunday(value) {
 
 function slotName(idx14) {
   var pair = SLOT[idx14 - 2];
-  return pair[0] + " " + pair[1];
+  var hours = pair[1] === "morning" ? "8:00 AM – 11:59 AM" : "12:00 PM – 10:00 PM";
+  return pair[0] + ", " + hours;
 }
 
 function active() {
@@ -392,7 +393,7 @@ function renderSlots(week, all) {
     card.className = cls;
     var when = document.createElement("div");
     when.className = "when";
-    when.textContent = SHORT[Math.floor(s / 2)] + " " + (s % 2 === 0 ? "AM" : "PM");
+    when.textContent = SHORT[Math.floor(s / 2)] + " " + (s % 2 === 0 ? "8:00 AM" : "12:00 PM");
     var val = document.createElement("div");
     val.className = "val";
     val.textContent = entered != null ? String(entered) : (range.min + "\u2013" + range.max);
@@ -635,7 +636,7 @@ function gradeSale(week, rows, entered) {
   }
 
   var sell = entered[idx14];
-  var name = idx === 10 ? "Friday night" : slotName(idx14);
+  var name = slotName(idx14);
   var before = bestBeforeIndex(entered, idx14);
   var afterKnown = bestAfterIndex(entered, idx14);
   var futureMax = sell;
@@ -914,7 +915,7 @@ function buildPriceGrid() {
 
   var head = document.createElement("div");
   head.className = "price-head";
-  ["", "Morning\nbefore noon", "Afternoon\nafter noon"].forEach(function (text) {
+  ["", "8:00 AM\n– 11:59 AM", "12:00 PM\n– 10:00 PM"].forEach(function (text) {
     var span = document.createElement("span");
     text.split("\n").forEach(function (line, idx) {
       if (idx) span.appendChild(document.createElement("br"));
@@ -944,7 +945,7 @@ function buildPriceGrid() {
   });
   var hint = document.createElement("p");
   hint.className = "hint";
-  hint.textContent = "Morning is before noon. Afternoon is a new price. Do not erase the morning number.";
+  hint.textContent = "Morning price runs 8:00 AM – 11:59 AM. A new price starts at noon and lasts until 10:00 PM. Do not erase the morning number.";
   root.appendChild(hint);
 }
 

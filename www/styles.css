@@ -49,7 +49,7 @@ button:disabled { opacity: 0.45; cursor: default; }
 
 .app {
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
+  grid-template-columns: 340px minmax(0, 1fr);
   min-height: 100vh;
 }
 
@@ -65,33 +65,36 @@ aside {
 
 .brand {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  margin: -4px -2px 6px;
 }
 
 .brand img {
-  width: 84px;
-  height: 84px;
-  object-fit: cover;
-  border-radius: 18px;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 0 #c5e39a;
-  flex: none;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  background: transparent;
 }
 
-.brand-kicker {
-  color: #2a86b8;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-h1 {
+.brand h1 {
   margin: 0;
-  font-size: 22px;
+  font-size: 15px;
+  line-height: 1.25;
   font-weight: 750;
-  color: #2f7d32;
+  color: #245c8a;
+  text-align: center;
+}
+
+.brand .app-name {
+  margin: -4px 0 0;
+  font-size: 22px;
+  line-height: 1.15;
+  font-weight: 750;
+  color: #1f6b28;
+  text-align: center;
 }
 
 .week-list {
@@ -159,7 +162,7 @@ input[type="number"], input[type="text"], input[type="date"], select, textarea {
 input:focus, select:focus, textarea:focus { border-color: #2a86b8; }
 
 input[type="number"] { width: 5rem; }
-#sunday, #soldAt { color-scheme: light; }
+#soldAt { max-width: 320px; }
 #importUrl { width: min(420px, 46vw); }
 textarea { width: min(640px, 100%); resize: vertical; }
 
@@ -167,7 +170,7 @@ textarea { width: min(640px, 100%); resize: vertical; }
 
 .price-head, .price-row {
   display: grid;
-  grid-template-columns: 120px 92px 92px;
+  grid-template-columns: 120px 112px 124px;
   gap: 8px;
   align-items: center;
   margin-bottom: 6px;
