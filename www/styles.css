@@ -587,3 +587,68 @@ footer a:hover { background: #ffe56a; }
   .week-list { max-height: 240px; flex: none; }
   .top { grid-template-columns: 1fr; }
 }
+
+@font-face {
+  font-family: "FinkHeavy";
+  src: url("/FinkHeavy.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+main,
+main button,
+main input,
+main select,
+main textarea,
+main label,
+main p,
+main span,
+main a,
+main h2,
+main summary,
+main th,
+main td {
+  font-family: "FinkHeavy", "Segoe UI", sans-serif;
+}
+
+main label,
+main .hint,
+main .price-head,
+main .price-head span,
+main .price-row span,
+main .odd,
+main .odd b,
+main summary,
+main footer,
+main #saveState,
+main #saveState.bad,
+main #status,
+main .hint .hours,
+main #savedLine,
+main #savedLine #dataPath {
+  color: #f8d050;
+  text-shadow: none;
+}
+
+main .top > label,
+main input,
+main select,
+main textarea,
+main option,
+main .sunday-btn,
+main .cal,
+main .cal * {
+  color: #111;
+  text-shadow: none;
+}
+
+main #prevPattern:disabled {
+  color: #8a8a8a;
+}
+
+main input::placeholder,
+main textarea::placeholder {
+  color: #666;
+  opacity: 1;
+}

@@ -560,8 +560,8 @@ function drawChart() {
   function x(i) { return padL + (i + 0.5) * (iw / n); }
   function y(v) { return padT + (1 - (v - lo) / (hi - lo)) * ih; }
 
-  g.font = "14px Segoe UI";
-  g.fillStyle = "#4d6844";
+  g.font = "14px FinkHeavy, Segoe UI";
+  g.fillStyle = "#111";
   g.strokeStyle = "#d5e8bc";
   g.lineWidth = 1;
   var span = hi - lo;
@@ -632,8 +632,8 @@ function drawChart() {
     g.fill();
   });
 
-  g.fillStyle = "#4d6844";
-  g.font = "13px Segoe UI";
+  g.fillStyle = "#111";
+  g.font = "13px FinkHeavy, Segoe UI";
   g.textAlign = "center";
   disp.forEach(function (_v, i) {
     g.fillText(i % 2 === 0 ? "AM" : "PM", x(i), h - 22);
