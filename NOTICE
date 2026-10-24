@@ -1,0 +1,9 @@
+Turnip Prophet for Windows
+Copyright 2026 foctober
+
+Prediction engine originally developed by Mike Bryant, with great thanks to Ninji.
+Original project: https://github.com/mikebryant/ac-nh-turnip-prices
+Copyright 2020 Mike Bryant
+
+Both the tracker and the prediction engine are licensed under the Apache License, Version 2.0.
+See the LICENSE file.

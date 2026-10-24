@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turnip Prophet</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <div class="brand">
+        <div class="brand-kicker">New Horizons</div>
+        <h1>Turnip Prophet</h1>
+      </div>
+      <div id="weekList" class="week-list"></div>
+      <button id="newWeek" class="primary" type="button">New week</button>
+    </aside>
+    <main>
+      <div class="top">
+        <label>Week starting Sunday
+          <input id="sunday" type="date">
+        </label>
+        <div class="flags">
+          <label class="check"><input id="firstBuy" type="checkbox"> First time buying</label>
+          <label>Last week's pattern
+            <select id="prevPattern">
+              <option value="-1">Unknown</option>
+              <option value="0">Fluctuating</option>
+              <option value="1">Large spike</option>
+              <option value="2">Decreasing</option>
+              <option value="3">Small spike</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <p id="prevHint" class="hint"></p>
+
+      <section id="priceGrid"></section>
+
+      <div class="import">
+        <input id="importUrl" type="text" spellcheck="false" placeholder="Paste a turnipprophet.io link">
+        <button id="importBtn" type="button">Import</button>
+        <button id="deleteBtn" class="danger" type="button">Delete week</button>
+        <span id="saveState"></span>
+      </div>
+
+      <section id="result" hidden>
+        <div id="banner" class="banner"></div>
+        <div id="odds" class="odds"></div>
+        <canvas id="chart"></canvas>
+        <p id="legend" class="hint"></p>
+        <div id="slots" class="slots"></div>
+        <details>
+          <summary>Every pattern line (same numbers as the website)</summary>
+          <p class="hint">One row is one way this week can still play out. Odds on the left are for the whole pattern. Path is that single line.</p>
+          <div class="table-wrap">
+            <table>
+              <thead id="thead"></thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+
+      <label>Note
+        <textarea id="note" rows="2" spellcheck="true" placeholder="Sold the stack at 191. Still holding a few for Saturday."></textarea>
+      </label>
+
+      <footer>
+        <span id="status"></span>
+        <span class="hint">Saved in <span id="dataPath"></span></span>
+        <a id="siteLink" href="https://turnipprophet.io" target="_blank" rel="noreferrer">Check this week on turnipprophet.io</a>
+        <button id="quitBtn" type="button">Quit</button>
+      </footer>
+    </main>
+  </div>
+  <script src="/predictions.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
