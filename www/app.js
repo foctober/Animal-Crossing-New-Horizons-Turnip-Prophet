@@ -1126,7 +1126,7 @@ function boot() {
   }
   bind();
   fetch("/api/info").then(function (r) { return r.json(); }).then(function (info) {
-    $("dataPath").textContent = info.root + "\\turnips.json";
+    $("dataPath").textContent = info.data || (info.root + "\\turnips.json");
   }).catch(function () {});
   fetch("/api/state").then(function (r) { return r.json(); }).then(function (data) {
     state = data && data.weeks ? data : { weeks: [], activeId: null };

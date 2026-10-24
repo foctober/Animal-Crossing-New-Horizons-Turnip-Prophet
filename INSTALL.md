@@ -31,7 +31,7 @@ What that does:
 
 - Creates `C:\Tools\Turnips`
 - Copies the app into it, including the field and wood backgrounds
-- Does **not** delete `turnips.json` if you already have weeks saved
+- Does **not** delete your weeks. Those live in `%AppData%\TurnipProphet\turnips.json`, not in the program folder. If an older install left `C:\Tools\Turnips\turnips.json`, the first launch copies it into AppData and renames the old file `turnips.json.migrated`.
 - Puts a **Turnip Prophet** shortcut on your desktop, using `TurnipProphet.ico`
 - Opens the app
 
@@ -60,7 +60,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -STA -File C:\Tools\Turnips\Turnip
 
 The first open loads the week of October 18, 2026 (buy 96, the prices from that week's link) so you can see a finished prediction immediately. Delete that week if you do not want it.
 
-Your history is `C:\Tools\Turnips\turnips.json`.
+Your history is `%AppData%\TurnipProphet\turnips.json`. On a normal Windows 11 account that is `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`. The line at the bottom of the window shows the real path.
 
 ## 4. Quit
 
@@ -78,13 +78,13 @@ git pull
 powershell -ExecutionPolicy Bypass -File .\Install.ps1
 ```
 
-Open the shortcut again. `turnips.json` stays where it is.
+Open the shortcut again. The weeks file in AppData stays where it is.
 
 If the desktop icon still looks like Edge after an update, Windows cached the old picture. Delete the shortcut and run `Install.ps1` again.
 
 ## 6. Remove it
 
-Quit, delete the desktop shortcut, delete `C:\Tools\Turnips`. Take a copy of `turnips.json` first if you care about the old weeks.
+Quit, delete the desktop shortcut, delete `C:\Tools\Turnips`. That does not remove the weeks. Delete `%AppData%\TurnipProphet` only if you want the history gone too.
 
 ## Where the shortcut points
 

@@ -29,11 +29,11 @@ Under the prices is the prediction: the banner, the odds, the chart, the twelve 
 3. Read the banner. It says sell or wait, in plain words.
 4. Next Sunday, click **New week**. If this week was a sure pattern, the new week starts with that filled in as "last week's pattern."
 
-Weeks are stored in `C:\Tools\Turnips\turnips.json`. Quit from the button in the window, or right-click the tray icon. Closing the window alone leaves the little helper running so the next double-click just reopens it.
+Weeks are stored in `%AppData%\TurnipProphet\turnips.json` (usually `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`). That is your Windows profile, not the program folder, so deleting `C:\Tools\Turnips` does not delete the weeks. Quit from the button in the window, or right-click the tray icon. Closing the window alone leaves the little helper running so the next double-click just reopens it.
 
 ## Saving
 
-It saves by itself, about a second after you change a price, the note, or the sell time. The **Save** button writes `C:\Tools\Turnips\turnips.json` immediately. Quit does not wipe that file. Close the window, open the shortcut again, and the week is still there.
+It saves by itself, about a second after you change a price, the note, or the sell time. The **Save** button writes `%AppData%\TurnipProphet\turnips.json` immediately. Quit does not wipe that file. Close the window, open the shortcut again, and the week is still there. The first time this version runs, it copies an old `C:\Tools\Turnips\turnips.json` into AppData and renames the old file `turnips.json.migrated`.
 
 ## When you sold
 
@@ -119,7 +119,7 @@ Or double-click `Run.cmd` in that folder. A second launch does not start a secon
 | `Launch.vbs` / `Run.cmd` | Starts the app with no PowerShell window. |
 | `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the left side. `wood.png` is the right side. |
 | `predictions.js` | Unmodified Turnip Prophet engine. |
-| `turnips.json` | Your weeks. Created on the PC. Not in git. |
+| `turnips.json` | Your weeks. Lives in `%AppData%\TurnipProphet\`, not in the install folder and not in git. |
 
 ## Updating
 
@@ -130,13 +130,13 @@ git pull
 powershell -ExecutionPolicy Bypass -File .\Install.ps1
 ```
 
-Install copies the program files again. It does not touch `turnips.json` or the browser profile folder.
+Install copies the program files again. It does not touch the weeks file in AppData, or the browser profile folder.
 
 ## Uninstall
 
 1. Quit the app.
 2. Delete the desktop shortcut.
-3. Delete `C:\Tools\Turnips`. Copy `turnips.json` out first if you want the history.
+3. Delete `C:\Tools\Turnips`. The weeks stay in `%AppData%\TurnipProphet\turnips.json`. Delete that folder only if you want the history gone.
 
 ## License
 

@@ -29,6 +29,29 @@ $script:Icon = $null
 $script:AppIcon = $null
 $script:Timer = $null
 $script:Port = 0
+$script:DataFile = $null
+
+function Get-TurnipDataFile {
+  if ($script:DataFile) { return $script:DataFile }
+  $base = $env:APPDATA
+  if (-not $base) { $base = $Root }
+  $dir = Join-Path $base 'TurnipProphet'
+  if (-not (Test-Path -LiteralPath $dir)) {
+    New-Item -ItemType Directory -Path $dir -Force | Out-Null
+  }
+  $dest = Join-Path $dir 'turnips.json'
+  $old = Join-Path $Root 'turnips.json'
+  if (-not (Test-Path -LiteralPath $dest) -and (Test-Path -LiteralPath $old)) {
+    Copy-Item -LiteralPath $old -Destination $dest -Force
+    $bak = Join-Path $Root 'turnips.json.migrated'
+    if (-not (Test-Path -LiteralPath $bak)) {
+      Rename-Item -LiteralPath $old -NewName 'turnips.json.migrated' -ErrorAction SilentlyContinue
+    }
+    Write-Log ("Copied weeks to " + $dest)
+  }
+  $script:DataFile = $dest
+  return $dest
+}
 
 function Write-Log([string]$Message) {
   try {
@@ -173,7 +196,7 @@ function Receive-HttpRequest($Client) {
 }
 
 function Get-StateBytes {
-  $path = Join-Path $Root 'turnips.json'
+  $path = Get-TurnipDataFile
   if (Test-Path -LiteralPath $path) {
     $bytes = [IO.File]::ReadAllBytes($path)
     return ,$bytes
@@ -196,8 +219,9 @@ function Test-StateJson([string]$Text) {
 }
 
 function Save-StateBytes([byte[]]$Body) {
-  $path = Join-Path $Root 'turnips.json'
-  $tmp = Join-Path $Root 'turnips.json.tmp'
+  $path = Get-TurnipDataFile
+  $dir = Split-Path -Parent $path
+  $tmp = Join-Path $dir 'turnips.json.tmp'
   [IO.File]::WriteAllBytes($tmp, $Body)
   [IO.File]::Copy($tmp, $path, $true)
   Remove-Item -LiteralPath $tmp -Force
@@ -212,7 +236,8 @@ function Serve-Client {
     $path = $req.Path
     if ($method -eq 'GET' -and $path -eq '/api/info') {
       $jsonRoot = $Root.Replace('\', '\\')
-      $json = '{"app":"turnip-prophet","version":1,"root":"' + $jsonRoot + '"}'
+      $dataPath = (Get-TurnipDataFile).Replace('\', '\\')
+      $json = '{"app":"turnip-prophet","version":1,"root":"' + $jsonRoot + '","data":"' + $dataPath + '"}'
       $payload = [Text.Encoding]::UTF8.GetBytes($json)
       Send-Response $req.Stream '200 OK' 'application/json; charset=utf-8' $payload
       return
@@ -304,6 +329,7 @@ function Stop-Turnip {
 }
 
 function Main {
+  Get-TurnipDataFile | Out-Null
   foreach ($needed in @('predictions.js', 'TurnipProphet.ico', 'www\index.html', 'www\app.js', 'www\styles.css', 'www\logo.png', 'www\field.jpg', 'www\wood.png')) {
     $full = Join-Path $Root $needed
     if (-not (Test-Path -LiteralPath $full)) {
