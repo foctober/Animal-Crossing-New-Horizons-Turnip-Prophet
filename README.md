@@ -18,7 +18,7 @@ That copies the app to `C:\Tools\Turnips` and puts **Turnip Prophet** on your de
 
 The left side is the week list, on a field that fades into sky. The grass is the bottom quarter. The right side is where you type the prices, on wood. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**.
 
-Daisy Mae's name and her 90 to 110 range are red with a white outline. Weekday prices are bold, same as Sunday Buy Price. A sale at the high says "Good job! That was the best price!"
+A week card reads Buy (price) / High (price).
 
 Under the prices is the prediction: the banner, the odds, the chart, the twelve sell slots, and the full pattern table if you open it.
 

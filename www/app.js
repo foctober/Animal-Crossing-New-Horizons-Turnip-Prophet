@@ -248,7 +248,7 @@ function renderWeekList() {
       buyEl.textContent = "(" + buy + ")";
       marks.appendChild(buyEl);
     }
-    if (buy != null && best != null) marks.appendChild(tag(":"));
+    if (buy != null && best != null) marks.appendChild(tag("/"));
     if (best != null) {
       marks.appendChild(tag("High"));
       var bestEl = document.createElement("b");
