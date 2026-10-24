@@ -811,7 +811,9 @@ function schedulePredict() {
 }
 
 function saveSoon() {
-  $("saveState").textContent = "Saving\u2026";
+  var el = $("saveState");
+  el.classList.remove("bad");
+  el.textContent = "Saving\u2026";
   window.clearTimeout(saveTimer);
   saveTimer = window.setTimeout(saveNow, 200);
 }
@@ -824,10 +826,14 @@ function saveNow() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(state)
   }).then(function (res) {
-    $("saveState").textContent = res.ok ? "Saved." : "Save failed";
+    var el = $("saveState");
+    el.textContent = res.ok ? "Saved." : "Save failed";
+    el.classList.toggle("bad", !res.ok);
     renderWeekList();
   }).catch(function () {
-    $("saveState").textContent = "Save failed";
+    var el = $("saveState");
+    el.textContent = "Save failed";
+    el.classList.add("bad");
   });
 }
 

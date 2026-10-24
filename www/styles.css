@@ -351,7 +351,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   justify-content: center;
   height: 38px;
   line-height: 1;
-  color: #d10f0f;
+  color: var(--grass);
   font-size: 18px;
   font-weight: 700;
   min-width: 4rem;
@@ -365,6 +365,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
     -1px 0 0 #fff,
     1px 0 0 #fff;
 }
+#saveState.bad { color: #d10f0f; }
 
 .banner {
   padding: 12px 14px;

@@ -18,7 +18,7 @@ That copies the app to `C:\Tools\Turnips` and puts **Turnip Prophet** on your de
 
 The left side is the week list, on a field that fades into sky. The grass is the bottom quarter. The right side is where you type the prices, on wood. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**.
 
-A week card reads Buy (price) / High (price).
+Saved. next to the Save button is the same green as that button, with a white outline. A failed save stays red.
 
 Under the prices is the prediction: the banner, the odds, the chart, the twelve sell slots, and the full pattern table if you open it.
 
