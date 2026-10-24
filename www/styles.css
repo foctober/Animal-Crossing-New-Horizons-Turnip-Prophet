@@ -511,8 +511,9 @@ footer a:hover { background: #ffe56a; }
 #status { color: #111; font-weight: 700; }
 #savedLine, #savedLine #dataPath {
   color: #d10f0f;
-  font-size: 18px;
+  font-size: 11px;
   font-weight: 700;
+  line-height: 1.15;
   text-shadow:
     -1px -1px 0 #fff,
     1px -1px 0 #fff,
@@ -522,6 +523,11 @@ footer a:hover { background: #ffe56a; }
     0 1px 0 #fff,
     -1px 0 0 #fff,
     1px 0 0 #fff;
+}
+#savedLine {
+  display: block;
+  max-width: 15rem;
+  overflow-wrap: anywhere;
 }
 
 .bye {
