@@ -1,56 +1,74 @@
 # Install
 
-You need 64-bit Windows 10 or 11. You do not need Python, Node, or PowerShell extras. Edge or Chrome is used as the window. If neither is installed, your default browser opens instead.
+You need 64-bit Windows 10 or 11. Edge or Chrome is used as the window. If neither is installed, your default browser opens instead.
 
-## 1. Run the installer
+Pick one install. Do not run both at once. They share the same weeks file, `%AppData%\TurnipProphet\turnips.json`.
 
-Quit Turnip Prophet first if it is open.
+Quit Turnip Prophet first if it is already open.
 
-Download the repo ZIP, extract it, and double-click `TurnipProphet-Setup.exe`. Windows asks for permission because the app installs into Program Files. That is normal.
+## Windows installer
 
-Or from PowerShell in the extracted folder:
+Double-click `TurnipProphet-Setup.exe`. Windows asks for permission because the app installs into Program Files.
+
+Default folder: `C:\Program Files\Turnip Prophet`.
+
+- Installs the program there
+- Puts **Turnip Prophet** on the public desktop and in the Start menu
+- Adds an entry in Windows Settings, Apps
+- Does not delete the weeks file
+
+Uninstall later from Windows Settings, Apps, Turnip Prophet. That does not remove `%AppData%\TurnipProphet`.
+
+To update, quit, then run `TurnipProphet-Setup.exe` again over the same folder.
+
+SmartScreen may say the installer is unrecognized. It is not a signed store app. More info, then Run anyway, if you trust this repo.
+
+The log for this copy is `%LocalAppData%\TurnipProphet\turnips.log`.
+
+## PowerShell
+
+From the extracted folder:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\Install.ps1
 ```
 
-That opens the same installer.
+- Copies the app to `C:\Tools\Turnips`
+- Puts **Turnip Prophet** on your own desktop
+- Opens the app
+- Does not need an admin prompt unless Windows blocks new folders on `C:\`
 
-Default folder: `C:\Program Files\Turnip Prophet`.
+The shortcut runs `Launch.vbs`, which starts PowerShell hidden.
 
-What it does:
+If Windows will not create `C:\Tools`, open PowerShell **as Administrator** once:
 
-- Installs the program there
-- Puts **Turnip Prophet** on the desktop and in the Start menu
-- Adds an entry in Windows Settings, Apps, so you can uninstall it
-- Does **not** delete your weeks. Those live in `%AppData%\TurnipProphet\turnips.json`
-- If an older install left `C:\Tools\Turnips\turnips.json`, the first launch copies it into AppData and renames the old file `turnips.json.migrated`
+```powershell
+New-Item -ItemType Directory -Force -Path C:\Tools\Turnips
+icacls C:\Tools /grant "$($env:USERNAME):(OI)(CI)M"
+```
 
-The bottom of the window shows the real path to the weeks file.
+Then run `Install.ps1` again as your normal user.
 
-## 2. Use it
+To update, quit, then from a fresh copy of this folder run `Install.ps1` again. You can also double-click `C:\Tools\Turnips\Run.cmd`.
 
-Open the desktop shortcut or the Start menu item. A second open does not start a second copy. It brings the window back.
+To remove it, quit, delete the desktop shortcut, and delete `C:\Tools\Turnips`. That does not remove `%AppData%\TurnipProphet`.
+
+The log for this copy is `C:\Tools\Turnips\turnips.log`.
+
+## Either way
+
+A second open does not start a second copy. It brings the window back.
 
 Quit from the button in the window, or right-click the tray icon and choose Quit. Closing the window alone leaves the app running on purpose.
 
-## 3. Update later
+The bottom of the window shows the real path to the weeks file. On a normal account that is `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`.
 
-Quit first. Run `TurnipProphet-Setup.exe` again and install over the same folder. The weeks file stays where it is.
-
-## 4. Remove it
-
-Quit, then Windows Settings, Apps, Turnip Prophet, Uninstall. That removes the program and the shortcuts. It does not remove `%AppData%\TurnipProphet`. Delete that folder only if you want the history gone.
-
-An old `C:\Tools\Turnips` folder is not part of this installer. Delete it yourself once you have seen your weeks in the new app.
+If AppData has no weeks file yet, the first launch copies `C:\Tools\Turnips\turnips.json` when that old file is still there, and renames it `turnips.json.migrated`.
 
 ## If it does not open
 
-The log is `%LocalAppData%\TurnipProphet\turnips.log`. On a normal account that is `C:\Users\<you>\AppData\Local\TurnipProphet\turnips.log`.
-
-- "No free local port" — something is holding ports 47821–47840. Quit old copies in Task Manager. Look for Turnip Prophet and for Windows PowerShell from the old version.
+- "No free local port" means something is holding ports 47821–47840. Quit the other copy. In Task Manager, end **Turnip Prophet** or a Windows PowerShell process whose command line contains `Turnips.ps1`.
 - The window is blank — Edge is still starting. Give it a second. If it stays blank, quit from the tray and reopen.
-- SmartScreen — this installer is not a signed store app. More info, then Run anyway, if you trust this repo.
 
 ## Data
 
