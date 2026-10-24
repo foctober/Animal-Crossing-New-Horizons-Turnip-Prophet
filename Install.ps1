@@ -32,7 +32,7 @@ if (-not (Test-Path -LiteralPath $www)) {
   New-Item -ItemType Directory -Path $www | Out-Null
 }
 
-$names = @('Turnips.ps1', 'Launch.vbs', 'Run.cmd', 'predictions.js', 'LICENSE', 'NOTICE', 'README.md', 'INSTALL.md', 'Install.ps1')
+$names = @('Turnips.ps1', 'Launch.vbs', 'Run.cmd', 'predictions.js', 'LICENSE', 'NOTICE', 'README.md', 'INSTALL.md', 'Install.ps1', 'TurnipProphet.ico')
 foreach ($name in $names) {
   $src = Join-Path $here $name
   if (-not (Test-Path -LiteralPath $src)) { Fail "Missing $name next to Install.ps1." }
@@ -56,12 +56,17 @@ $sc.Arguments = '"' + (Join-Path $dest 'Launch.vbs') + '"'
 $sc.WorkingDirectory = $dest
 $sc.WindowStyle = 7
 $sc.Description = 'Animal Crossing: New Horizons - Turnip Prophet'
-$edge = Join-Path $env:ProgramFiles 'Microsoft\Edge\Application\msedge.exe'
-$psIcon = Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'
-if (Test-Path -LiteralPath $edge) {
-  $sc.IconLocation = $edge + ',0'
+$leaf = Join-Path $dest 'TurnipProphet.ico'
+if (Test-Path -LiteralPath $leaf) {
+  $sc.IconLocation = $leaf + ',0'
 } else {
-  $sc.IconLocation = $psIcon + ',0'
+  $edge = Join-Path $env:ProgramFiles 'Microsoft\Edge\Application\msedge.exe'
+  $psIcon = Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'
+  if (Test-Path -LiteralPath $edge) {
+    $sc.IconLocation = $edge + ',0'
+  } else {
+    $sc.IconLocation = $psIcon + ',0'
+  }
 }
 $sc.Save()
 

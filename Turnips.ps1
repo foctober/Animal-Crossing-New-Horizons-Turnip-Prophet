@@ -26,6 +26,7 @@ $script:Cleaned = $false
 $script:StopServer = $false
 $script:Listener = $null
 $script:Icon = $null
+$script:AppIcon = $null
 $script:Timer = $null
 $script:Port = 0
 
@@ -239,8 +240,14 @@ function Serve-Client {
       $script:StopServer = $true
       return
     }
-    if ($method -eq 'GET' -and $path -eq '/favicon.ico') {
-      Send-Response $req.Stream '204 No Content' 'text/plain; charset=utf-8' (New-Object byte[] 0)
+    if ($method -eq 'GET' -and ($path -eq '/favicon.ico' -or $path -eq '/TurnipProphet.ico')) {
+      $full = Join-Path $Root 'TurnipProphet.ico'
+      if (Test-Path -LiteralPath $full) {
+        $payload = [IO.File]::ReadAllBytes($full)
+        Send-Response $req.Stream '200 OK' 'image/x-icon' $payload
+      } else {
+        Send-Response $req.Stream '204 No Content' 'text/plain; charset=utf-8' (New-Object byte[] 0)
+      }
       return
     }
     if ($method -eq 'GET' -and $script:Files.ContainsKey($path)) {
@@ -287,6 +294,7 @@ function Stop-Turnip {
       $script:Icon.Visible = $false
       $script:Icon.Dispose()
     }
+    if ($script:AppIcon) { $script:AppIcon.Dispose() }
   } catch {}
   $portFile = Join-Path $Root 'turnips.port'
   if (Test-Path -LiteralPath $portFile) {
@@ -296,7 +304,7 @@ function Stop-Turnip {
 }
 
 function Main {
-  foreach ($needed in @('predictions.js', 'www\index.html', 'www\app.js', 'www\styles.css', 'www\logo.png')) {
+  foreach ($needed in @('predictions.js', 'TurnipProphet.ico', 'www\index.html', 'www\app.js', 'www\styles.css', 'www\logo.png')) {
     $full = Join-Path $Root $needed
     if (-not (Test-Path -LiteralPath $full)) {
       Show-Error "Missing $needed. Run Install.ps1 again from the repo."
@@ -338,7 +346,13 @@ function Main {
   }
 
   $script:Icon = New-Object System.Windows.Forms.NotifyIcon
-  $script:Icon.Icon = [System.Drawing.SystemIcons]::Application
+  $leaf = Join-Path $Root 'TurnipProphet.ico'
+  if (Test-Path -LiteralPath $leaf) {
+    $script:AppIcon = New-Object System.Drawing.Icon($leaf)
+    $script:Icon.Icon = $script:AppIcon
+  } else {
+    $script:Icon.Icon = [System.Drawing.SystemIcons]::Application
+  }
   $script:Icon.Visible = $true
   $script:Icon.Text = 'Turnip Prophet'
   $menu = New-Object System.Windows.Forms.ContextMenuStrip
