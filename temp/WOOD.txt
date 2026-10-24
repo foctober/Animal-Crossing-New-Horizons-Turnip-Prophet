@@ -1,4 +1,4 @@
-Review only. Not used by the app. The window still uses www/wood.png.
+Old review samples. Not used by the app. The window uses www/wood.png, the seamless orange grain, tiled at 360 by 180.
 
 Plain wood grain, no planks. These four are 2048x2048 photos from ambientCG (CC0). The earlier samples were too brown. Current app wood averages about rgb 166, 106, 40.
 

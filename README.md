@@ -8,7 +8,7 @@ The price math is the same engine as [turnipprophet.io](https://turnipprophet.io
 
 ## What it looks like
 
-The left side is the week list, on close-up grass with a white turnip in the middle. The right side is where you type the prices.
+The left side is the week list, on close-up grass with a white turnip in the middle. The right side is where you type the prices, on orange wood grain tiled small so it repeats.
 
 ![The left side. A white turnip sits in the grass, leaves in the sky.](www/field.jpg)
 
@@ -52,7 +52,7 @@ The shortcut, the tray icon, and the window icon are the teal leaf.
 
 ## What you see
 
-The left side is the week list, on a close-up field that fades into sky. The grass is the bottom quarter, with the white turnip in the middle. The top of it sits just over the grass and the leaves reach into the sky. The right side is where you type the prices, on wood. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**.
+The left side is the week list, on a close-up field that fades into sky. The grass is the bottom quarter, with the white turnip in the middle. The top of it sits just over the grass and the leaves reach into the sky. The right side is where you type the prices, on orange wood that matches the title. The grain is one seamless tile, repeated at a small size so it does not show up as one big picture. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**.
 
 The top three fields are three equal cards. Inside each card the label is left-aligned with its box. The date and both dropdowns are bold. Last week's pattern stays grey while First time buying is checked. Uncheck that and the pattern box is bold like the other two. The price box for the shop window that is open right now is pumpkin orange. On a week that has not started yet, Sunday Buy Price is the one marked, because that is the first price to enter. On this week, Sunday morning is the buy box, and Monday through Saturday follow 8:00 AM and noon. A finished week is not marked. Outside shop hours nothing is marked.
 
@@ -150,7 +150,7 @@ Open **Turnip Prophet** from the desktop or the Start menu. A second launch does
 | `Turnips.ps1` | The PowerShell app. Local page plus the tray icon. |
 | `Launch.vbs` / `Run.cmd` | Start the PowerShell app with no PowerShell window. |
 | `TurnipProphet.ico` | The leaf icon for the shortcut, the tray, and the installer. |
-| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the left side. `wood.png` is the right side. |
+| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the left side. `wood.png` is the right side, tiled at 360 by 180. |
 | `predictions.js` | Unmodified Turnip Prophet engine. |
 | `turnips.json` | Your weeks. Lives in `%AppData%\TurnipProphet\`, not next to the program and not in git. |
 
