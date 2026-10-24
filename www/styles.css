@@ -483,8 +483,9 @@ td.bad { color: var(--bad); }
 footer {
   display: flex;
   flex-wrap: nowrap;
-  gap: 12px;
   align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   margin-top: 4px;
   width: 100%;
   color: #111;
@@ -492,8 +493,21 @@ footer {
   font-weight: 700;
   text-shadow: var(--halo);
 }
-.foot-left { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; flex: 0 1 auto; min-width: 0; }
-.foot-mid { flex: 1 1 auto; display: flex; justify-content: center; min-width: 0; }
+.foot-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.foot-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
 #quitBtn { margin-left: 0; flex: 0 0 auto; }
 footer a {
   color: #3a2500;
@@ -509,6 +523,7 @@ footer a {
 }
 footer a:hover { background: #ffe56a; }
 #status { color: #111; font-weight: 700; }
+#status:empty { display: none; }
 #savedLine, #savedLine #dataPath {
   color: #d10f0f;
   font-size: 11px;
@@ -526,8 +541,8 @@ footer a:hover { background: #ffe56a; }
 }
 #savedLine {
   display: block;
-  max-width: 15rem;
-  overflow-wrap: anywhere;
+  max-width: none;
+  white-space: nowrap;
 }
 
 .bye {
