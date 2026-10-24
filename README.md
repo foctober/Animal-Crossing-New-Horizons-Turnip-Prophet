@@ -8,7 +8,7 @@ The price math is the same engine as [turnipprophet.io](https://turnipprophet.io
 
 The left side is the week list. The right side is where you type the prices.
 
-![Entering the week's prices](docs/prices.jpg)
+![Entering the week's prices. The shop window that is open now is pumpkin orange.](docs/prices.jpg)
 
 ![The sell-or-wait banner and the chart](docs/chart.jpg)
 
