@@ -23,37 +23,35 @@
         <label>Week starting Sunday
           <input id="sunday" type="date" title="Sundays only. Any other day snaps back to that week's Sunday.">
         </label>
-        <div class="flags">
-          <label class="check"><input id="firstBuy" type="checkbox"> First time buying</label>
-          <label>Last week's pattern
-            <select id="prevPattern">
-              <option value="-1">Unknown</option>
-              <option value="0">Fluctuating</option>
-              <option value="1">Large spike</option>
-              <option value="2">Decreasing</option>
-              <option value="3">Small spike</option>
-            </select>
-          </label>
-          <label>When did you sell?
-            <select id="soldAt">
-              <option value="">Still holding</option>
-              <option value="1">Monday, 8:00 AM – 11:59 AM</option>
-              <option value="2">Monday, 12:00 PM – 10:00 PM</option>
-              <option value="3">Tuesday, 8:00 AM – 11:59 AM</option>
-              <option value="4">Tuesday, 12:00 PM – 10:00 PM</option>
-              <option value="5">Wednesday, 8:00 AM – 11:59 AM</option>
-              <option value="6">Wednesday, 12:00 PM – 10:00 PM</option>
-              <option value="7">Thursday, 8:00 AM – 11:59 AM</option>
-              <option value="8">Thursday, 12:00 PM – 10:00 PM</option>
-              <option value="9">Friday, 8:00 AM – 11:59 AM</option>
-              <option value="10">Friday, 12:00 PM – 10:00 PM</option>
-              <option value="11">Saturday, 8:00 AM – 11:59 AM</option>
-              <option value="12">Saturday, 12:00 PM – 10:00 PM</option>
-              <option value="spoil">Didn't sell (they spoiled)</option>
-            </select>
-          </label>
-        </div>
+        <label>Last week's pattern
+          <select id="prevPattern">
+            <option value="-1">Unknown</option>
+            <option value="0">Fluctuating</option>
+            <option value="1">Large spike</option>
+            <option value="2">Decreasing</option>
+            <option value="3">Small spike</option>
+          </select>
+        </label>
+        <label>When did you sell?
+          <select id="soldAt">
+            <option value="">Still holding</option>
+            <option value="1">Monday, 8:00 AM – 11:59 AM</option>
+            <option value="2">Monday, 12:00 PM – 10:00 PM</option>
+            <option value="3">Tuesday, 8:00 AM – 11:59 AM</option>
+            <option value="4">Tuesday, 12:00 PM – 10:00 PM</option>
+            <option value="5">Wednesday, 8:00 AM – 11:59 AM</option>
+            <option value="6">Wednesday, 12:00 PM – 10:00 PM</option>
+            <option value="7">Thursday, 8:00 AM – 11:59 AM</option>
+            <option value="8">Thursday, 12:00 PM – 10:00 PM</option>
+            <option value="9">Friday, 8:00 AM – 11:59 AM</option>
+            <option value="10">Friday, 12:00 PM – 10:00 PM</option>
+            <option value="11">Saturday, 8:00 AM – 11:59 AM</option>
+            <option value="12">Saturday, 12:00 PM – 10:00 PM</option>
+            <option value="spoil">Didn't sell (they spoiled)</option>
+          </select>
+        </label>
       </div>
+      <label class="check"><input id="firstBuy" type="checkbox"> First time buying</label>
       <p class="hint">Nook's Cranny is open 8:00 AM – 10:00 PM. The sell price changes at noon.</p>
       <p id="prevHint" class="hint"></p>
 
@@ -87,12 +85,12 @@
       </section>
 
       <label>Note
-        <textarea id="note" rows="2" spellcheck="true" placeholder="Sold the stack at 191. Still holding a few for Saturday."></textarea>
+        <textarea id="note" rows="3" spellcheck="true" placeholder="Sold the stack at 191. Still holding a few for Saturday."></textarea>
       </label>
 
       <footer>
+        <span id="savedLine">Saved in <span id="dataPath"></span></span>
         <span id="status"></span>
-        <span class="hint">Saved in <span id="dataPath"></span></span>
         <a id="siteLink" href="https://turnipprophet.io" target="_blank" rel="noreferrer">Check this week on turnipprophet.io</a>
         <button id="quitBtn" type="button">Quit</button>
       </footer>

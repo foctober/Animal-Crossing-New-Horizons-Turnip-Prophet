@@ -166,6 +166,31 @@ function fillForm(week) {
   syncPrevLock();
   $("siteLink").href = permalink(week);
   document.title = "Turnip Prophet \u00b7 " + pretty(week.id);
+  markDue();
+}
+
+function dueSlotId() {
+  var week = active();
+  if (!week || week.id !== thisSunday()) return null;
+  var now = new Date();
+  var day = now.getDay();
+  var mins = now.getHours() * 60 + now.getMinutes();
+  if (day === 0) return mins < 12 * 60 ? "buy" : null;
+  if (mins < 8 * 60 || mins >= 22 * 60) return null;
+  var half = mins < 12 * 60 ? 0 : 1;
+  return "p" + ((day - 1) * 2 + half);
+}
+
+function markDue() {
+  var ids = ["buy"];
+  for (var i = 0; i < 12; i++) ids.push("p" + i);
+  var due = dueSlotId();
+  ids.forEach(function (id) {
+    var el = $(id);
+    if (!el) return;
+    if (id === due) el.classList.add("due");
+    else el.classList.remove("due");
+  });
 }
 
 function syncPrevLock() {
@@ -908,7 +933,9 @@ function buildPriceGrid() {
   var buyRow = document.createElement("div");
   buyRow.className = "buy-row";
   var buyLabel = document.createElement("label");
-  buyLabel.textContent = "Sunday buy";
+  buyLabel.appendChild(document.createTextNode("Sunday Buy Price"));
+  var line = document.createElement("div");
+  line.className = "buy-line";
   var buy = document.createElement("input");
   buy.id = "buy";
   buy.type = "number";
@@ -916,12 +943,13 @@ function buildPriceGrid() {
   buy.max = "999";
   buy.step = "1";
   buy.inputMode = "numeric";
-  buyLabel.appendChild(buy);
-  buyRow.appendChild(buyLabel);
   var buyHint = document.createElement("p");
   buyHint.className = "hint";
-  buyHint.textContent = "Daisy Mae, Sunday morning only. Her price is 90\u2013110.";
-  buyRow.appendChild(buyHint);
+  buyHint.textContent = "Daisy Mae only sells on Sunday morning. Her price is between 90 and 110.";
+  line.appendChild(buy);
+  line.appendChild(buyHint);
+  buyLabel.appendChild(line);
+  buyRow.appendChild(buyLabel);
   root.appendChild(buyRow);
 
   var head = document.createElement("div");
@@ -981,6 +1009,8 @@ function bind() {
     });
   });
   window.addEventListener("resize", drawChart);
+  markDue();
+  window.setInterval(markDue, 30000);
 }
 
 function boot() {

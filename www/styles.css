@@ -129,18 +129,18 @@ aside {
   gap: 8px;
   width: 100%;
   text-align: left;
-  background: transparent;
-  border: 2px solid transparent;
+  background: #111;
+  border: 2px solid #2a2a2a;
   border-radius: 12px;
   padding: 6px 8px;
-  color: #111;
-  text-shadow: var(--halo);
+  color: #fff;
+  text-shadow: none;
   white-space: nowrap;
 }
 
-.week .date { font-weight: 700; }
+.week .date { color: #fff; font-weight: 700; text-shadow: none; }
 .week .marks { display: inline-flex; gap: 6px; margin-left: 8px; text-shadow: none; }
-.week .buy { color: #d01212; font-weight: 700; text-shadow: 0 0 2px #fff, 0 0 1px #fff; }
+.week .buy { color: #ff2d2d; font-weight: 700; text-shadow: none; }
 .week .best {
   color: var(--animal);
   font-weight: 800;
@@ -148,16 +148,16 @@ aside {
 }
 
 @keyframes bellglow {
-  0%, 100% { text-shadow: 0 0 1px #5a3e00, 0 0 4px var(--animal); }
-  50% { text-shadow: 0 0 2px #5a3e00, 0 0 10px #ffe36a, 0 0 16px var(--animal); }
+  0%, 100% { text-shadow: 0 0 4px var(--animal); }
+  50% { text-shadow: 0 0 10px #ffe36a, 0 0 16px var(--animal); }
 }
 
 .week.on {
-  background: #fff;
-  border-color: var(--grass);
+  background: #111;
+  border-color: #fff;
   text-shadow: none;
 }
-.week.on .date { text-shadow: none; }
+.week.on .date { color: #fff; text-shadow: none; }
 .week.on .buy { text-shadow: none; }
 
 #newWeek { width: 100%; }
@@ -173,20 +173,25 @@ main {
 
 .top {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px 28px;
-  align-items: end;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  gap: 12px 28px;
 }
 
-.flags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px 22px;
-  align-items: end;
-}
+.top > label { align-items: flex-start; flex: 0 0 auto; }
 
 label { display: flex; flex-direction: column; gap: 4px; color: #111; font-size: 23px; font-weight: 700; text-shadow: var(--halo); }
-label.check { flex-direction: row; align-items: center; gap: 8px; color: #111; font-size: 23px; font-weight: 700; padding-bottom: 2px; }
+label.check {
+  flex-direction: row;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  color: #111;
+  font-size: 21px;
+  font-weight: 700;
+  padding-bottom: 0;
+}
+label.check input { width: 15px; height: 15px; margin: 0; flex: 0 0 auto; }
 
 input[type="number"], input[type="text"], input[type="date"], select, textarea {
   background: #fff;
@@ -199,6 +204,15 @@ input[type="number"], input[type="text"], input[type="date"], select, textarea {
 }
 
 input:focus, select:focus, textarea:focus { border-color: #2a86b8; }
+
+input.due {
+  border-color: #f58220;
+  box-shadow: 0 0 0 2px #f58220;
+  background: #fff3e6;
+}
+
+.buy-line { display: flex; align-items: center; gap: 10px; }
+.buy-line .hint { margin: 0; }
 
 input[type="number"] { width: 4.6rem; text-align: center; padding: 2px 2px; }
 input[type="date"] { width: 11rem; }
@@ -263,18 +277,21 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 }
 
 .slots {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-start;
 }
 .slot {
   background: #fff;
   border: 2px solid #d7ecc0;
-  border-radius: 10px;
-  padding: 4px 6px 5px;
-  min-width: 0;
+  border-radius: 8px;
+  padding: 3px 7px 4px;
+  width: max-content;
+  max-width: 100%;
+  text-align: center;
 }
-.slot .when { color: var(--muted); font-size: 13px; font-weight: 650; text-align: left; }
+.slot .when { color: var(--muted); font-size: 13px; font-weight: 650; text-align: center; }
 .slot .val { display: block; font-size: 16px; font-variant-numeric: tabular-nums; font-weight: 700; text-align: center; }
 .slot.known .val { color: #c4840a; }
 .slot.future { border-color: var(--gold); }
@@ -287,8 +304,8 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   text-shadow: none;
 }
 
-details { border-top: 2px solid rgba(255, 255, 255, 0.55); padding-top: 8px; }
-summary { cursor: pointer; color: #111; font-size: 18px; font-weight: 700; text-shadow: var(--halo); }
+details { border-top: 2px solid rgba(255, 255, 255, 0.55); margin: 0; padding: 8px 0 0; }
+summary { cursor: pointer; margin: 0; padding: 0; color: #111; font-size: 18px; font-weight: 700; text-shadow: var(--halo); }
 
 .table-wrap {
   overflow: auto;
@@ -332,7 +349,22 @@ footer a {
   box-shadow: 0 0 0 2px #8a6a10;
 }
 footer a:hover { background: #ffe56a; }
+#quitBtn { margin-left: auto; }
 #status { color: #111; font-weight: 700; }
+#savedLine, #savedLine #dataPath {
+  color: #d10f0f;
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 -1px 0 #fff,
+    0 1px 0 #fff,
+    -1px 0 0 #fff,
+    1px 0 0 #fff;
+}
 
 .bye {
   max-width: 36rem;
@@ -345,5 +377,5 @@ footer a:hover { background: #ffe56a; }
   .app { grid-template-columns: 1fr; }
   aside { height: auto; max-height: none; position: static; }
   .week-list { max-height: 240px; flex: none; }
-  .slots { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .top { flex-wrap: wrap; }
 }
