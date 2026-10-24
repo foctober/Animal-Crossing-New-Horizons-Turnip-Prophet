@@ -197,15 +197,25 @@ main {
 .top {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  align-items: end;
+  align-items: stretch;
   width: 100%;
-  gap: 12px;
+  gap: 14px;
 }
 
-.top > label { align-items: flex-start; min-width: 0; }
-.top > label:nth-child(1) { justify-self: start; }
-.top > label:nth-child(2) { justify-self: center; align-items: center; }
-.top > label:nth-child(3) { justify-self: end; align-items: flex-end; }
+.top > label {
+  align-items: flex-start;
+  justify-self: stretch;
+  text-align: left;
+  min-width: 0;
+  background: #fffdf6;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  padding: 8px 10px 10px;
+  text-shadow: none;
+}
+.top .sunday-wrap { display: block; width: 100%; }
+.top .sunday-btn,
+.top select { width: 100%; }
 
 label { display: flex; flex-direction: column; gap: 4px; color: #111; font-size: 23px; font-weight: 700; text-shadow: var(--halo); }
 label.check {
@@ -255,7 +265,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 input[type="date"] { width: 11rem; }
 #soldAt, #prevPattern {
-  width: auto;
   max-width: 100%;
   box-sizing: border-box;
   height: calc(16px * 1.45 + 6px + 4px);
@@ -569,6 +578,4 @@ footer a:hover { background: #ffe56a; }
   aside { height: auto; max-height: none; position: static; }
   .week-list { max-height: 240px; flex: none; }
   .top { grid-template-columns: 1fr; }
-  .top > label:nth-child(2),
-  .top > label:nth-child(3) { justify-self: start; align-items: flex-start; }
 }
