@@ -1,15 +1,10 @@
 Review only. Not used by the app. The window still uses www/wood.png.
 
-Plain wood grain. No planks. All four are 1408x1408. Nothing was edited after they were made. The current app wood is 879x879 and more orange.
+Plain wood grain, no planks. These four are 2048x2048 photos from ambientCG (CC0). The earlier samples were too brown. Current app wood averages about rgb 166, 106, 40.
 
-1 wood-1-fine-brown.jpg
-   Fine grain, medium brown, close to the title. Edges meet about evenly.
+1 wood-1-bright.jpg   Wood052. Brightest. Average about 211, 126, 76. Horizontal grain.
+2 wood-2-warm.jpg     Wood092. Average about 176, 115, 63. Horizontal grain.
+3 wood-3-close.jpg    Wood081. Closest numbers to the current wood. Average about 168, 106, 70.
+4 wood-4-orange.jpg   Wood030. More orange, but darker. Average about 127, 65, 10. Grain runs up and down.
 
-2 wood-2-golden.jpg
-   Finer golden grain, closer to the orange of the current app wood. Top and bottom meet a little worse than the sides.
-
-3 wood-3-dark.jpg
-   Fine grain, darker than the title. Edges meet the best of the four.
-
-4 wood-4-title-brown.jpg
-   Medium brown closest to the title color. Edges meet about evenly.
+Source: https://ambientcg.com/  License: CC0.
