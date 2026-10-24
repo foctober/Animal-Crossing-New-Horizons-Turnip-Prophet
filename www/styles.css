@@ -8,7 +8,7 @@
   --grass: #6ec44a;
   --grass-deep: #3f9a3a;
   --sky: #8fd4f8;
-  --animal: #f6c937;
+  --animal: #f8d054;
   --gold: #e9a514;
   --good: #2f8a3a;
   --bad: #d4533a;
@@ -123,10 +123,10 @@ aside {
 }
 
 .week {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
-  column-gap: 6px;
+  justify-content: space-between;
+  gap: 8px;
   width: 100%;
   text-align: left;
   background: #111;
@@ -138,9 +138,8 @@ aside {
   white-space: nowrap;
 }
 
-.week .date { justify-self: start; color: #fff; font-weight: 700; text-shadow: none; }
-.week .dash { justify-self: center; color: #fff; font-weight: 700; text-shadow: none; }
-.week .marks { justify-self: end; display: inline-flex; gap: 4px; align-items: baseline; margin-left: 0; color: #fff; font-weight: 700; text-shadow: none; }
+.week .date { color: #fff; font-weight: 700; text-shadow: none; }
+.week .marks { display: inline-flex; gap: 4px; align-items: baseline; margin-left: auto; color: #fff; font-weight: 700; text-shadow: none; }
 .week .tag { color: #fff; font-weight: 700; text-shadow: none; }
 .week .buy { color: #ff2d2d; font-weight: 700; text-shadow: none; }
 .week .best {
@@ -216,7 +215,17 @@ input.due {
 .buy-line { display: flex; align-items: center; gap: 10px; }
 .buy-line .hint { margin: 0; }
 
-input[type="number"] { width: 4.6rem; text-align: center; padding: 2px 2px; }
+input[type="number"] {
+  width: 4.6rem;
+  text-align: center;
+  padding: 2px 0;
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 input[type="date"] { width: 11rem; }
 #soldAt, #prevPattern { width: auto; max-width: 100%; }
 #importUrl { width: min(360px, 46vw); }
@@ -297,8 +306,25 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 .price-row span { color: #111; font-size: 23px; font-weight: 700; text-shadow: var(--halo); }
 
 .buy-row { margin-bottom: 8px; }
-.import { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-#saveState { color: #111; font-size: 18px; font-weight: 700; min-width: 4rem; text-shadow: var(--halo); }
+.import { display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; }
+.import-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.import input, .import button { height: 38px; box-sizing: border-box; }
+.import input { padding: 0 8px; }
+#saveState {
+  color: #d10f0f;
+  font-size: 18px;
+  font-weight: 700;
+  min-width: 4rem;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 -1px 0 #fff,
+    0 1px 0 #fff,
+    -1px 0 0 #fff,
+    1px 0 0 #fff;
+}
 
 .banner {
   padding: 12px 14px;
@@ -338,18 +364,18 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 }
 
 .slots {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
 }
 .slot {
   background: #fff;
   border: 2px solid #d7ecc0;
   border-radius: 8px;
-  padding: 3px 7px 4px;
-  width: max-content;
-  max-width: 100%;
+  padding: 4px 6px 5px;
+  width: auto;
+  min-width: 0;
   text-align: center;
 }
 .slot .when { color: var(--muted); font-size: 13px; font-weight: 650; text-align: center; }
@@ -365,8 +391,35 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   text-shadow: none;
 }
 
-details { border-top: 2px solid rgba(255, 255, 255, 0.55); margin: 0; padding: 8px 0 0; }
-summary { cursor: pointer; margin: 0; padding: 0; color: #111; font-size: 18px; font-weight: 700; text-shadow: var(--halo); }
+details { border: 0; margin: 0; padding: 0; }
+summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  color: #111;
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: var(--halo);
+}
+summary::-webkit-details-marker { display: none; }
+summary::before {
+  content: "▼";
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow:
+    -1px -1px 0 #111,
+    1px -1px 0 #111,
+    -1px 1px 0 #111,
+    1px 1px 0 #111,
+    0 0 2px #111;
+}
+details[open] > summary::before { content: "▲"; }
 
 .table-wrap {
   overflow: auto;

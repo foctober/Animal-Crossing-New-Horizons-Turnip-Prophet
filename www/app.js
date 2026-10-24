@@ -228,9 +228,6 @@ function renderWeekList() {
     var date = document.createElement("span");
     date.className = "date";
     date.textContent = pretty(week.id);
-    var dash = document.createElement("span");
-    dash.className = "dash";
-    dash.textContent = "-";
     var marks = document.createElement("span");
     marks.className = "marks";
     var buy = week.prices[0];
@@ -260,7 +257,6 @@ function renderWeekList() {
       marks.appendChild(bestEl);
     }
     btn.appendChild(date);
-    btn.appendChild(dash);
     btn.appendChild(marks);
     btn.addEventListener("click", function () { selectWeek(week.id); });
     box.appendChild(btn);
@@ -828,7 +824,7 @@ function saveNow() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(state)
   }).then(function (res) {
-    $("saveState").textContent = res.ok ? "Saved" : "Save failed";
+    $("saveState").textContent = res.ok ? "Saved." : "Save failed";
     renderWeekList();
   }).catch(function () {
     $("saveState").textContent = "Save failed";
