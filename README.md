@@ -23,6 +23,18 @@ That copies the app to `C:\Tools\Turnips` and puts **Turnip Prophet** on your de
 
 Weeks are stored in `C:\Tools\Turnips\turnips.json`. Quit from the button in the window, or right-click the tray icon. Closing the window alone leaves the little helper running so the next double-click just reopens it.
 
+## Saving
+
+It saves by itself, about a second after you change a price, the note, or the sell time. The **Save** button writes `C:\Tools\Turnips\turnips.json` immediately. Quit does not wipe that file. Close the window, open the shortcut again, and the week is still there.
+
+## When you sold
+
+Pick **When did you sell?** Friday night is **Friday afternoon / night** (the price after noon). The banner then says:
+
+- **Good job** if that was the best price of the week, or within 10 bells of it, and nothing later can beat it.
+- **Too soon** if a later price was higher.
+- **Too late** if an earlier price was the high, or the turnips spoiled.
+
 ## How to read the result
 
 The banner is the part that matters.

@@ -296,7 +296,7 @@ function Stop-Turnip {
 }
 
 function Main {
-  foreach ($needed in @('predictions.js', 'www\index.html', 'www\app.js', 'www\styles.css')) {
+  foreach ($needed in @('predictions.js', 'www\index.html', 'www\app.js', 'www\styles.css', 'www\title.jpg')) {
     $full = Join-Path $Root $needed
     if (-not (Test-Path -LiteralPath $full)) {
       Show-Error "Missing $needed. Run Install.ps1 again from the repo."
@@ -334,6 +334,7 @@ function Main {
     '/styles.css' = @{ Rel = 'www\styles.css'; Type = 'text/css; charset=utf-8' }
     '/app.js' = @{ Rel = 'www\app.js'; Type = 'text/javascript; charset=utf-8' }
     '/predictions.js' = @{ Rel = 'predictions.js'; Type = 'text/javascript; charset=utf-8' }
+    '/title.jpg' = @{ Rel = 'www\title.jpg'; Type = 'image/jpeg' }
   }
 
   $script:Icon = New-Object System.Windows.Forms.NotifyIcon

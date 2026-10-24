@@ -24,6 +24,7 @@ var SEED = {
     previousPattern: -1,
     likelyPattern: -1,
     prices: [96, null, null, 77, null, null, 64, null, 132, 172, 191, 149, null],
+    soldAt: 10,
     note: "",
     updatedAt: "2026-10-24T12:00:00.000Z"
   }],
@@ -140,6 +141,10 @@ function readFormInto(week) {
   week.firstBuy = $("firstBuy").checked;
   week.previousPattern = Number($("prevPattern").value);
   week.note = $("note").value;
+  var sold = $("soldAt").value;
+  if (sold === "" || sold === "hold") week.soldAt = null;
+  else if (sold === "spoil") week.soldAt = "spoil";
+  else week.soldAt = Number(sold);
   var prices = [readNum($("buy"))];
   for (var i = 0; i < 12; i++) prices.push(readNum($("p" + i)));
   week.prices = prices;
@@ -151,6 +156,7 @@ function fillForm(week) {
   $("firstBuy").checked = !!week.firstBuy;
   $("prevPattern").value = String(week.previousPattern == null ? -1 : week.previousPattern);
   $("note").value = week.note || "";
+  $("soldAt").value = week.soldAt == null || week.soldAt === "hold" ? "" : String(week.soldAt);
   $("buy").value = week.prices[0] == null ? "" : week.prices[0];
   for (var i = 0; i < 12; i++) {
     var v = week.prices[i + 1];
@@ -170,7 +176,7 @@ function syncPrevLock() {
 }
 
 function setEnabled(on) {
-  ["sunday", "firstBuy", "prevPattern", "buy", "note", "importBtn", "deleteBtn", "importUrl"].forEach(function (id) {
+  ["sunday", "firstBuy", "prevPattern", "soldAt", "buy", "note", "importBtn", "deleteBtn", "importUrl", "saveBtn"].forEach(function (id) {
     $(id).disabled = !on;
   });
   for (var i = 0; i < 12; i++) $("p" + i).disabled = !on;
@@ -382,6 +388,7 @@ function renderSlots(week, all) {
     if (entered != null) cls += " known";
     else if (s > last) cls += " future";
     else cls += " pastblank";
+    if (Number(week.soldAt) === s + 1) cls += " sold";
     card.className = cls;
     var when = document.createElement("div");
     when.className = "when";
@@ -496,8 +503,8 @@ function drawChart() {
   function y(v) { return padT + (1 - (v - lo) / (hi - lo)) * ih; }
 
   g.font = "11px Segoe UI";
-  g.fillStyle = "#a89a84";
-  g.strokeStyle = "#3c342a";
+  g.fillStyle = "#4d6844";
+  g.strokeStyle = "#d5e8bc";
   g.lineWidth = 1;
   var span = hi - lo;
   var step = span > 220 ? 50 : span > 90 ? 20 : 10;
@@ -512,7 +519,7 @@ function drawChart() {
 
   if (Number.isFinite(buy) && buy >= lo && buy <= hi) {
     g.save();
-    g.strokeStyle = "#6b5a48";
+    g.strokeStyle = "#d0892a";
     g.setLineDash([2, 4]);
     g.beginPath();
     g.moveTo(padL, y(buy));
@@ -530,9 +537,9 @@ function drawChart() {
   });
   for (var k = n - 1; k >= 0; k--) g.lineTo(x(k), y(disp[k].min));
   g.closePath();
-  g.fillStyle = "rgba(141, 206, 120, 0.28)";
+  g.fillStyle = "rgba(90, 190, 70, 0.35)";
   g.fill();
-  g.strokeStyle = "#8dce78";
+  g.strokeStyle = "#3ea84a";
   g.stroke();
 
   if (last >= 0 && last < n - 1) {
@@ -547,7 +554,7 @@ function drawChart() {
     g.restore();
   }
 
-  g.strokeStyle = "#f4efe4";
+  g.strokeStyle = "#2f6b32";
   g.lineWidth = 2;
   g.beginPath();
   var pen = false;
@@ -559,7 +566,7 @@ function drawChart() {
   });
   g.stroke();
 
-  g.fillStyle = "#e0a106";
+  g.fillStyle = "#e09412";
   disp.forEach(function (v, i) {
     if (v.known == null) return;
     g.beginPath();
@@ -567,7 +574,7 @@ function drawChart() {
     g.fill();
   });
 
-  g.fillStyle = "#a89a84";
+  g.fillStyle = "#4d6844";
   g.font = "10px Segoe UI";
   g.textAlign = "center";
   disp.forEach(function (_v, i) {
@@ -575,6 +582,113 @@ function drawChart() {
     if (i % 2 === 0) g.fillText(SHORT[i / 2], x(i) + (iw / n) / 2, h - 4);
   });
   g.textAlign = "left";
+}
+
+
+function paidLine(sell, buy) {
+  if (!Number.isFinite(buy) || !buy) return "";
+  var times = Math.round((sell / buy) * 100) / 100;
+  return " That is " + times.toFixed(2) + "× the " + buy + " you paid Daisy Mae.";
+}
+
+function bestBeforeIndex(entered, idx14) {
+  var best = null;
+  for (var i = 2; i < idx14; i++) {
+    if (Number.isFinite(entered[i]) && (!best || entered[i] > best.price)) best = { price: entered[i], idx: i };
+  }
+  return best;
+}
+
+function bestAfterIndex(entered, idx14) {
+  var best = null;
+  for (var i = idx14 + 1; i < 14; i++) {
+    if (Number.isFinite(entered[i]) && (!best || entered[i] > best.price)) best = { price: entered[i], idx: i };
+  }
+  return best;
+}
+
+function gradeSale(week, rows, entered) {
+  var soldAt = week.soldAt;
+  if (soldAt == null || soldAt === "" || soldAt === "hold") return null;
+  var buy = Number.isFinite(entered[0]) ? entered[0] : NaN;
+
+  if (soldAt === "spoil") {
+    var seen = null;
+    for (var s = 2; s < 14; s++) {
+      if (Number.isFinite(entered[s]) && (!seen || entered[s] > seen.price)) seen = { price: entered[s], idx: s };
+    }
+    if (!seen) {
+      return { tone: "late", headline: "Too late. They spoiled.", detail: "No sell prices were typed, so there is nothing to compare." };
+    }
+    return {
+      tone: "late",
+      headline: "Too late. They spoiled.",
+      detail: "The best price you saw was " + seen.price + " on " + slotName(seen.idx) + "."
+    };
+  }
+
+  var idx = Number(soldAt);
+  var idx14 = idx + 1;
+  if (!(idx >= 1 && idx <= 12) || !Number.isFinite(entered[idx14])) {
+    var when = (idx >= 1 && idx <= 12) ? slotName(idx14) : "that time";
+    return { tone: "wait", headline: "Add the price for " + when + ".", detail: "Then this can say if that sale was early, late, or right on time." };
+  }
+
+  var sell = entered[idx14];
+  var name = idx === 10 ? "Friday night" : slotName(idx14);
+  var before = bestBeforeIndex(entered, idx14);
+  var afterKnown = bestAfterIndex(entered, idx14);
+  var futureMax = sell;
+  var futureName = null;
+  var all = rows && rows[0];
+  if (all) {
+    for (var f = idx14 + 1; f < 14; f++) {
+      if (Number.isFinite(entered[f])) continue;
+      if (all.prices[f].max > futureMax) {
+        futureMax = all.prices[f].max;
+        futureName = slotName(f);
+      }
+    }
+  }
+
+  var cap = function (n) { return n.charAt(0).toUpperCase() + n.slice(1); };
+
+  if (afterKnown && afterKnown.price > sell + 10) {
+    return {
+      tone: "soon",
+      headline: "Too soon.",
+      detail: "You sold at " + sell + " on " + name + ". " + cap(slotName(afterKnown.idx)) + " got up to " + afterKnown.price + "." + paidLine(sell, buy)
+    };
+  }
+
+  if (before && before.price > sell + 10 && (!afterKnown || afterKnown.price <= before.price)) {
+    return {
+      tone: "late",
+      headline: "Too late.",
+      detail: "The high was " + before.price + " on " + slotName(before.idx) + ". You sold at " + sell + " on " + name + "." + paidLine(sell, buy)
+    };
+  }
+
+  if (futureName && futureMax > sell + 15) {
+    return {
+      tone: "soon",
+      headline: "Maybe too soon.",
+      detail: "You locked in " + sell + " on " + name + ". " + cap(futureName) + " can still reach " + futureMax + "." + paidLine(sell, buy)
+    };
+  }
+
+  var extra = "";
+  if (afterKnown && afterKnown.price < sell) {
+    extra = " " + cap(slotName(afterKnown.idx)) + " was already down to " + afterKnown.price + ".";
+  }
+  var head = (!before || sell >= before.price) && (!afterKnown || sell >= afterKnown.price)
+    ? "Good job. That was the best price."
+    : "Good job. Close to the best.";
+  return {
+    tone: "good",
+    headline: head,
+    detail: cap(name) + " at " + sell + " was the high this week." + extra + paidLine(sell, buy)
+  };
 }
 
 function showFitError() {
@@ -629,11 +743,13 @@ function predict() {
       week.likelyPattern = -1;
       return;
     }
-    var model = advice(rows, entered, week.firstBuy);
-    week.likelyPattern = model.odds.length && model.odds[0].p >= 0.8 ? model.odds[0].n : -1;
+    var forecast = advice(rows, entered, week.firstBuy);
+    var grade = gradeSale(week, rows, entered);
+    var model = grade || forecast;
+    week.likelyPattern = forecast.odds.length && forecast.odds[0].p >= 0.8 ? forecast.odds[0].n : -1;
     $("result").hidden = false;
     renderBanner(model);
-    renderOdds(model.odds);
+    renderOdds(forecast.odds);
     renderSlots(week, rows[0]);
     renderTable(rows, Number.isFinite(entered[0]) ? entered[0] : rows[0].prices[0].min);
     lastChart = { all: rows[0].prices, entered: entered, buy: Number.isFinite(entered[0]) ? entered[0] : NaN };
@@ -712,6 +828,7 @@ function addWeek() {
     previousPattern: prev,
     likelyPattern: -1,
     prices: [null, null, null, null, null, null, null, null, null, null, null, null, null],
+    soldAt: null,
     note: "",
     updatedAt: new Date().toISOString()
   };
@@ -840,6 +957,8 @@ function bind() {
   $("prevPattern").addEventListener("change", function () { saveSoon(); schedulePredict(); });
   $("sunday").addEventListener("change", onSunday);
   $("note").addEventListener("input", saveSoon);
+  $("soldAt").addEventListener("change", function () { saveSoon(); schedulePredict(); });
+  $("saveBtn").addEventListener("click", function () { saveNow(); });
   $("newWeek").addEventListener("click", addWeek);
   $("deleteBtn").addEventListener("click", deleteWeek);
   $("importBtn").addEventListener("click", importUrl);
@@ -877,6 +996,11 @@ function boot() {
       if (week.previousPattern == null) week.previousPattern = -1;
       if (week.likelyPattern == null) week.likelyPattern = -1;
       if (week.note == null) week.note = "";
+      if (week.soldAt === undefined) {
+        if (week.id === "2026-10-18" && week.prices[10] === 191) week.soldAt = 10;
+        else week.soldAt = null;
+        seeded = true;
+      }
     });
     if (!state.activeId || !state.weeks.some(function (w) { return w.id === state.activeId; })) {
       state.activeId = state.weeks.slice().sort(byNewest)[0].id;

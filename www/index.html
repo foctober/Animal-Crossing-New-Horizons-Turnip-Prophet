@@ -10,8 +10,11 @@
   <div class="app">
     <aside>
       <div class="brand">
-        <div class="brand-kicker">New Horizons</div>
-        <h1>Turnip Prophet</h1>
+        <img src="/title.jpg" alt="Your island">
+        <div>
+          <div class="brand-kicker">New Horizons</div>
+          <h1>Turnip Prophet</h1>
+        </div>
       </div>
       <div id="weekList" class="week-list"></div>
       <button id="newWeek" class="primary" type="button">New week</button>
@@ -32,8 +35,27 @@
               <option value="3">Small spike</option>
             </select>
           </label>
+          <label>When did you sell?
+            <select id="soldAt">
+              <option value="">Still holding</option>
+              <option value="1">Monday morning</option>
+              <option value="2">Monday afternoon</option>
+              <option value="3">Tuesday morning</option>
+              <option value="4">Tuesday afternoon</option>
+              <option value="5">Wednesday morning</option>
+              <option value="6">Wednesday afternoon</option>
+              <option value="7">Thursday morning</option>
+              <option value="8">Thursday afternoon</option>
+              <option value="9">Friday morning</option>
+              <option value="10">Friday afternoon / night</option>
+              <option value="11">Saturday morning</option>
+              <option value="12">Saturday afternoon</option>
+              <option value="spoil">Didn't sell (they spoiled)</option>
+            </select>
+          </label>
         </div>
       </div>
+      <p class="hint">Friday night is the same half as Friday afternoon, after noon. Pick it and the banner says if that sale was a good job, too soon, or too late.</p>
       <p id="prevHint" class="hint"></p>
 
       <section id="priceGrid"></section>
@@ -42,8 +64,10 @@
         <input id="importUrl" type="text" spellcheck="false" placeholder="Paste a turnipprophet.io link">
         <button id="importBtn" type="button">Import</button>
         <button id="deleteBtn" class="danger" type="button">Delete week</button>
+        <button id="saveBtn" class="primary" type="button">Save</button>
         <span id="saveState"></span>
       </div>
+      <p class="hint">It saves by itself a moment after you type a price. Save writes the file right now. Quit does not erase it. The week stays in turnips.json.</p>
 
       <section id="result" hidden>
         <div id="banner" class="banner"></div>
