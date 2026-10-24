@@ -724,8 +724,8 @@ function gradeSale(week, rows, entered) {
     extra = " " + cap(slotName(afterKnown.idx)) + " was already down to " + afterKnown.price + ".";
   }
   var head = (!before || sell >= before.price) && (!afterKnown || sell >= afterKnown.price)
-    ? "Good job. That was the best price."
-    : "Good job. Close to the best.";
+    ? "Good job! That was the best price!"
+    : "Good job! Close to the best!";
   return {
     tone: "good",
     headline: head,
@@ -1043,7 +1043,7 @@ function buildPriceGrid() {
   buy.inputMode = "numeric";
   var buyHint = document.createElement("p");
   buyHint.className = "hint";
-  buyHint.textContent = "Daisy Mae only sells on Sunday mornings. Her price is between 90 and 110.";
+  buyHint.innerHTML = "<span class=\"hours\">Daisy Mae</span> only sells on Sunday mornings. Her price is between <span class=\"hours\">90</span> and <span class=\"hours\">110</span>.";
   line.appendChild(buy);
   line.appendChild(buyHint);
   buyLabel.appendChild(line);
