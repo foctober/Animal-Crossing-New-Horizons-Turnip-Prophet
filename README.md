@@ -50,7 +50,7 @@ The shortcut, the tray icon, and the window icon are the teal leaf.
 
 The left side is the week list, on a field that fades into sky. The grass is the bottom quarter. The right side is where you type the prices, on wood. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**.
 
-The top three fields are three equal cards. Inside each card the label is left-aligned with its box. The date and both dropdowns are bold. The price box for the shop window that is open right now is pumpkin orange. Sunday morning is the buy box. Monday through Saturday, morning is 8:00 AM – 11:59 AM and afternoon is 12:00 PM – 10:00 PM. Outside those hours nothing is marked.
+The top three fields are three equal cards. Inside each card the label is left-aligned with its box. The date and both dropdowns are bold. Last week's pattern stays grey while First time buying is checked. Uncheck that and the pattern box is bold like the other two. The price box for the shop window that is open right now is pumpkin orange. Sunday morning is the buy box. Monday through Saturday, morning is 8:00 AM – 11:59 AM and afternoon is 12:00 PM – 10:00 PM. Outside those hours nothing is marked.
 
 Under the prices is the prediction: the banner, the odds, the chart, the twelve sell slots, and the full pattern table if you open it.
 
