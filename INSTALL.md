@@ -82,7 +82,7 @@ If AppData has no weeks file yet, the first launch copies `C:\Tools\Turnips\turn
 ## If it does not open
 
 - "No free local port" means something is holding ports 47821–47840. Quit the other copy. In Task Manager, end **Turnip Prophet** or a Windows PowerShell process whose command line contains `Turnips.ps1`.
-- The window is blank — Edge is still starting. Give it a second. If it stays blank, quit from the tray and reopen.
+- The installer says it cannot open `TurnipProphet.exe` for writing. The app is still running. Closing the window does not quit it. Click Abort, quit from the tray icon, then run the installer again. Retry works too, once the tray icon is gone.
 
 ## Data
 
