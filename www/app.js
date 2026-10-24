@@ -199,27 +199,33 @@ function renderWeekList() {
     var btn = document.createElement("button");
     btn.type = "button";
     btn.className = "week" + (week.id === state.activeId ? " on" : "");
-    var title = document.createElement("strong");
-    title.textContent = pretty(week.id);
-    var sub = document.createElement("small");
-    sub.textContent = blurb(week);
-    btn.appendChild(title);
-    btn.appendChild(sub);
+    var date = document.createElement("span");
+    date.className = "date";
+    date.textContent = pretty(week.id);
+    var marks = document.createElement("span");
+    marks.className = "marks";
+    var buy = week.prices[0];
+    var best = null;
+    week.prices.slice(1).forEach(function (v) {
+      if (v != null && (best == null || v > best)) best = v;
+    });
+    if (buy != null) {
+      var buyEl = document.createElement("b");
+      buyEl.className = "buy";
+      buyEl.textContent = "(" + buy + ")";
+      marks.appendChild(buyEl);
+    }
+    if (best != null) {
+      var bestEl = document.createElement("b");
+      bestEl.className = "best";
+      bestEl.textContent = "(" + best + ")";
+      marks.appendChild(bestEl);
+    }
+    btn.appendChild(date);
+    btn.appendChild(marks);
     btn.addEventListener("click", function () { selectWeek(week.id); });
     box.appendChild(btn);
   });
-}
-
-function blurb(week) {
-  var buy = week.prices[0];
-  var best = null;
-  week.prices.slice(1).forEach(function (v) {
-    if (v != null && (best == null || v > best)) best = v;
-  });
-  var bits = [];
-  if (buy != null) bits.push("Buy " + buy);
-  if (best != null) bits.push("best " + best);
-  return bits.join(" \u00b7 ") || "No prices yet";
 }
 
 function selectWeek(id) {
@@ -793,8 +799,13 @@ function saveNow() {
 function onSunday() {
   var week = active();
   if (!week) return;
-  var snapped = snapSunday($("sunday").value);
+  var raw = $("sunday").value;
+  var snapped = snapSunday(raw);
   if (!snapped) return;
+  if (raw !== snapped) {
+    $("sunday").value = snapped;
+    status("Weeks start on Sunday.");
+  }
   if (snapped !== week.id && state.weeks.some(function (w) { return w.id === snapped; })) {
     window.alert("You already have a week starting " + pretty(snapped) + ".");
     $("sunday").value = week.id;
