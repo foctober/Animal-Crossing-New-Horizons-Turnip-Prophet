@@ -4,3 +4,5 @@ turnips.port
 turnips.log
 profile/
 *.tmp
+build/
+host/*.syso

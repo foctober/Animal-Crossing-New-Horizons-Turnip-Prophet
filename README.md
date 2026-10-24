@@ -6,13 +6,15 @@ The price math is the same engine as [turnipprophet.io](https://turnipprophet.io
 
 ## Install
 
-See [INSTALL.md](INSTALL.md). Short version, from this folder:
+See [INSTALL.md](INSTALL.md). Short version: run `TurnipProphet-Setup.exe`. Windows asks for permission and installs to `C:\Program Files\Turnip Prophet`. Shortcuts go on the desktop and in the Start menu.
+
+Or, from this folder:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\Install.ps1
 ```
 
-That copies the app to `C:\Tools\Turnips` and puts **Turnip Prophet** on your desktop. The shortcut, the tray icon, and the window icon are the teal leaf.
+That opens the same installer. The shortcut, the tray icon, and the window icon are the teal leaf.
 
 ## What you see
 
@@ -29,7 +31,7 @@ Under the prices is the prediction: the banner, the odds, the chart, the twelve 
 3. Read the banner. It says sell or wait, in plain words.
 4. Next Sunday, click **New week**. If this week was a sure pattern, the new week starts with that filled in as "last week's pattern."
 
-Weeks are stored in `%AppData%\TurnipProphet\turnips.json` (usually `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`). That is your Windows profile, not the program folder, so deleting `C:\Tools\Turnips` does not delete the weeks. Quit from the button in the window, or right-click the tray icon. Closing the window alone leaves the little helper running so the next double-click just reopens it.
+Weeks are stored in `%AppData%\TurnipProphet\turnips.json` (usually `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`). The program itself is in Program Files and does not keep your weeks. Quit from the button in the window, or right-click the tray icon. Closing the window alone leaves the app running so the next double-click just reopens it.
 
 ## Saving
 
@@ -101,42 +103,32 @@ Sell during Saturday morning if you still have any. Waiting for the afternoon lo
 
 You can paste that link into the import box on any week and the app fills the grid.
 
-## Run it from PowerShell
+## Run it
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -STA -File C:\Tools\Turnips\Turnips.ps1
-```
-
-Or double-click `Run.cmd` in that folder. A second launch does not start a second copy. It reopens the window.
+Open **Turnip Prophet** from the desktop or the Start menu. A second launch does not start a second copy. It reopens the window.
 
 ## Files
 
 | File | What it is |
 | --- | --- |
-| `Turnips.ps1` | The Windows app. Local page plus the tray icon. |
-| `TurnipProphet.ico` | The leaf icon for the desktop shortcut, the tray, and the window. |
-| `Install.ps1` | Copies everything to `C:\Tools\Turnips` and makes the shortcut. |
-| `Launch.vbs` / `Run.cmd` | Starts the app with no PowerShell window. |
+| `TurnipProphet-Setup.exe` | The Windows installer. Puts the app in Program Files. |
+| `TurnipProphet.exe` | The app, after install. No PowerShell window. |
+| `TurnipProphet.ico` | The leaf icon for the shortcut, the tray, and the installer. |
+| `Install.ps1` | Opens the installer. |
 | `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the left side. `wood.png` is the right side. |
 | `predictions.js` | Unmodified Turnip Prophet engine. |
-| `turnips.json` | Your weeks. Lives in `%AppData%\TurnipProphet\`, not in the install folder and not in git. |
+| `turnips.json` | Your weeks. Lives in `%AppData%\TurnipProphet\`, not in Program Files and not in git. |
 
 ## Updating
 
-Quit the app (tray icon or the Quit button), then from a clone of this repo:
-
-```powershell
-git pull
-powershell -ExecutionPolicy Bypass -File .\Install.ps1
-```
-
-Install copies the program files again. It does not touch the weeks file in AppData, or the browser profile folder.
+Quit the app (tray icon or the Quit button), then run `TurnipProphet-Setup.exe` again. It replaces the program. It does not touch the weeks file in AppData.
 
 ## Uninstall
 
 1. Quit the app.
-2. Delete the desktop shortcut.
-3. Delete `C:\Tools\Turnips`. The weeks stay in `%AppData%\TurnipProphet\turnips.json`. Delete that folder only if you want the history gone.
+2. Windows Settings, Apps, Turnip Prophet, Uninstall.
+
+The weeks stay in `%AppData%\TurnipProphet\turnips.json`. Delete that folder only if you want the history gone. An older copy in `C:\Tools\Turnips` is not removed. Delete that folder yourself after you have seen your weeks in the new app.
 
 ## License
 

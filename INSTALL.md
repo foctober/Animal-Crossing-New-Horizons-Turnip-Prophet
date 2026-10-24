@@ -1,115 +1,56 @@
 # Install
 
-You need Windows 10 or 11. Windows PowerShell 5.1 is already on the machine. You do not need to install Python, Node, or anything else.
+You need 64-bit Windows 10 or 11. You do not need Python, Node, or PowerShell extras. Edge or Chrome is used as the window. If neither is installed, your default browser opens instead.
 
-Edge or Chrome is used as the window. If neither is installed, your default browser opens instead.
+## 1. Run the installer
 
-## 1. Get the files
+Quit Turnip Prophet first if it is open.
 
-Clone:
+Download the repo ZIP, extract it, and double-click `TurnipProphet-Setup.exe`. Windows asks for permission because the app installs into Program Files. That is normal.
 
-```powershell
-git clone https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet.git
-cd Animal-Crossing-New-Horizons-Turnip-Prophet
-```
-
-Or download the ZIP from GitHub, extract it, and open PowerShell in that folder.
-
-If Windows marked the download as blocked:
-
-```powershell
-Get-ChildItem -Recurse -File | Unblock-File
-```
-
-## 2. Install to C:\Tools\Turnips
+Or from PowerShell in the extracted folder:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\Install.ps1
 ```
 
-What that does:
+That opens the same installer.
 
-- Creates `C:\Tools\Turnips`
-- Copies the app into it, including the field and wood backgrounds
-- Does **not** delete your weeks. Those live in `%AppData%\TurnipProphet\turnips.json`, not in the program folder. If an older install left `C:\Tools\Turnips\turnips.json`, the first launch copies it into AppData and renames the old file `turnips.json.migrated`.
-- Puts a **Turnip Prophet** shortcut on your desktop, using `TurnipProphet.ico`
-- Opens the app
+Default folder: `C:\Program Files\Turnip Prophet`.
 
-The shortcut runs `Launch.vbs`, which starts PowerShell hidden and opens the tracker.
+What it does:
 
-### If Windows will not create C:\Tools
+- Installs the program there
+- Puts **Turnip Prophet** on the desktop and in the Start menu
+- Adds an entry in Windows Settings, Apps, so you can uninstall it
+- Does **not** delete your weeks. Those live in `%AppData%\TurnipProphet\turnips.json`
+- If an older install left `C:\Tools\Turnips\turnips.json`, the first launch copies it into AppData and renames the old file `turnips.json.migrated`
 
-Some PCs block new folders on `C:\`. In that case Install.ps1 stops and says so. Open PowerShell **as Administrator** once and run:
+The bottom of the window shows the real path to the weeks file.
 
-```powershell
-New-Item -ItemType Directory -Force -Path C:\Tools\Turnips
-icacls C:\Tools /grant "$($env:USERNAME):(OI)(CI)M"
-```
+## 2. Use it
 
-Then run `Install.ps1` again as your normal user. The app itself does not need to run as Administrator. It only listens on `127.0.0.1` (this PC), so it should not ask the firewall for a public port.
+Open the desktop shortcut or the Start menu item. A second open does not start a second copy. It brings the window back.
 
-## 3. Use it
+Quit from the button in the window, or right-click the tray icon and choose Quit. Closing the window alone leaves the app running on purpose.
 
-- Desktop shortcut **Turnip Prophet**, or
-- `C:\Tools\Turnips\Run.cmd`, or
-- from PowerShell:
+## 3. Update later
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -STA -File C:\Tools\Turnips\Turnips.ps1
-```
+Quit first. Run `TurnipProphet-Setup.exe` again and install over the same folder. The weeks file stays where it is.
 
-The first open loads the week of October 18, 2026 (buy 96, the prices from that week's link) so you can see a finished prediction immediately. Delete that week if you do not want it.
+## 4. Remove it
 
-Your history is `%AppData%\TurnipProphet\turnips.json`. On a normal Windows 11 account that is `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`. The line at the bottom of the window shows the real path.
+Quit, then Windows Settings, Apps, Turnip Prophet, Uninstall. That removes the program and the shortcuts. It does not remove `%AppData%\TurnipProphet`. Delete that folder only if you want the history gone.
 
-## 4. Quit
-
-Use **Quit** in the window, or right-click the Turnip Prophet tray icon and choose Quit.
-
-Closing the tracker window does not quit the helper. Double-click the shortcut again and the same window comes back. That is on purpose, so you do not lose the process and start two copies.
-
-## 5. Update later
-
-Quit first. Then:
-
-```powershell
-cd \path\to\Animal-Crossing-New-Horizons-Turnip-Prophet
-git pull
-powershell -ExecutionPolicy Bypass -File .\Install.ps1
-```
-
-Open the shortcut again. The weeks file in AppData stays where it is.
-
-If the desktop icon still looks like Edge after an update, Windows cached the old picture. Delete the shortcut and run `Install.ps1` again.
-
-## 6. Remove it
-
-Quit, delete the desktop shortcut, delete `C:\Tools\Turnips`. That does not remove the weeks. Delete `%AppData%\TurnipProphet` only if you want the history gone too.
-
-## Where the shortcut points
-
-| | |
-| --- | --- |
-| Target | `wscript.exe` |
-| Arguments | `C:\Tools\Turnips\Launch.vbs` |
-| Working directory | `C:\Tools\Turnips` |
-| Icon | `C:\Tools\Turnips\TurnipProphet.ico` |
-
-`Launch.vbs` runs:
-
-```text
-powershell.exe -NoProfile -ExecutionPolicy Bypass -STA -File C:\Tools\Turnips\Turnips.ps1
-```
-
-`-STA` is required. The tray icon is a Windows Forms control and it misbehaves otherwise. The script relaunches itself in STA if you forget.
+An old `C:\Tools\Turnips` folder is not part of this installer. Delete it yourself once you have seen your weeks in the new app.
 
 ## If it does not open
 
-Look at `C:\Tools\Turnips\turnips.log`.
+The log is `%LocalAppData%\TurnipProphet\turnips.log`. On a normal account that is `C:\Users\<you>\AppData\Local\TurnipProphet\turnips.log`.
 
-- "No free local port" — something is holding ports 47821–47840. Quit old copies in Task Manager (look for Windows PowerShell) and try again.
+- "No free local port" — something is holding ports 47821–47840. Quit old copies in Task Manager. Look for Turnip Prophet and for Windows PowerShell from the old version.
 - The window is blank — Edge is still starting. Give it a second. If it stays blank, quit from the tray and reopen.
-- SmartScreen or an antivirus warning on the `.ps1` — this is a local script, not a signed store app. Unblock the file or allow it if you trust this repo.
+- SmartScreen — this installer is not a signed store app. More info, then Run anyway, if you trust this repo.
 
 ## Data
 
