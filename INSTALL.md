@@ -30,7 +30,7 @@ powershell -ExecutionPolicy Bypass -File .\Install.ps1
 What that does:
 
 - Creates `C:\Tools\Turnips`
-- Copies the app into it
+- Copies the app into it, including the field and wood backgrounds
 - Does **not** delete `turnips.json` if you already have weeks saved
 - Puts a **Turnip Prophet** shortcut on your desktop, using `TurnipProphet.ico`
 - Opens the app

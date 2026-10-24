@@ -39,7 +39,7 @@ foreach ($name in $names) {
   Copy-Item -LiteralPath $src -Destination (Join-Path $dest $name) -Force
 }
 
-foreach ($name in @('index.html', 'app.js', 'styles.css', 'logo.png')) {
+foreach ($name in @('index.html', 'app.js', 'styles.css', 'logo.png', 'field.jpg', 'wood.png')) {
   $src = Join-Path (Join-Path $here 'www') $name
   if (-not (Test-Path -LiteralPath $src)) { Fail "Missing www\$name." }
   Copy-Item -LiteralPath $src -Destination (Join-Path $www $name) -Force

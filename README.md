@@ -16,9 +16,11 @@ That copies the app to `C:\Tools\Turnips` and puts **Turnip Prophet** on your de
 
 ## What you see
 
-The left side is the week you are editing. Across the top is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**. Under that you pick the Sunday, whether this is your first time buying, last week's pattern, and when you sold. The price boxes are the rest of the week.
+The left side is the week list, on a field that fades into sky. The grass is the bottom quarter. The right side is where you type the prices, on wood. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**.
 
-The right side is the prediction: the banner, the odds, the chart, the twelve sell slots, and the full pattern table if you open it.
+On the wood you pick the Sunday, whether this is your first time buying, last week's pattern, and when you sold. The price boxes are under that. Text that sits on the wood is black with a white outline. Bold stays bold. Text inside the white boxes is unchanged.
+
+Under the prices is the prediction: the banner, the odds, the chart, the twelve sell slots, and the full pattern table if you open it.
 
 ## What you do each week
 
@@ -115,7 +117,7 @@ Or double-click `Run.cmd` in that folder. A second launch does not start a secon
 | `TurnipProphet.ico` | The leaf icon for the desktop shortcut, the tray, and the window. |
 | `Install.ps1` | Copies everything to `C:\Tools\Turnips` and makes the shortcut. |
 | `Launch.vbs` / `Run.cmd` | Starts the app with no PowerShell window. |
-| `www\` | The window you actually look at. `logo.png` is the wide title art. |
+| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the left side. `wood.png` is the right side. |
 | `predictions.js` | Unmodified Turnip Prophet engine. |
 | `turnips.json` | Your weeks. Created on the PC. Not in git. |
 
