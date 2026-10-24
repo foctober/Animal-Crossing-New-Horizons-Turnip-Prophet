@@ -116,7 +116,7 @@ Turnips spoil when Sunday starts. Saturday afternoon is the last chance to sell.
 
 ## Worked example (week of Oct 18, 2026)
 
-This is the week filled in the first time you open the app. Buy 96, first time buying, and these sell prices:
+A new install opens a blank week for this Sunday. It does not fill in anybody else's prices. This example is only here so you can try the same numbers as the website. Paste the link into the import box.
 
 | | Mon | Tue | Wed | Thu | Fri | Sat |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -129,7 +129,7 @@ That link is:
 
 With "First time buying" on, the engine says **small spike, 100%**. Friday, 12:00 PM – 10:00 PM at 191 was the peak (just under 2× 96). Saturday, 8:00 AM – 11:59 AM is already down at 149. Saturday, 12:00 PM – 10:00 PM only comes out between **39 and 97**.
 
-Sell during Saturday morning if you still have any. Waiting for the afternoon loses bells. The website's guaranteed minimum for what is left is 39, and the potential maximum is 97. The seed week records that sale as Friday afternoon, so the banner says it was a good job.
+Sell during Saturday morning if you still have any. Waiting for the afternoon loses bells. The website's guaranteed minimum for what is left is 39, and the potential maximum is 97. If that sale is recorded as Friday afternoon, the banner says it was a good job.
 
 You can paste that link into the import box on any week and the app fills the grid.
 

@@ -17,19 +17,32 @@ var SLOT = [
   ["Saturday", "afternoon"]
 ];
 
-var SEED = {
-  weeks: [{
-    id: "2026-10-18",
-    firstBuy: true,
+function blankWeek(id) {
+  return {
+    id: id,
+    firstBuy: false,
     previousPattern: -1,
     likelyPattern: -1,
-    prices: [96, null, null, 77, null, null, 64, null, 132, 172, 191, 149, null],
-    soldAt: 10,
+    prices: [null, null, null, null, null, null, null, null, null, null, null, null, null],
+    soldAt: null,
     note: "",
-    updatedAt: "2026-10-24T12:00:00.000Z"
-  }],
-  activeId: "2026-10-18"
-};
+    updatedAt: new Date().toISOString()
+  };
+}
+
+function isUntouchedSample(data) {
+  if (!data.weeks || data.weeks.length !== 1) return false;
+  var week = data.weeks[0];
+  var sample = [96, null, null, 77, null, null, 64, null, 132, 172, 191, 149, null];
+  if (week.id !== "2026-10-18" || !week.firstBuy || week.note) return false;
+  if (week.previousPattern != null && week.previousPattern !== -1) return false;
+  if (!week.prices || week.prices.length !== 13) return false;
+  for (var i = 0; i < 13; i++) {
+    var got = week.prices[i] == null ? null : week.prices[i];
+    if (got !== sample[i]) return false;
+  }
+  return true;
+}
 
 var state = { weeks: [], activeId: null };
 var gen = 0;
@@ -1134,8 +1147,9 @@ function boot() {
   fetch("/api/state").then(function (r) { return r.json(); }).then(function (data) {
     state = data && data.weeks ? data : { weeks: [], activeId: null };
     var seeded = false;
-    if (!state.weeks.length) {
-      state = JSON.parse(JSON.stringify(SEED));
+    if (!state.weeks.length || isUntouchedSample(state)) {
+      var id = thisSunday();
+      state = { weeks: [blankWeek(id)], activeId: id };
       seeded = true;
     }
     state.weeks.forEach(function (week) {
@@ -1147,11 +1161,7 @@ function boot() {
       if (week.previousPattern == null) week.previousPattern = -1;
       if (week.likelyPattern == null) week.likelyPattern = -1;
       if (week.note == null) week.note = "";
-      if (week.soldAt === undefined) {
-        if (week.id === "2026-10-18" && week.prices[10] === 191) week.soldAt = 10;
-        else week.soldAt = null;
-        seeded = true;
-      }
+      if (week.soldAt === undefined) week.soldAt = null;
     });
     if (!state.activeId || !state.weeks.some(function (w) { return w.id === state.activeId; })) {
       state.activeId = state.weeks.slice().sort(byNewest)[0].id;
