@@ -4,11 +4,21 @@ You need 64-bit Windows 10 or 11. Edge or Chrome is used as the window. If neith
 
 Pick one install. Do not run both at once. They share the same weeks file, `%AppData%\TurnipProphet\turnips.json`.
 
-Quit Turnip Prophet first if it is already open.
+Quit Turnip Prophet first if it is already open. Paste one whole block into PowerShell. It downloads the repo, installs, and deletes the temp folder.
 
 ## Windows installer
 
-Double-click `TurnipProphet-Setup.exe`. Windows asks for permission because the app installs into Program Files.
+```powershell
+$d = Join-Path $env:TEMP 'TurnipProphet'
+if (Test-Path $d) { Remove-Item $d -Recurse -Force }
+New-Item -ItemType Directory -Path $d | Out-Null
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
+Expand-Archive "$d\src.zip" $d -Force
+Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\TurnipProphet-Setup.exe" -Verb RunAs -Wait
+Remove-Item $d -Recurse -Force
+```
+
+Windows asks for permission because the app installs into Program Files.
 
 Default folder: `C:\Program Files\Turnip Prophet`.
 
@@ -19,7 +29,7 @@ Default folder: `C:\Program Files\Turnip Prophet`.
 
 Uninstall later from Windows Settings, Apps, Turnip Prophet. That does not remove `%AppData%\TurnipProphet`.
 
-To update, quit, then run `TurnipProphet-Setup.exe` again over the same folder.
+To update, quit, then paste the same block again.
 
 SmartScreen may say the installer is unrecognized. It is not a signed store app. More info, then Run anyway, if you trust this repo.
 
@@ -27,10 +37,14 @@ The log for this copy is `%LocalAppData%\TurnipProphet\turnips.log`.
 
 ## PowerShell
 
-From the extracted folder:
-
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\Install.ps1
+$d = Join-Path $env:TEMP 'TurnipProphet'
+if (Test-Path $d) { Remove-Item $d -Recurse -Force }
+New-Item -ItemType Directory -Path $d | Out-Null
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
+Expand-Archive "$d\src.zip" $d -Force
+powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\Install.ps1"
+Remove-Item $d -Recurse -Force
 ```
 
 - Copies the app to `C:\Tools\Turnips`
@@ -47,9 +61,9 @@ New-Item -ItemType Directory -Force -Path C:\Tools\Turnips
 icacls C:\Tools /grant "$($env:USERNAME):(OI)(CI)M"
 ```
 
-Then run `Install.ps1` again as your normal user.
+Then paste the PowerShell block again as your normal user.
 
-To update, quit, then from a fresh copy of this folder run `Install.ps1` again. You can also double-click `C:\Tools\Turnips\Run.cmd`.
+To update, quit, then paste the same block again. You can also double-click `C:\Tools\Turnips\Run.cmd`.
 
 To remove it, quit, delete the desktop shortcut, and delete `C:\Tools\Turnips`. That does not remove `%AppData%\TurnipProphet`.
 

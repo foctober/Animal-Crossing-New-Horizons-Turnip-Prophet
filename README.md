@@ -6,17 +6,33 @@ The price math is the same engine as [turnipprophet.io](https://turnipprophet.io
 
 ## Install
 
-See [INSTALL.md](INSTALL.md). Pick one. Do not run both at once. Weeks go to the same place either way.
+Pick one. Do not run both at once. Weeks go to `%AppData%\TurnipProphet\turnips.json` either way. Quit Turnip Prophet first if it is already open. More detail is in [INSTALL.md](INSTALL.md).
 
-**Windows installer.** Double-click `TurnipProphet-Setup.exe`. Windows asks for permission. The app goes in `C:\Program Files\Turnip Prophet`, with shortcuts on the public desktop and in the Start menu. Uninstall from Windows Settings, Apps.
-
-**PowerShell.** From this folder:
+**Windows installer.** Program Files, Start menu, uninstall from Settings. Paste this whole block into PowerShell:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\Install.ps1
+$d = Join-Path $env:TEMP 'TurnipProphet'
+if (Test-Path $d) { Remove-Item $d -Recurse -Force }
+New-Item -ItemType Directory -Path $d | Out-Null
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
+Expand-Archive "$d\src.zip" $d -Force
+Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\TurnipProphet-Setup.exe" -Verb RunAs -Wait
+Remove-Item $d -Recurse -Force
 ```
 
-That copies the app to `C:\Tools\Turnips` and puts **Turnip Prophet** on your desktop. No admin prompt unless Windows will not let it create `C:\Tools`.
+Windows asks for permission. SmartScreen may say the installer is unrecognized. More info, then Run anyway, if you trust this repo. The app goes in `C:\Program Files\Turnip Prophet`.
+
+**PowerShell.** No installer. The app goes in `C:\Tools\Turnips`. Paste this whole block into PowerShell:
+
+```powershell
+$d = Join-Path $env:TEMP 'TurnipProphet'
+if (Test-Path $d) { Remove-Item $d -Recurse -Force }
+New-Item -ItemType Directory -Path $d | Out-Null
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
+Expand-Archive "$d\src.zip" $d -Force
+powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\Install.ps1"
+Remove-Item $d -Recurse -Force
+```
 
 The shortcut, the tray icon, and the window icon are the teal leaf.
 
