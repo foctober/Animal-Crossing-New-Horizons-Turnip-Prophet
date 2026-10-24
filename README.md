@@ -4,6 +4,16 @@ A small Windows tracker for Daisy Mae's turnip prices. Type each price as the we
 
 The price math is the same engine as [turnipprophet.io](https://turnipprophet.io) (Mike Bryant's [ac-nh-turnip-prices](https://github.com/mikebryant/ac-nh-turnip-prices), from Ninji's reverse engineering of the game). This repo adds a window, a desktop shortcut, and a saved history. It is not the website, and it is not made by Nintendo.
 
+## What it looks like
+
+The left side is the week list. The right side is where you type the prices.
+
+![Entering the week's prices](docs/prices.jpg)
+
+![The sell-or-wait banner and the chart](docs/chart.jpg)
+
+![Every pattern line, the same numbers as the website](docs/patterns.jpg)
+
 ## Install
 
 Pick one. Do not run both at once. Weeks go to `%AppData%\TurnipProphet\turnips.json` either way. Quit Turnip Prophet first if it is already open. More detail is in [INSTALL.md](INSTALL.md).
