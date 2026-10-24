@@ -154,6 +154,7 @@ function readFormInto(week) {
 
 function fillForm(week) {
   $("sunday").value = week.id;
+  syncSundayFace();
   $("firstBuy").checked = !!week.firstBuy;
   $("prevPattern").value = String(week.previousPattern == null ? -1 : week.previousPattern);
   $("note").value = week.note || "";
@@ -202,7 +203,7 @@ function syncPrevLock() {
 }
 
 function setEnabled(on) {
-  ["sunday", "firstBuy", "prevPattern", "soldAt", "buy", "note", "importBtn", "deleteBtn", "importUrl", "saveBtn"].forEach(function (id) {
+  ["sunday", "sundayBtn", "firstBuy", "prevPattern", "soldAt", "buy", "note", "importBtn", "deleteBtn", "importUrl", "saveBtn"].forEach(function (id) {
     $(id).disabled = !on;
   });
   for (var i = 0; i < 12; i++) $("p" + i).disabled = !on;
@@ -227,6 +228,9 @@ function renderWeekList() {
     var date = document.createElement("span");
     date.className = "date";
     date.textContent = pretty(week.id);
+    var dash = document.createElement("span");
+    dash.className = "dash";
+    dash.textContent = "-";
     var marks = document.createElement("span");
     marks.className = "marks";
     var buy = week.prices[0];
@@ -234,19 +238,29 @@ function renderWeekList() {
     week.prices.slice(1).forEach(function (v) {
       if (v != null && (best == null || v > best)) best = v;
     });
+    function tag(text) {
+      var el = document.createElement("span");
+      el.className = "tag";
+      el.textContent = text;
+      return el;
+    }
     if (buy != null) {
+      marks.appendChild(tag("Buy"));
       var buyEl = document.createElement("b");
       buyEl.className = "buy";
       buyEl.textContent = "(" + buy + ")";
       marks.appendChild(buyEl);
     }
+    if (buy != null && best != null) marks.appendChild(tag(":"));
     if (best != null) {
+      marks.appendChild(tag("High"));
       var bestEl = document.createElement("b");
       bestEl.className = "best";
       bestEl.textContent = "(" + best + ")";
       marks.appendChild(bestEl);
     }
     btn.appendChild(date);
+    btn.appendChild(dash);
     btn.appendChild(marks);
     btn.addEventListener("click", function () { selectWeek(week.id); });
     box.appendChild(btn);
@@ -322,7 +336,7 @@ function advice(rows, entered, firstBuy) {
     return {
       tone: "wait",
       headline: "Week is over. Best price was " + best.price + " on " + slotName(best.idx) + ".",
-      detail: "Turnips spoil Sunday morning. " + patternLine,
+      detail: "Turnips spoil on Sunday morning. " + patternLine,
       odds: odds
     };
   }
@@ -821,6 +835,92 @@ function saveNow() {
   });
 }
 
+var calCursor = null;
+
+function syncSundayFace() {
+  var btn = $("sundayBtn");
+  if (!btn) return;
+  var id = $("sunday").value;
+  btn.textContent = id ? pretty(id) : "Pick a Sunday";
+}
+
+function renderCal() {
+  var cal = $("cal");
+  cal.innerHTML = "";
+  var y = calCursor.getFullYear();
+  var m = calCursor.getMonth();
+  var head = document.createElement("div");
+  head.className = "cal-head";
+  var prev = document.createElement("button");
+  prev.type = "button";
+  prev.textContent = "\u2039";
+  prev.addEventListener("click", function () {
+    calCursor.setMonth(calCursor.getMonth() - 1);
+    renderCal();
+  });
+  var title = document.createElement("span");
+  title.textContent = calCursor.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+  var next = document.createElement("button");
+  next.type = "button";
+  next.textContent = "\u203a";
+  next.addEventListener("click", function () {
+    calCursor.setMonth(calCursor.getMonth() + 1);
+    renderCal();
+  });
+  head.appendChild(prev);
+  head.appendChild(title);
+  head.appendChild(next);
+  cal.appendChild(head);
+
+  var names = document.createElement("div");
+  names.className = "cal-names";
+  ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].forEach(function (n, i) {
+    var s = document.createElement("span");
+    s.textContent = n;
+    if (i !== 0) s.className = "off";
+    names.appendChild(s);
+  });
+  cal.appendChild(names);
+
+  var grid = document.createElement("div");
+  grid.className = "cal-grid";
+  var start = new Date(y, m, 1).getDay();
+  var days = new Date(y, m + 1, 0).getDate();
+  var selected = $("sunday").value;
+  for (var i = 0; i < start; i++) grid.appendChild(document.createElement("span"));
+  for (var d = 1; d <= days; d++) {
+    var dt = new Date(y, m, d);
+    var id = fmt(dt);
+    var sunday = dt.getDay() === 0;
+    var cell = document.createElement("button");
+    cell.type = "button";
+    cell.textContent = String(d);
+    cell.className = "day" + (sunday ? " sun" : " off") + (id === selected ? " pick" : "");
+    if (!sunday) cell.disabled = true;
+    else cell.addEventListener("click", (function (picked) {
+      return function () {
+        $("sunday").value = picked;
+        $("cal").hidden = true;
+        onSunday();
+      };
+    })(id));
+    grid.appendChild(cell);
+  }
+  cal.appendChild(grid);
+}
+
+function toggleCal(e) {
+  e.stopPropagation();
+  if ($("sundayBtn").disabled) return;
+  var cal = $("cal");
+  if (!cal.hidden) { cal.hidden = true; return; }
+  var id = $("sunday").value || thisSunday();
+  var p = id.split("-").map(Number);
+  calCursor = new Date(p[0], p[1] - 1, 1);
+  renderCal();
+  cal.hidden = false;
+}
+
 function onSunday() {
   var week = active();
   if (!week) return;
@@ -834,11 +934,13 @@ function onSunday() {
   if (snapped !== week.id && state.weeks.some(function (w) { return w.id === snapped; })) {
     window.alert("You already have a week starting " + pretty(snapped) + ".");
     $("sunday").value = week.id;
+    syncSundayFace();
     return;
   }
   week.id = snapped;
   state.activeId = snapped;
   document.title = "Turnip Prophet \u00b7 " + pretty(snapped);
+  syncSundayFace();
   renderWeekList();
   saveSoon();
 }
@@ -912,7 +1014,7 @@ function importUrl() {
   while (parts.length < 13) parts.push(null);
   parts = parts.slice(0, 13);
   if (parts.some(function (v) { return v !== null && (!Number.isInteger(v) || v < 1 || v > 999); })) {
-    status("A price in that link is not usable.");
+    status("A price in that link cannot be used.");
     return;
   }
   readFormInto(week);
@@ -945,7 +1047,7 @@ function buildPriceGrid() {
   buy.inputMode = "numeric";
   var buyHint = document.createElement("p");
   buyHint.className = "hint";
-  buyHint.textContent = "Daisy Mae only sells on Sunday morning. Her price is between 90 and 110.";
+  buyHint.textContent = "Daisy Mae only sells on Sunday mornings. Her price is between 90 and 110.";
   line.appendChild(buy);
   line.appendChild(buyHint);
   buyLabel.appendChild(line);
@@ -984,7 +1086,7 @@ function buildPriceGrid() {
   });
   var hint = document.createElement("p");
   hint.className = "hint";
-  hint.textContent = "Morning price runs 8:00 AM – 11:59 AM. A new price starts at noon and lasts until 10:00 PM. Do not erase the morning number.";
+  hint.textContent = "The morning price is from 8:00 AM to 11:59 AM. A new price starts at noon and lasts until 10:00 PM. Do not erase the morning number.";
   root.appendChild(hint);
 }
 
@@ -995,7 +1097,9 @@ function bind() {
   });
   $("firstBuy").addEventListener("change", function () { syncPrevLock(); saveSoon(); schedulePredict(); });
   $("prevPattern").addEventListener("change", function () { saveSoon(); schedulePredict(); });
-  $("sunday").addEventListener("change", onSunday);
+  $("sundayBtn").addEventListener("click", toggleCal);
+  $("cal").addEventListener("click", function (e) { e.stopPropagation(); });
+  document.addEventListener("click", function () { $("cal").hidden = true; });
   $("note").addEventListener("input", saveSoon);
   $("soldAt").addEventListener("change", function () { saveSoon(); schedulePredict(); });
   $("saveBtn").addEventListener("click", function () { saveNow(); });

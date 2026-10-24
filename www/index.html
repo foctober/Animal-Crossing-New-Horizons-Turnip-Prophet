@@ -21,7 +21,11 @@
     <main>
       <div class="top">
         <label>Week starting Sunday
-          <input id="sunday" type="date" title="Sundays only. Any other day snaps back to that week's Sunday.">
+          <span class="sunday-wrap">
+            <button id="sundayBtn" class="sunday-btn" type="button" title="Only Sundays can be picked.">Pick a Sunday</button>
+            <input id="sunday" type="hidden">
+            <div id="cal" class="cal" hidden></div>
+          </span>
         </label>
         <label>Last week's pattern
           <select id="prevPattern">
@@ -52,7 +56,7 @@
         </label>
       </div>
       <label class="check"><input id="firstBuy" type="checkbox"> First time buying</label>
-      <p class="hint">Nook's Cranny is open 8:00 AM – 10:00 PM. The sell price changes at noon.</p>
+      <p class="hint">Nook's Cranny is open <span class="hours">8:00 AM – 10:00 PM</span>. The sell price changes at noon.</p>
       <p id="prevHint" class="hint"></p>
 
       <section id="priceGrid"></section>
@@ -64,7 +68,7 @@
         <button id="saveBtn" class="primary" type="button">Save</button>
         <span id="saveState"></span>
       </div>
-      <p class="hint">It saves by itself a moment after you type a price. Save writes the file right now. Quit does not erase it. The week stays in turnips.json.</p>
+      <p class="hint">It saves by itself a moment after you type a price. Save writes the file right away. Quitting does not erase it. The week stays in turnips.json.</p>
 
       <section id="result" hidden>
         <div id="banner" class="banner"></div>
@@ -89,9 +93,13 @@
       </label>
 
       <footer>
-        <span id="savedLine">Saved in <span id="dataPath"></span></span>
-        <span id="status"></span>
-        <a id="siteLink" href="https://turnipprophet.io" target="_blank" rel="noreferrer">Check this week on turnipprophet.io</a>
+        <div class="foot-left">
+          <span id="savedLine">Saved in <span id="dataPath"></span></span>
+          <span id="status"></span>
+        </div>
+        <div class="foot-mid">
+          <a id="siteLink" href="https://turnipprophet.io" target="_blank" rel="noreferrer">Check this week on turnipprophet.io</a>
+        </div>
         <button id="quitBtn" type="button">Quit</button>
       </footer>
     </main>
