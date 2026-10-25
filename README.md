@@ -1,8 +1,8 @@
 # Animal Crossing: New Horizons - Turnip Prophet
 
-A small Windows tracker for Daisy Mae's turnip prices. Type each price as the week goes, it saves on this PC, and it tells you whether to sell or wait.
+**Version 1.0.** The finished Windows app.
 
-This is the finished app.
+A small Windows tracker for Daisy Mae's turnip prices. Type each price as the week goes, it saves on this PC, and it tells you whether to sell or wait.
 
 The price math is the same engine as [turnipprophet.io](https://turnipprophet.io) (Mike Bryant's [ac-nh-turnip-prices](https://github.com/mikebryant/ac-nh-turnip-prices), from Ninji's reverse engineering of the game). This repo adds a window, a desktop shortcut, and a saved history. It is not the website, and it is not made by Nintendo.
 
@@ -12,7 +12,7 @@ The left side is the week list, on close-up grass with a white turnip in the mid
 
 ![The left side. A white turnip sits in the grass, leaves in the sky.](www/field.jpg)
 
-![Entering the week's prices. Saturday afternoon is the open shop window, so that box is pumpkin orange.](docs/prices.png)
+![Entering the week's prices. Saturday afternoon is the open shop window, so that box has the turning rainbow border.](docs/prices.png)
 
 ![The sell-or-wait banner, the chart, and the credit bar](docs/chart.png)
 
@@ -54,7 +54,7 @@ The shortcut, the tray icon, and the window icon are the teal leaf.
 
 The left side is the week list, on a close-up field that fades into sky. The grass is the bottom quarter, with the white turnip in the middle. The top of it sits just over the grass and the leaves reach into the sky. The right side is where you type the prices, on orange wood that matches the title. The grain is one seamless tile, repeated at a small size so it does not show up as one big picture. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**.
 
-The price side uses the Animal Crossing font, FinkHeavy. Yellow text and the green Saved note have a black outline. Shop hours, Daisy Mae, 90, 110, and the saved-file line are white with a black outline. That saved-file line grows to fill the space beside the link and stays on one line. Black wood text has a white outline. Delete Week is white text with a black outline on the red button. A thin red bar under the footer credits Mike Bryant and Ninji and says this project is not affiliated with Nintendo. Cards and input boxes have a thin black border. The price box for the open shop window pulses pumpkin orange. Text inside the white cards, inputs, Sunday button, and calendar stays plain black.
+The price side uses the Animal Crossing font, FinkHeavy. Yellow text and the green Saved note have a black outline. Shop hours, Daisy Mae, 90, 110, and the saved-file line are white with a black outline. That saved-file line grows to fill the space beside the link and stays on one line. Black wood text has a white outline. Delete Week is white text with a black outline on the red button. A thin red bar under the footer credits Mike Bryant and Ninji and says this project is not affiliated with Nintendo. Cards and input boxes have a thin black border. The price box for the open shop window is pumpkin orange, with a thick rainbow border that turns and a brighter glow on the same 1.5 second pulse as Buy and High. Text inside the white cards, inputs, Sunday button, and calendar stays plain black.
 
 The top three fields are three equal cards. Inside each card the label is left-aligned with its box. The date and both dropdowns stay left aligned. Their text, the price boxes, and the twelve cards under the chart sit in the vertical middle. Price boxes are centered left to right as well. Last week's pattern stays grey while First time buying is checked. Uncheck that and the pattern box is bold like the other two. The price box for the shop window that is open right now stays pumpkin orange, with a thick rainbow border that turns and a brighter glow on the same 1.5 second pulse as Buy and High. Every other price box keeps the thin black border. On a week that has not started yet, Sunday Buy Price is the one marked, because that is the first price to enter. On this week, Sunday morning is the buy box, and Monday through Saturday follow 8:00 AM and noon. A finished week is not marked. Outside shop hours nothing is marked.
 

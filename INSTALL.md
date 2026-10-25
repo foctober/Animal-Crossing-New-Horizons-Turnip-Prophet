@@ -1,6 +1,6 @@
 # Install
 
-You need 64-bit Windows 10 or 11. Edge or Chrome is used as the window. If neither is installed, your default browser opens instead.
+Version 1.0. You need 64-bit Windows 10 or 11. Edge or Chrome is used as the window. If neither is installed, your default browser opens instead.
 
 Pick one install. Do not run both at once. They share the same weeks file, `%AppData%\TurnipProphet\turnips.json`.
 
