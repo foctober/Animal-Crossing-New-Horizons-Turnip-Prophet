@@ -10,8 +10,6 @@ The price math is the same engine as [turnipprophet.io](https://turnipprophet.io
 
 The left side is the week list, on close-up grass with a white turnip in the middle. The right side is where you type the prices, on orange wood grain tiled small so it repeats.
 
-![The left side. A white turnip sits in the grass, leaves in the sky.](www/field.jpg)
-
 ![Entering the week's prices. Saturday afternoon is the open shop window, so that box has the turning rainbow border.](docs/prices.png)
 
 ![The sell-or-wait banner, the chart, and the credit bar](docs/chart.png)
