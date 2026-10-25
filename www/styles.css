@@ -10,6 +10,7 @@
   --sky: #8fd4f8;
   --animal: #f8d050;
   --week-card-h: calc(19px * 1.45 + 12px + 4px);
+  --control-size: 19px;
   --gold: #e9a514;
   --good: #2f8a3a;
   --bad: #d4533a;
@@ -192,7 +193,7 @@ aside {
   align-items: center;
   justify-content: center;
   font-family: "FinkHeavy", "Segoe UI", sans-serif;
-  font-size: 19px;
+  font-size: var(--control-size);
   font-weight: 700;
   line-height: 1;
   color: #111;
@@ -287,6 +288,7 @@ input[type="number"] {
   width: 4.6rem;
   height: var(--week-card-h);
   text-align: center;
+  font-size: var(--control-size);
   padding: calc(4px + (var(--week-card-h) - 34px) / 2) 0 calc(1px + (var(--week-card-h) - 34px) / 2);
   line-height: 1;
   font-weight: 700;
@@ -304,7 +306,7 @@ input[type="date"] { width: 11rem; }
   height: var(--week-card-h);
   padding: calc(4px + (var(--week-card-h) - 36px) / 2) 8px calc(2px + (var(--week-card-h) - 36px) / 2);
   line-height: 1;
-  font-size: 16px;
+  font-size: var(--control-size);
   font-weight: 700;
   color: #111;
   text-align: left;
@@ -333,7 +335,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   border-radius: 8px;
   height: var(--week-card-h);
   padding: calc(4px + (var(--week-card-h) - 36px) / 2) 8px calc(2px + (var(--week-card-h) - 36px) / 2);
-  font-size: 16px;
+  font-size: var(--control-size);
   font-weight: 700;
   line-height: 1;
   min-width: 11rem;
@@ -399,10 +401,10 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   justify-content: center;
   padding: 0 14px;
   line-height: 1;
-  font-size: 18px;
+  font-size: var(--control-size);
   font-weight: 700;
 }
-.import input { padding: calc(4px + (var(--week-card-h) - 38px) / 2) 8px calc(1px + (var(--week-card-h) - 38px) / 2); line-height: 1; text-align: center; }
+.import input { padding: calc(4px + (var(--week-card-h) - 38px) / 2) 8px calc(1px + (var(--week-card-h) - 38px) / 2); line-height: 1; text-align: center; font-size: var(--control-size); font-weight: 700; }
 #saveState {
   display: inline-flex;
   align-items: center;
@@ -577,12 +579,13 @@ footer {
   align-items: center;
   justify-content: center;
   line-height: 1;
+  font-size: var(--control-size);
 }
 footer a {
   color: #3a2500;
   background: var(--animal);
   font-weight: 800;
-  font-size: 18px;
+  font-size: var(--control-size);
   text-decoration: none;
   text-shadow: none;
   padding: 6px 12px;
