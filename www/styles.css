@@ -247,14 +247,25 @@ input[type="number"], input[type="text"], input[type="date"], select, textarea {
 input:focus, select:focus, textarea:focus { border-color: #2a86b8; }
 
 input[type="number"].due {
-  border: 2px solid #111;
-  background: #ffd7a8;
-  animation: dueglow 1.2s ease-in-out infinite;
+  height: 40px;
+  border: 5px solid transparent;
+  background:
+    linear-gradient(#ffd7a8, #ffd7a8) padding-box,
+    conic-gradient(from var(--spin), #ff2a2a, #ff9a00, #ffe600, #39e85a, #2aa6ff, #7a3cff, #ff2a9a, #ff2a2a) border-box;
+  animation: dueglow 1.5s ease-in-out infinite, rainspin 1.5s linear infinite;
 }
 
+@property --spin {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes rainspin { to { --spin: 360deg; } }
+
 @keyframes dueglow {
-  0%, 100% { box-shadow: 0 0 0 3px #111, 0 0 10px #ffd7a8, 0 0 18px #f58220; }
-  50% { box-shadow: 0 0 0 3px #111, 0 0 16px #fff, 0 0 28px #ffb15a, 0 0 40px #f58220; }
+  0%, 100% { box-shadow: 0 0 12px #ffe7c2, 0 0 24px #ff9a2e, 0 0 36px #ff6a00; }
+  50% { box-shadow: 0 0 18px #fff, 0 0 36px #ffe08a, 0 0 56px #ffb15a, 0 0 78px #ff4d00; }
 }
 
 .buy-line { display: flex; align-items: center; gap: 10px; }
