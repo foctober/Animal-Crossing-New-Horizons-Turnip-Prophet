@@ -120,7 +120,7 @@ aside {
   color: #f8d050;
   text-shadow: var(--edge-black);
 }
-.brand h1 { font-size: 19px; }
+.brand h1 { font-size: 22px; }
 .brand .app-name { font-size: 22px; }
 
 .week-list {
@@ -183,7 +183,12 @@ aside {
 }
 .week.on .date { color: #fff; text-shadow: none; }
 
-#newWeek { width: 100%; }
+#newWeek {
+  width: 100%;
+  font-family: "FinkHeavy", "Segoe UI", sans-serif;
+  color: #111;
+  text-shadow: none;
+}
 
 main {
   padding: 16px 20px 24px;
