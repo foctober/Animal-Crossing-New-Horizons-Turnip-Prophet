@@ -247,14 +247,14 @@ input[type="number"], input[type="text"], input[type="date"], select, textarea {
 input:focus, select:focus, textarea:focus { border-color: #2a86b8; }
 
 input[type="number"].due {
-  border-color: #f58220;
+  border: 2px solid #111;
   background: #ffd7a8;
-  animation: dueglow 1.5s ease-in-out infinite;
+  animation: dueglow 1.2s ease-in-out infinite;
 }
 
 @keyframes dueglow {
-  0%, 100% { box-shadow: 0 0 4px #f58220; }
-  50% { box-shadow: 0 0 10px #ffe0b0, 0 0 16px #f58220; }
+  0%, 100% { box-shadow: 0 0 0 3px #111, 0 0 10px #ffd7a8, 0 0 18px #f58220; }
+  50% { box-shadow: 0 0 0 3px #111, 0 0 16px #fff, 0 0 28px #ffb15a, 0 0 40px #f58220; }
 }
 
 .buy-line { display: flex; align-items: center; gap: 10px; }
@@ -262,9 +262,9 @@ input[type="number"].due {
 
 input[type="number"] {
   width: 4.6rem;
-  height: 32px;
+  height: 34px;
   text-align: center;
-  padding: 7px 0 1px;
+  padding: 10px 0 0;
   line-height: 1;
   font-weight: 700;
   -moz-appearance: textfield;
@@ -279,7 +279,7 @@ input[type="date"] { width: 11rem; }
   max-width: 100%;
   box-sizing: border-box;
   height: 36px;
-  padding: 8px 8px 2px;
+  padding: 11px 8px 0;
   line-height: 1;
   font-size: 16px;
   font-weight: 700;
@@ -309,7 +309,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   border: 2px solid #111;
   border-radius: 8px;
   height: 36px;
-  padding: 8px 8px 2px;
+  padding: 11px 8px 0;
   font-size: 16px;
   font-weight: 700;
   line-height: 1;
@@ -379,7 +379,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   font-size: 18px;
   font-weight: 700;
 }
-.import input { padding: 8px 8px 2px; line-height: 1; text-align: center; }
+.import input { padding: 11px 8px 0; line-height: 1; text-align: center; }
 #saveState {
   display: inline-flex;
   align-items: center;
@@ -441,13 +441,27 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   background: #fff;
   border: 2px solid #111;
   border-radius: 8px;
-  padding: 4px 6px 5px;
+  padding: 6px 4px;
   width: auto;
   min-width: 0;
+  min-height: 58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  gap: 2px;
 }
-.slot .when { color: var(--muted); font-size: 13px; font-weight: 650; text-align: center; }
-.slot .val { display: block; font-size: 16px; font-variant-numeric: tabular-nums; font-weight: 700; text-align: center; }
+.slot .when,
+.slot .val {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  width: 100%;
+}
+.slot .when { color: var(--muted); }
+.slot .val { display: block; font-variant-numeric: tabular-nums; }
 .slot.known .val { color: #c4840a; }
 .slot.future { border-color: var(--gold); }
 .slot.pastblank { opacity: 0.6; }
