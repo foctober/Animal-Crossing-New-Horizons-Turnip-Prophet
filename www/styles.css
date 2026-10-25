@@ -9,6 +9,7 @@
   --grass-deep: #3f9a3a;
   --sky: #8fd4f8;
   --animal: #f8d050;
+  --week-card-h: calc(19px * 1.45 + 12px + 4px);
   --gold: #e9a514;
   --good: #2f8a3a;
   --bad: #d4533a;
@@ -185,12 +186,18 @@ aside {
 
 #newWeek {
   width: 100%;
+  height: var(--week-card-h);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: "FinkHeavy", "Segoe UI", sans-serif;
   font-size: 19px;
   font-weight: 700;
   line-height: 1;
   color: #111;
   text-shadow: none;
+  padding: 0 14px;
 }
 
 main {
@@ -560,7 +567,16 @@ footer {
   flex: 0 0 auto;
   margin-left: auto;
 }
-#quitBtn { margin-left: 0; flex: 0 0 auto; }
+#quitBtn {
+  margin-left: 0;
+  flex: 0 0 auto;
+  height: var(--week-card-h);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
 footer a {
   color: #3a2500;
   background: var(--animal);
@@ -569,6 +585,12 @@ footer a {
   text-decoration: none;
   text-shadow: none;
   padding: 6px 12px;
+  height: var(--week-card-h);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
   border-radius: 999px;
   border: 2px solid #fff6c2;
   box-shadow: 0 0 0 2px #8a6a10;
