@@ -12,11 +12,11 @@ The left side is the week list, on close-up grass with a white turnip in the mid
 
 ![The left side. A white turnip sits in the grass, leaves in the sky.](www/field.jpg)
 
-![Entering the week's prices. The shop window that is open now is pumpkin orange.](docs/prices.jpg)
+![Entering the week's prices. Saturday afternoon is the open shop window, so that box is pumpkin orange.](docs/prices.png)
 
-![The sell-or-wait banner and the chart](docs/chart.jpg)
+![The sell-or-wait banner, the chart, and the credit bar](docs/chart.png)
 
-![Every pattern line, the same numbers as the website](docs/patterns.jpg)
+![Every pattern line, the same numbers as the website](docs/patterns.png)
 
 ## Install
 
@@ -54,7 +54,7 @@ The shortcut, the tray icon, and the window icon are the teal leaf.
 
 The left side is the week list, on a close-up field that fades into sky. The grass is the bottom quarter, with the white turnip in the middle. The top of it sits just over the grass and the leaves reach into the sky. The right side is where you type the prices, on orange wood that matches the title. The grain is one seamless tile, repeated at a small size so it does not show up as one big picture. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**.
 
-This branch only: the price side uses FinkHeavy. Wood outlines are the same thickness. Yellow text and the green Saved note have a black outline. The old red wood text is white with a black outline, including the shop hours, Daisy Mae, 90, 110, and the saved-file line. That saved-file line grows to fill the space beside the link and stays on one line. Black wood text has a white outline. Delete Week is white text with a black outline on the red button. A thin red bar under the footer says the prediction engine is Mike Bryant's, thanks to Ninji, and that this project is not affiliated with Nintendo. It uses the same white text and black outline, and it lines up with the cards. Cards and input boxes have a thin black border. The price box for the open shop window pulses pumpkin orange. Text inside the white cards, inputs, Sunday button, and calendar stays plain black. One weight, so bold and regular look the same. Main does not have this font.
+The price side uses the Animal Crossing font, FinkHeavy. Yellow text and the green Saved note have a black outline. Shop hours, Daisy Mae, 90, 110, and the saved-file line are white with a black outline. That saved-file line grows to fill the space beside the link and stays on one line. Black wood text has a white outline. Delete Week is white text with a black outline on the red button. A thin red bar under the footer credits Mike Bryant and Ninji and says this project is not affiliated with Nintendo. Cards and input boxes have a thin black border. The price box for the open shop window pulses pumpkin orange. Text inside the white cards, inputs, Sunday button, and calendar stays plain black.
 
 The top three fields are three equal cards. Inside each card the label is left-aligned with its box. The date and both dropdowns are bold. Last week's pattern stays grey while First time buying is checked. Uncheck that and the pattern box is bold like the other two. The price box for the shop window that is open right now is pumpkin orange. On a week that has not started yet, Sunday Buy Price is the one marked, because that is the first price to enter. On this week, Sunday morning is the buy box, and Monday through Saturday follow 8:00 AM and noon. A finished week is not marked. Outside shop hours nothing is marked.
 
@@ -152,7 +152,7 @@ Open **Turnip Prophet** from the desktop or the Start menu. A second launch does
 | `Turnips.ps1` | The PowerShell app. Local page plus the tray icon. |
 | `Launch.vbs` / `Run.cmd` | Start the PowerShell app with no PowerShell window. |
 | `TurnipProphet.ico` | The leaf icon for the shortcut, the tray, and the installer. |
-| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the left side. `wood.png` is the right side, tiled at 360 by 180. |
+| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the left side. `wood.png` is the right side, tiled at 360 by 180. `FinkHeavy.ttf` is the price-side font. |
 | `predictions.js` | Unmodified Turnip Prophet engine. |
 | `turnips.json` | Your weeks. Lives in `%AppData%\TurnipProphet\`, not next to the program and not in git. |
 
