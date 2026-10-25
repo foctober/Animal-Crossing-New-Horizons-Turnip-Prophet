@@ -186,8 +186,12 @@ aside {
 #newWeek {
   width: 100%;
   font-family: "FinkHeavy", "Segoe UI", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
   color: #111;
   text-shadow: none;
+  padding: 12px 14px;
 }
 
 main {
