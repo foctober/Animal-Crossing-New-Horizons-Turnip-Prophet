@@ -19,6 +19,18 @@
     0 1px 0 #fff,
     -1px 0 0 #fff,
     1px 0 0 #fff;
+  --edge-black:
+    -2px -2px 0 #111, -2px -1px 0 #111, -2px 0 0 #111, -2px 1px 0 #111, -2px 2px 0 #111,
+    -1px -2px 0 #111, -1px -1px 0 #111, -1px 0 0 #111, -1px 1px 0 #111, -1px 2px 0 #111,
+    0 -2px 0 #111, 0 -1px 0 #111, 0 1px 0 #111, 0 2px 0 #111,
+    1px -2px 0 #111, 1px -1px 0 #111, 1px 0 0 #111, 1px 1px 0 #111, 1px 2px 0 #111,
+    2px -2px 0 #111, 2px -1px 0 #111, 2px 0 0 #111, 2px 1px 0 #111, 2px 2px 0 #111;
+  --edge-white:
+    -2px -2px 0 #fff, -2px -1px 0 #fff, -2px 0 0 #fff, -2px 1px 0 #fff, -2px 2px 0 #fff,
+    -1px -2px 0 #fff, -1px -1px 0 #fff, -1px 0 0 #fff, -1px 1px 0 #fff, -1px 2px 0 #fff,
+    0 -2px 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff, 0 2px 0 #fff,
+    1px -2px 0 #fff, 1px -1px 0 #fff, 1px 0 0 #fff, 1px 1px 0 #fff, 1px 2px 0 #fff,
+    2px -2px 0 #fff, 2px -1px 0 #fff, 2px 0 0 #fff, 2px 1px 0 #fff, 2px 2px 0 #fff;
   color-scheme: light;
 }
 
@@ -56,15 +68,7 @@ button.danger {
   color: #ff4a4a;
   border-color: #111;
   font-weight: 700;
-  text-shadow:
-    -1px -1px 0 #111,
-    1px -1px 0 #111,
-    -1px 1px 0 #111,
-    1px 1px 0 #111,
-    0 -1px 0 #111,
-    0 1px 0 #111,
-    -1px 0 0 #111,
-    1px 0 0 #111;
+  text-shadow: var(--edge-black);
 }
 
 button:disabled { opacity: 0.45; cursor: default; }
@@ -292,15 +296,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 .hint .hours {
   color: #d10f0f;
   font-weight: 700;
-  text-shadow:
-    -1px -1px 0 #fff,
-    1px -1px 0 #fff,
-    -1px 1px 0 #fff,
-    1px 1px 0 #fff,
-    0 -1px 0 #fff,
-    0 1px 0 #fff,
-    -1px 0 0 #fff,
-    1px 0 0 #fff;
+  text-shadow: var(--edge-white);
 }
 
 .sunday-wrap { position: relative; display: inline-block; }
@@ -389,15 +385,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   font-size: 18px;
   font-weight: 700;
   min-width: 4rem;
-  text-shadow:
-    -1px -1px 0 #111,
-    1px -1px 0 #111,
-    -1px 1px 0 #111,
-    1px 1px 0 #111,
-    0 -1px 0 #111,
-    0 1px 0 #111,
-    -1px 0 0 #111,
-    1px 0 0 #111;
+  text-shadow: var(--edge-black);
 }
 #saveState.bad { color: #d10f0f; }
 
@@ -487,12 +475,7 @@ summary::before {
   font-size: 22px;
   font-weight: 700;
   line-height: 1;
-  text-shadow:
-    -1px -1px 0 #111,
-    1px -1px 0 #111,
-    -1px 1px 0 #111,
-    1px 1px 0 #111,
-    0 0 2px #111;
+  text-shadow: var(--edge-black);
 }
 details[open] > summary::before { content: "▲"; }
 
@@ -563,15 +546,7 @@ footer a:hover { background: #ffe56a; }
   font-size: 11px;
   font-weight: 700;
   line-height: 1.15;
-  text-shadow:
-    -1px -1px 0 #fff,
-    1px -1px 0 #fff,
-    -1px 1px 0 #fff,
-    1px 1px 0 #fff,
-    0 -1px 0 #fff,
-    0 1px 0 #fff,
-    -1px 0 0 #fff,
-    1px 0 0 #fff;
+  text-shadow: var(--edge-white);
 }
 #savedLine {
   display: block;
@@ -634,15 +609,7 @@ main .odd b,
 main summary,
 main footer {
   color: #f8d050;
-  text-shadow:
-    -1px -1px 0 #111,
-    1px -1px 0 #111,
-    -1px 1px 0 #111,
-    1px 1px 0 #111,
-    0 -1px 0 #111,
-    0 1px 0 #111,
-    -1px 0 0 #111,
-    1px 0 0 #111;
+  text-shadow: var(--edge-black);
 }
 
 main .top > label,
@@ -670,13 +637,5 @@ main textarea::placeholder {
 main label.check,
 main #status {
   color: #111;
-  text-shadow:
-    -1px -1px 0 #fff,
-    1px -1px 0 #fff,
-    -1px 1px 0 #fff,
-    1px 1px 0 #fff,
-    0 -1px 0 #fff,
-    0 1px 0 #fff,
-    -1px 0 0 #fff,
-    1px 0 0 #fff;
+  text-shadow: var(--edge-white);
 }
