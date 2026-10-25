@@ -629,7 +629,15 @@ main .odd b,
 main summary,
 main footer {
   color: #f8d050;
-  text-shadow: none;
+  text-shadow:
+    -1px -1px 0 #111,
+    1px -1px 0 #111,
+    -1px 1px 0 #111,
+    1px 1px 0 #111,
+    0 -1px 0 #111,
+    0 1px 0 #111,
+    -1px 0 0 #111,
+    1px 0 0 #111;
 }
 
 main .top > label,
@@ -652,4 +660,18 @@ main input::placeholder,
 main textarea::placeholder {
   color: #666;
   opacity: 1;
+}
+
+main label.check,
+main #status {
+  color: #111;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 -1px 0 #fff,
+    0 1px 0 #fff,
+    -1px 0 0 #fff,
+    1px 0 0 #fff;
 }
