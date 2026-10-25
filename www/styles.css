@@ -11,6 +11,8 @@
   --animal: #f8d050;
   --week-card-h: calc(19px * 1.45 + 12px + 4px);
   --control-size: 19px;
+  --title-size: 23px;
+  --copy-size: 18px;
   --gold: #e9a514;
   --good: #2f8a3a;
   --bad: #d4533a;
@@ -233,14 +235,14 @@ main {
 .top .sunday-btn,
 .top select { width: 100%; }
 
-label { display: flex; flex-direction: column; gap: 4px; color: #111; font-size: 23px; font-weight: 700; text-shadow: var(--halo); }
+label { display: flex; flex-direction: column; gap: 4px; color: #111; font-size: var(--title-size); font-weight: 700; text-shadow: var(--halo); }
 label.check {
   flex-direction: row;
   align-items: center;
   align-self: flex-start;
   gap: 8px;
   color: #111;
-  font-size: 21px;
+  font-size: var(--title-size);
   font-weight: 700;
   padding-bottom: 0;
 }
@@ -320,7 +322,7 @@ input[type="date"] { width: 11rem; }
 #importUrl { width: min(360px, 46vw); }
 textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; }
 
-.hint { margin: 0; color: #111; font-size: 18px; font-weight: 700; text-shadow: var(--halo); }
+.hint { margin: 0; color: #111; font-size: var(--copy-size); font-weight: 700; text-shadow: var(--halo); }
 .hint .hours {
   color: #fff;
   font-weight: 700;
@@ -386,7 +388,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 .price-head { color: #111; font-size: 18px; font-weight: 700; text-shadow: var(--halo); }
 .price-head span { text-align: center; }
 .price-head span:first-child { text-align: left; }
-.price-row span { color: #111; font-size: 23px; font-weight: 700; text-shadow: var(--halo); }
+.price-row span { color: #111; font-size: var(--title-size); font-weight: 700; text-shadow: var(--halo); }
 
 .buy-row { margin-bottom: 8px; }
 .import { display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; }
@@ -429,8 +431,8 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 .banner.soon { background: #fff3d2; border-color: #e9a514; }
 .banner.late, .banner.sell { background: #ffe6de; border-color: #e07a5f; }
 .banner.wait { background: #e5f6ff; border-color: #7ec8ef; }
-.banner h2 { margin: 0 0 4px; font-size: 28px; font-weight: 750; color: #21461f; }
-.banner p { margin: 0; }
+.banner h2 { margin: 0 0 4px; font-size: var(--title-size); font-weight: 750; color: #21461f; }
+.banner p { margin: 0; font-size: var(--copy-size); }
 
 .odds { display: flex; flex-direction: column; gap: 4px; }
 .odd {
@@ -438,7 +440,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   grid-template-columns: 150px minmax(80px, 280px) 76px;
   gap: 8px;
   align-items: center;
-  font-size: 18px;
+  font-size: var(--copy-size);
   font-weight: 700;
   color: #111;
   text-shadow: var(--halo);
@@ -509,7 +511,7 @@ summary {
   margin: 0;
   padding: 0;
   color: #111;
-  font-size: 18px;
+  font-size: var(--copy-size);
   font-weight: 700;
   text-shadow: var(--halo);
 }
@@ -625,7 +627,7 @@ footer a:hover { background: #ffe56a; }
   border: 2px solid #111;
   border-radius: 12px;
   padding: 2px 10px;
-  font-size: 14px;
+  font-size: var(--copy-size);
   font-weight: 700;
   line-height: 1.2;
   text-align: center;
