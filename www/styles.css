@@ -4,7 +4,7 @@
   --muted: #5d7354;
   --paper: #fffdf6;
   --cream: #fff4cc;
-  --line: #c9e3a4;
+  --line: #111;
   --grass: #6ec44a;
   --grass-deep: #3f9a3a;
   --sky: #8fd4f8;
@@ -53,18 +53,18 @@ button.primary {
 
 button.danger {
   background: #d10f0f;
-  color: #111;
-  border-color: var(--line);
+  color: #ff4a4a;
+  border-color: #111;
   font-weight: 700;
   text-shadow:
-    -1px -1px 0 #fff,
-    1px -1px 0 #fff,
-    -1px 1px 0 #fff,
-    1px 1px 0 #fff,
-    0 -1px 0 #fff,
-    0 1px 0 #fff,
-    -1px 0 0 #fff,
-    1px 0 0 #fff;
+    -1px -1px 0 #111,
+    1px -1px 0 #111,
+    -1px 1px 0 #111,
+    1px 1px 0 #111,
+    0 -1px 0 #111,
+    0 1px 0 #111,
+    -1px 0 0 #111,
+    1px 0 0 #111;
 }
 
 button:disabled { opacity: 0.45; cursor: default; }
@@ -208,7 +208,7 @@ main {
   text-align: left;
   min-width: 0;
   background: #fffdf6;
-  border: 2px solid #fff;
+  border: 2px solid #111;
   border-radius: 12px;
   padding: 8px 10px 10px;
   text-shadow: none;
@@ -232,7 +232,7 @@ label.check input { width: 15px; height: 15px; margin: 0; flex: 0 0 auto; }
 
 input[type="number"], input[type="text"], input[type="date"], select, textarea {
   background: #fff;
-  border: 2px solid #b7d98a;
+  border: 2px solid #111;
   border-radius: 8px;
   padding: 3px 6px;
   font-size: 16px;
@@ -244,8 +244,13 @@ input:focus, select:focus, textarea:focus { border-color: #2a86b8; }
 
 input[type="number"].due {
   border-color: #f58220;
-  box-shadow: 0 0 0 3px #f58220;
   background: #ffd7a8;
+  animation: dueglow 1.5s ease-in-out infinite;
+}
+
+@keyframes dueglow {
+  0%, 100% { box-shadow: 0 0 4px #f58220; }
+  50% { box-shadow: 0 0 10px #ffe0b0, 0 0 16px #f58220; }
 }
 
 .buy-line { display: flex; align-items: center; gap: 10px; }
@@ -302,7 +307,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 .sunday-btn {
   background: #fff;
   color: var(--ink);
-  border: 2px solid #b7d98a;
+  border: 2px solid #111;
   border-radius: 8px;
   padding: 3px 8px;
   font-size: 16px;
@@ -322,7 +327,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
-  border: 2px solid #b7d98a;
+  border: 2px solid #111;
   border-radius: 10px;
   padding: 8px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
@@ -385,14 +390,14 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   font-weight: 700;
   min-width: 4rem;
   text-shadow:
-    -1px -1px 0 #fff,
-    1px -1px 0 #fff,
-    -1px 1px 0 #fff,
-    1px 1px 0 #fff,
-    0 -1px 0 #fff,
-    0 1px 0 #fff,
-    -1px 0 0 #fff,
-    1px 0 0 #fff;
+    -1px -1px 0 #111,
+    1px -1px 0 #111,
+    -1px 1px 0 #111,
+    1px 1px 0 #111,
+    0 -1px 0 #111,
+    0 1px 0 #111,
+    -1px 0 0 #111,
+    1px 0 0 #111;
 }
 #saveState.bad { color: #d10f0f; }
 
@@ -441,7 +446,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 }
 .slot {
   background: #fff;
-  border: 2px solid #d7ecc0;
+  border: 2px solid #111;
   border-radius: 8px;
   padding: 4px 6px 5px;
   width: auto;
