@@ -264,7 +264,7 @@ input[type="number"] {
   width: 4.6rem;
   height: 34px;
   text-align: center;
-  padding: 10px 0 0;
+  padding: 4px 0 1px;
   line-height: 1;
   font-weight: 700;
   -moz-appearance: textfield;
@@ -279,7 +279,7 @@ input[type="date"] { width: 11rem; }
   max-width: 100%;
   box-sizing: border-box;
   height: 36px;
-  padding: 11px 8px 0;
+  padding: 4px 8px 2px;
   line-height: 1;
   font-size: 16px;
   font-weight: 700;
@@ -309,7 +309,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   border: 2px solid #111;
   border-radius: 8px;
   height: 36px;
-  padding: 11px 8px 0;
+  padding: 4px 8px 2px;
   font-size: 16px;
   font-weight: 700;
   line-height: 1;
@@ -379,7 +379,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   font-size: 18px;
   font-weight: 700;
 }
-.import input { padding: 11px 8px 0; line-height: 1; text-align: center; }
+.import input { padding: 4px 8px 1px; line-height: 1; text-align: center; }
 #saveState {
   display: inline-flex;
   align-items: center;
@@ -459,6 +459,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   line-height: 1.15;
   text-align: center;
   width: 100%;
+  transform: translateY(2px);
 }
 .slot .when { color: var(--muted); }
 .slot .val { display: block; font-variant-numeric: tabular-nums; }
