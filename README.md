@@ -58,7 +58,7 @@ The price side uses the Animal Crossing font, FinkHeavy. Yellow text and the gre
 
 The top three fields are three equal cards. Inside each card the label is left-aligned with its box. The date and both dropdowns stay left aligned. Their text, the price boxes, and the twelve cards under the chart sit in the vertical middle. The twelve cards are 17px and one and a half times the height of the price boxes. The notes are 18px, and the buttons and inputs are 19px. Price boxes are centered left to right as well. The date, the two dropdowns, every price box, the paste box, and Import, Delete Week, and Save are the same height as the week cards. Those labels are the same size as New Week, Quit, and the turnipprophet.io link. Last week's pattern stays grey while First time buying is checked. Uncheck that and the pattern box is bold like the other two. The price box for the shop window that is open right now is bright sky blue, with a thick rainbow border that turns and a white glow on the same 1.5 second pulse as Buy and High. Every other price box keeps the thin black border. On a week that has not started yet, Sunday Buy Price is the one marked, because that is the first price to enter. On this week, Sunday morning is the buy box, and Monday through Saturday follow 8:00 AM and noon. A finished week is not marked. Outside shop hours nothing is marked.
 
-Under the prices is the prediction: the banner, the odds, the chart, the twelve sell slots, and the full pattern table if you open it.
+Under the prices is the prediction: the banner, the odds, the chart, the twelve sell slots, and the full pattern table if you open it. The table text is 14px, the same as the prices on the chart.
 
 ## What you do each week
 
