@@ -258,7 +258,8 @@ input[type="number"], input[type="text"], input[type="date"], select, textarea {
 input:focus, select:focus, textarea:focus { border-color: #2a86b8; }
 
 input[type="number"].due {
-  height: 40px;
+  height: var(--week-card-h);
+  padding: calc(4px + (var(--week-card-h) - 40px) / 2) 0 calc(1px + (var(--week-card-h) - 40px) / 2);
   border: 5px solid transparent;
   background:
     linear-gradient(#4eb6f5, #4eb6f5) padding-box,
@@ -284,9 +285,9 @@ input[type="number"].due {
 
 input[type="number"] {
   width: 4.6rem;
-  height: 34px;
+  height: var(--week-card-h);
   text-align: center;
-  padding: 4px 0 1px;
+  padding: calc(4px + (var(--week-card-h) - 34px) / 2) 0 calc(1px + (var(--week-card-h) - 34px) / 2);
   line-height: 1;
   font-weight: 700;
   -moz-appearance: textfield;
@@ -300,8 +301,8 @@ input[type="date"] { width: 11rem; }
 #soldAt, #prevPattern {
   max-width: 100%;
   box-sizing: border-box;
-  height: 36px;
-  padding: 4px 8px 2px;
+  height: var(--week-card-h);
+  padding: calc(4px + (var(--week-card-h) - 36px) / 2) 8px calc(2px + (var(--week-card-h) - 36px) / 2);
   line-height: 1;
   font-size: 16px;
   font-weight: 700;
@@ -330,8 +331,8 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   color: var(--ink);
   border: 2px solid #111;
   border-radius: 8px;
-  height: 36px;
-  padding: 4px 8px 2px;
+  height: var(--week-card-h);
+  padding: calc(4px + (var(--week-card-h) - 36px) / 2) 8px calc(2px + (var(--week-card-h) - 36px) / 2);
   font-size: 16px;
   font-weight: 700;
   line-height: 1;
@@ -389,7 +390,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 .import { display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; }
 .import-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 .import input, .import button {
-  height: 38px;
+  height: var(--week-card-h);
   box-sizing: border-box;
 }
 .import button {
@@ -401,7 +402,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   font-size: 18px;
   font-weight: 700;
 }
-.import input { padding: 4px 8px 1px; line-height: 1; text-align: center; }
+.import input { padding: calc(4px + (var(--week-card-h) - 38px) / 2) 8px calc(1px + (var(--week-card-h) - 38px) / 2); line-height: 1; text-align: center; }
 #saveState {
   display: inline-flex;
   align-items: center;
