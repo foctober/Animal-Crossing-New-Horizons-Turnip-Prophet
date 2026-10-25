@@ -481,7 +481,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 }
 .slot .when,
 .slot .val {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   line-height: 1.15;
   text-align: center;
