@@ -555,6 +555,22 @@ footer a:hover { background: #ffe56a; }
   font-size: 22px;
 }
 
+.credit {
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: #d10f0f;
+  color: #fff;
+  border: 2px solid #111;
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: var(--edge-black);
+}
+
 .bye {
   max-width: 36rem;
   margin: 15vh auto;
