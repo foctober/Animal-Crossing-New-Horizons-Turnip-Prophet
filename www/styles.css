@@ -262,8 +262,10 @@ input[type="number"].due {
 
 input[type="number"] {
   width: 4.6rem;
+  height: 32px;
   text-align: center;
-  padding: 2px 0;
+  padding: 7px 0 1px;
+  line-height: 1;
   font-weight: 700;
   -moz-appearance: textfield;
 }
@@ -276,12 +278,13 @@ input[type="date"] { width: 11rem; }
 #soldAt, #prevPattern {
   max-width: 100%;
   box-sizing: border-box;
-  height: calc(16px * 1.45 + 6px + 4px);
-  padding: 3px 8px;
-  line-height: 1.45;
+  height: 36px;
+  padding: 8px 8px 2px;
+  line-height: 1;
   font-size: 16px;
   font-weight: 700;
   color: #111;
+  text-align: left;
 }
 #prevPattern:disabled {
   font-weight: 400;
@@ -305,9 +308,11 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   color: var(--ink);
   border: 2px solid #111;
   border-radius: 8px;
-  padding: 3px 8px;
+  height: 36px;
+  padding: 8px 8px 2px;
   font-size: 16px;
   font-weight: 700;
+  line-height: 1;
   min-width: 11rem;
   text-align: left;
   text-shadow: none;
@@ -334,7 +339,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 .cal-names, .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
 .cal-names span { font-size: 12px; font-weight: 700; }
 .cal-names .off { color: #b0b0b0; text-decoration: line-through; }
-.cal button.day { padding: 4px 0; font-size: 14px; font-weight: 400; border-radius: 6px; text-shadow: none; }
+.cal button.day { padding: 6px 0 2px; font-size: 14px; font-weight: 400; line-height: 1; border-radius: 6px; text-shadow: none; }
 .cal button.day.sun { background: #fff; color: #111; font-weight: 700; }
 .cal button.day.off {
   background: #ececec;
@@ -374,7 +379,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   font-size: 18px;
   font-weight: 700;
 }
-.import input { padding: 0 8px; }
+.import input { padding: 8px 8px 2px; line-height: 1; text-align: center; }
 #saveState {
   display: inline-flex;
   align-items: center;
