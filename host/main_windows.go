@@ -41,32 +41,42 @@ const (
 	idQuit          = 2
 	mbIconError     = 0x00000010
 	swShowNormal    = 1
-	className       = "TurnipProphetHidden"
+	swHide          = 0
+	wmClose         = 0x0010
+	wmSize          = 0x0005
+	wsOverlapped    = 0x00CF0000
+	className       = "TurnipProphetFrame"
 )
 
 var (
 	user32  = windows.NewLazySystemDLL("user32.dll")
 	shell32 = windows.NewLazySystemDLL("shell32.dll")
 
-	procRegisterClassExW    = user32.NewProc("RegisterClassExW")
-	procCreateWindowExW     = user32.NewProc("CreateWindowExW")
-	procDefWindowProcW      = user32.NewProc("DefWindowProcW")
-	procGetMessageW         = user32.NewProc("GetMessageW")
-	procTranslateMessage    = user32.NewProc("TranslateMessage")
-	procDispatchMessageW    = user32.NewProc("DispatchMessageW")
-	procPostQuitMessage     = user32.NewProc("PostQuitMessage")
-	procPostMessageW        = user32.NewProc("PostMessageW")
-	procLoadImageW          = user32.NewProc("LoadImageW")
-	procLoadIconW           = user32.NewProc("LoadIconW")
-	procCreatePopupMenu     = user32.NewProc("CreatePopupMenu")
-	procAppendMenuW         = user32.NewProc("AppendMenuW")
-	procTrackPopupMenu      = user32.NewProc("TrackPopupMenu")
-	procDestroyMenu         = user32.NewProc("DestroyMenu")
-	procSetForegroundWindow = user32.NewProc("SetForegroundWindow")
-	procGetCursorPos        = user32.NewProc("GetCursorPos")
-	procShellNotifyIconW    = shell32.NewProc("Shell_NotifyIconW")
-	procMessageBoxW         = user32.NewProc("MessageBoxW")
-	procShellExecuteW       = shell32.NewProc("ShellExecuteW")
+	procRegisterClassExW         = user32.NewProc("RegisterClassExW")
+	procCreateWindowExW          = user32.NewProc("CreateWindowExW")
+	procDefWindowProcW           = user32.NewProc("DefWindowProcW")
+	procGetMessageW              = user32.NewProc("GetMessageW")
+	procTranslateMessage         = user32.NewProc("TranslateMessage")
+	procDispatchMessageW         = user32.NewProc("DispatchMessageW")
+	procPostQuitMessage          = user32.NewProc("PostQuitMessage")
+	procPostMessageW             = user32.NewProc("PostMessageW")
+	procLoadImageW               = user32.NewProc("LoadImageW")
+	procLoadIconW                = user32.NewProc("LoadIconW")
+	procCreatePopupMenu          = user32.NewProc("CreatePopupMenu")
+	procAppendMenuW              = user32.NewProc("AppendMenuW")
+	procTrackPopupMenu           = user32.NewProc("TrackPopupMenu")
+	procDestroyMenu              = user32.NewProc("DestroyMenu")
+	procSetForegroundWindow      = user32.NewProc("SetForegroundWindow")
+	procGetCursorPos             = user32.NewProc("GetCursorPos")
+	procShellNotifyIconW         = shell32.NewProc("Shell_NotifyIconW")
+	procMessageBoxW              = user32.NewProc("MessageBoxW")
+	procShellExecuteW            = shell32.NewProc("ShellExecuteW")
+	procFindWindowW              = user32.NewProc("FindWindowW")
+	procShowWindow               = user32.NewProc("ShowWindow")
+	procGetSystemMetrics         = user32.NewProc("GetSystemMetrics")
+	procGetWindowThreadProcessId = user32.NewProc("GetWindowThreadProcessId")
+	procAllowSetForegroundWindow = user32.NewProc("AllowSetForegroundWindow")
+	procSetAppID                 = shell32.NewProc("SetCurrentProcessExplicitAppUserModelID")
 
 	trayWnd windows.HWND
 	trayID  uint32 = 1
@@ -193,7 +203,6 @@ func openBrowser() {
 		"--disable-sync",
 	)
 	_ = cmd.Start()
-	go watchAppWindow()
 }
 
 func loadIcon() windows.Handle {
@@ -249,10 +258,19 @@ func showMenu() {
 
 func wndProc(hwnd, message, wparam, lparam uintptr) uintptr {
 	switch message {
+	case wmClose:
+		procShowWindow.Call(hwnd, swHide)
+		return 0
+	case wmSize:
+		if browser != nil {
+			browser.Resize()
+		}
+		r, _, _ := procDefWindowProcW.Call(hwnd, message, wparam, lparam)
+		return r
 	case wmTray:
 		switch lparam {
 		case wmLButtonDblClk:
-			openBrowser()
+			showFrame()
 		case wmRButtonUp:
 			showMenu()
 		}
@@ -260,7 +278,7 @@ func wndProc(hwnd, message, wparam, lparam uintptr) uintptr {
 	case wmCommand:
 		switch uint16(wparam) {
 		case idOpen:
-			openBrowser()
+			showFrame()
 		case idQuit:
 			procPostQuitMessage.Call(0)
 		}
@@ -297,7 +315,40 @@ func acquireMutex() (windows.Handle, bool) {
 	return h, err == windows.ERROR_ALREADY_EXISTS
 }
 
+func setAppID() {
+	procSetAppID.Call(uintptr(unsafe.Pointer(utf16Ptr("foctober.TurnipProphet"))))
+}
+
+func signalRunning() bool {
+	hwnd, _, _ := procFindWindowW.Call(uintptr(unsafe.Pointer(utf16Ptr(className))), 0)
+	if hwnd == 0 {
+		return false
+	}
+	var pid uint32
+	procGetWindowThreadProcessId.Call(hwnd, uintptr(unsafe.Pointer(&pid)))
+	if pid != 0 {
+		procAllowSetForegroundWindow.Call(uintptr(pid))
+	}
+	procPostMessageW.Call(hwnd, wmCommand, idOpen, 0)
+	return true
+}
+
+func showFrame() {
+	if trayWnd == 0 {
+		openBrowser()
+		return
+	}
+	procShowWindow.Call(uintptr(trayWnd), swShowNormal)
+	procSetForegroundWindow.Call(uintptr(trayWnd))
+	if browser != nil {
+		_ = browser.Show()
+		browser.Resize()
+		browser.Focus()
+	}
+}
+
 func main() {
+	setAppID()
 	root, err := exeDir()
 	if err != nil {
 		showError(err.Error())
@@ -309,9 +360,9 @@ func main() {
 		return
 	}
 	if port := FindRunning(); port > 0 {
-		appPort = port
-		appWork = filepath.Join(os.Getenv("LOCALAPPDATA"), "TurnipProphet")
-		openBrowser()
+		for i := 0; i < 30 && !signalRunning(); i++ {
+			time.Sleep(100 * time.Millisecond)
+		}
 		return
 	}
 	mutex, already := acquireMutex()
@@ -320,10 +371,7 @@ func main() {
 	}
 	if already {
 		for i := 0; i < 30; i++ {
-			if port := FindRunning(); port > 0 {
-				appPort = port
-				appWork = filepath.Join(os.Getenv("LOCALAPPDATA"), "TurnipProphet")
-				openBrowser()
+			if signalRunning() {
 				return
 			}
 			time.Sleep(100 * time.Millisecond)
@@ -360,25 +408,48 @@ func main() {
 
 	hinst, _, _ := windows.NewLazySystemDLL("kernel32.dll").NewProc("GetModuleHandleW").Call(0)
 	class := utf16Ptr(className)
+	icon := loadIcon()
 	wc := wndClassEx{
 		WndProc:   wndProcCB,
 		Instance:  windows.Handle(hinst),
 		ClassName: class,
+		Icon:      icon,
+		IconSm:    icon,
 	}
 	wc.Size = uint32(unsafe.Sizeof(wc))
 	if atom, _, err := procRegisterClassExW.Call(uintptr(unsafe.Pointer(&wc))); atom == 0 {
-		showError("Could not create the tray window. " + err.Error())
+		showError("Could not create the window. " + err.Error())
 		return
 	}
-	hwnd, _, err := procCreateWindowExW.Call(0, uintptr(unsafe.Pointer(class)), uintptr(unsafe.Pointer(utf16Ptr("Turnip Prophet"))), 0, 0, 0, 0, 0, 0, 0, hinst, 0)
+	screenW, _, _ := procGetSystemMetrics.Call(0)
+	screenH, _, _ := procGetSystemMetrics.Call(1)
+	const winW, winH = 1360, 900
+	posX := (int32(screenW) - winW) / 2
+	posY := (int32(screenH) - winH) / 2
+	if posX < 0 {
+		posX = 0
+	}
+	if posY < 0 {
+		posY = 0
+	}
+	hwnd, _, err := procCreateWindowExW.Call(
+		0,
+		uintptr(unsafe.Pointer(class)),
+		uintptr(unsafe.Pointer(utf16Ptr("Turnip Prophet"))),
+		wsOverlapped,
+		uintptr(posX), uintptr(posY), winW, winH,
+		0, 0, hinst, 0,
+	)
 	if hwnd == 0 {
-		showError("Could not create the tray window. " + err.Error())
+		showError("Could not create the window. " + err.Error())
 		return
 	}
 	trayWnd = windows.HWND(hwnd)
-	addTray(loadIcon())
+	stampWindow(trayWnd)
+	procShowWindow.Call(hwnd, swShowNormal)
+	attachPage()
+	addTray(icon)
 	defer removeTray()
-	openBrowser()
 	runLoop()
 	app.logf("Stopped.")
 }

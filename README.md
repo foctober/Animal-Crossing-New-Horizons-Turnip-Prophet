@@ -1,6 +1,6 @@
 # Animal Crossing: New Horizons - Turnip Prophet
 
-**Version 1.1, test branch.** Not on main yet. Main is still 1.0. Zoom stays at 100%. The wood fills the window. Save has a black border. The note is 19px and stays three lines. The First time buying check is the same sky blue as the open price box. Sunday dates in the calendar get a green border and a check on hover. Other days get a red border and an X. Pinning the window to the taskbar uses the Turnip Prophet icon, not Chrome's.
+**Version 1.1, test branch.** Not on main yet. Main is still 1.0. Zoom stays at 100%. The wood fills the window. Save has a black border. The note is 19px and stays three lines. The First time buying check is the same sky blue as the open price box. Sunday dates in the calendar get a green border and a check on hover. Other days get a red border and an X. Pinning the window to the taskbar uses the Turnip Prophet icon. Unpin the old one first. Closing the window leaves the pin, and opening that pin uses the same icon.
 
 A small Windows tracker for Daisy Mae's turnip prices. Type each price as the week goes, it saves on this PC, and it tells you whether to sell or wait.
 
