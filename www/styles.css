@@ -8,7 +8,7 @@
   --grass: #6ec44a;
   --grass-deep: #3f9a3a;
   --sky: #8fd4f8;
-  --animal: #f8d054;
+  --animal: #f8d050;
   --gold: #e9a514;
   --good: #2f8a3a;
   --bad: #d4533a;
@@ -110,25 +110,18 @@ aside {
   background: transparent;
 }
 
-.brand h1 {
-  margin: 0;
-  font-size: 19px;
-  line-height: 1.15;
-  font-weight: 750;
-  color: #111;
-  text-align: center;
-  text-shadow: var(--halo);
-}
-
+.brand h1,
 .brand .app-name {
   margin: 0;
-  font-size: 22px;
   line-height: 1.15;
   font-weight: 750;
-  color: #111;
   text-align: center;
-  text-shadow: var(--halo);
+  font-family: "FinkHeavy", "Segoe UI", sans-serif;
+  color: #f8d050;
+  text-shadow: var(--edge-black);
 }
+.brand h1 { font-size: 19px; }
+.brand .app-name { font-size: 22px; }
 
 .week-list {
   display: flex;
@@ -152,6 +145,7 @@ aside {
   border-radius: 12px;
   padding: 6px 8px;
   color: #fff;
+  font-family: "FinkHeavy", "Segoe UI", sans-serif;
   text-shadow: none;
   white-space: nowrap;
 }
@@ -162,11 +156,13 @@ aside {
 .week .buy {
   color: var(--grass);
   font-weight: 700;
+  text-shadow: none;
   animation: buyglow 1.5s ease-in-out infinite;
 }
 .week .best {
-  color: var(--animal);
+  color: #f8d050;
   font-weight: 800;
+  text-shadow: none;
   animation: bellglow 1.5s ease-in-out infinite;
 }
 
@@ -250,7 +246,7 @@ input[type="number"].due {
   height: 40px;
   border: 5px solid transparent;
   background:
-    linear-gradient(#ffd7a8, #ffd7a8) padding-box,
+    linear-gradient(#4eb6f5, #4eb6f5) padding-box,
     conic-gradient(from var(--spin), #ff2a2a, #ff9a00, #ffe600, #39e85a, #2aa6ff, #7a3cff, #ff2a9a, #ff2a2a) border-box;
   animation: dueglow 1.5s ease-in-out infinite, rainspin 1.5s linear infinite;
 }
@@ -264,8 +260,8 @@ input[type="number"].due {
 @keyframes rainspin { to { --spin: 360deg; } }
 
 @keyframes dueglow {
-  0%, 100% { box-shadow: 0 0 12px #ffe7c2, 0 0 24px #ff9a2e, 0 0 36px #ff6a00; }
-  50% { box-shadow: 0 0 18px #fff, 0 0 36px #ffe08a, 0 0 56px #ffb15a, 0 0 78px #ff4d00; }
+  0%, 100% { box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 32px #f7fcff; }
+  50% { box-shadow: 0 0 16px #fff, 0 0 34px #fff, 0 0 52px #fff, 0 0 72px #eaf6ff; }
 }
 
 .buy-line { display: flex; align-items: center; gap: 10px; }
