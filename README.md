@@ -52,7 +52,9 @@ The shortcut, the tray icon, and the window icon are the teal leaf.
 
 ## What you see
 
-The right side on the `ac-font` branch uses FinkHeavy, the Animal Crossing font. Text on the wood is `#f8d050`, the yellow from the title. Text inside the inputs, the Sunday button, and the calendar stays black. The font has one weight, so bold and regular look the same. Main does not have this font.
+The left side is the week list, on a close-up field that fades into sky. The grass is the bottom quarter, with the white turnip in the middle. The top of it sits just over the grass and the leaves reach into the sky. The right side is where you type the prices, on orange wood that matches the title. The grain is one seamless tile, repeated at a small size so it does not show up as one big picture. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines: **Animal Crossing: New Horizons** and **Turnip Prophet**.
+
+This branch only: the price side uses FinkHeavy. The old black wood text with the white outline is title yellow `#f8d050`. Red stays red (shop hours, Daisy Mae, 90, 110, and the saved-file line). Green stays green (the Saved note). Text inside the white cards, inputs, Sunday button, and calendar stays black. One weight, so bold and regular look the same. Main does not have this font.
 
 The top three fields are three equal cards. Inside each card the label is left-aligned with its box. The date and both dropdowns are bold. Last week's pattern stays grey while First time buying is checked. Uncheck that and the pattern box is bold like the other two. The price box for the shop window that is open right now is pumpkin orange. On a week that has not started yet, Sunday Buy Price is the one marked, because that is the first price to enter. On this week, Sunday morning is the buy box, and Monday through Saturday follow 8:00 AM and noon. A finished week is not marked. Outside shop hours nothing is marked.
 
