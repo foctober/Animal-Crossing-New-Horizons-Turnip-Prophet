@@ -193,6 +193,7 @@ func openBrowser() {
 		"--disable-sync",
 	)
 	_ = cmd.Start()
+	go watchAppWindow()
 }
 
 func loadIcon() windows.Handle {

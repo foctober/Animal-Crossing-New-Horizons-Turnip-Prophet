@@ -2,10 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
   <title>Turnip Prophet</title>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="stylesheet" href="/styles.css">
+  <script>
+    (function () {
+      function blockZoom(e) {
+        if (!e.ctrlKey && !e.metaKey) return;
+        var k = e.key;
+        var c = e.code;
+        if (k === "+" || k === "-" || k === "=" || k === "_" || k === "0" ||
+            c === "NumpadAdd" || c === "NumpadSubtract" || c === "Numpad0" ||
+            c === "Equal" || c === "Minus" || c === "Digit0") {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+      window.addEventListener("keydown", blockZoom, true);
+      window.addEventListener("wheel", function (e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+        }
+      }, { capture: true, passive: false });
+      window.addEventListener("gesturestart", function (e) { e.preventDefault(); }, { capture: true });
+      window.addEventListener("gesturechange", function (e) { e.preventDefault(); }, { capture: true });
+    })();
+  </script>
 </head>
 <body>
   <div class="app">
