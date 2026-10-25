@@ -1130,9 +1130,23 @@ function bind() {
       document.body.innerHTML = '<p class="bye">Turnip Prophet has quit. You can close this window.</p>';
     });
   });
-  window.addEventListener("resize", drawChart);
+  window.addEventListener("resize", function () {
+    drawChart();
+    fitSavedLine();
+  });
   markDue();
   window.setInterval(markDue, 30000);
+}
+
+function fitSavedLine() {
+  var el = $("savedLine");
+  if (!el) return;
+  var size = 22;
+  el.style.fontSize = size + "px";
+  while (size > 12 && el.scrollWidth > el.clientWidth + 1) {
+    size -= 1;
+    el.style.fontSize = size + "px";
+  }
 }
 
 function boot() {
@@ -1143,6 +1157,8 @@ function boot() {
   bind();
   fetch("/api/info").then(function (r) { return r.json(); }).then(function (info) {
     $("dataPath").textContent = info.data || (info.root + "\\turnips.json");
+    fitSavedLine();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSavedLine);
   }).catch(function () {});
   fetch("/api/state").then(function (r) { return r.json(); }).then(function (data) {
     state = data && data.weeks ? data : { weeks: [], activeId: null };

@@ -65,7 +65,7 @@ button.primary {
 
 button.danger {
   background: #d10f0f;
-  color: #ff4a4a;
+  color: #fff;
   border-color: #111;
   font-weight: 700;
   text-shadow: var(--edge-black);
@@ -294,7 +294,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
 
 .hint { margin: 0; color: #111; font-size: 18px; font-weight: 700; text-shadow: var(--halo); }
 .hint .hours {
-  color: #d10f0f;
+  color: #fff;
   font-weight: 700;
   text-shadow: var(--edge-black);
 }
@@ -387,7 +387,7 @@ textarea { width: 100%; resize: vertical; padding: 8px 10px; line-height: 1.35; 
   min-width: 4rem;
   text-shadow: var(--edge-black);
 }
-#saveState.bad { color: #d10f0f; }
+#saveState.bad { color: #fff; }
 
 .banner {
   padding: 12px 14px;
@@ -542,16 +542,17 @@ footer a:hover { background: #ffe56a; }
 #status { color: #111; font-weight: 700; }
 #status:empty { display: none; }
 #savedLine, #savedLine #dataPath {
-  color: #d10f0f;
-  font-size: 11px;
+  color: #fff;
   font-weight: 700;
   line-height: 1.15;
   text-shadow: var(--edge-black);
 }
 #savedLine {
   display: block;
-  max-width: none;
+  width: 100%;
+  max-width: 100%;
   white-space: nowrap;
+  font-size: 22px;
 }
 
 .bye {
