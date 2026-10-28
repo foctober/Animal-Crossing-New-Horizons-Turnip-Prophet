@@ -1,6 +1,6 @@
 # Animal Crossing: New Horizons - Turnip Prophet
 
-**Version 1.2 test.** No system tray icon. Closing the window saves, then quits. The installer always adds a Start menu shortcut. A desktop icon is a checkbox, on unless you turn it off. Pinning the window to the taskbar still uses the Turnip Prophet icon. On open, the cursor is already in the sky-blue price box. The title bar follows the Windows app color, dark or light. The page inside does not. Zoom stays at 100%. The wood fills the window. Save has a black border. The note is 19px and stays three lines. The First time buying check is the same sky blue as the open price box. Sunday dates in the calendar get a green border and a check on hover. Other days get a red border and an X. Pinning the window to the taskbar uses the Turnip Prophet icon. Unpin the old one first. Closing the window leaves the pin, and opening that pin uses the same icon.
+**Version 1.2.** No system tray icon. Closing the window saves, then quits. The installer always adds a Start menu shortcut. A desktop icon is a checkbox, on unless you turn it off. Pinning the window to the taskbar still uses the Turnip Prophet icon. On open, the cursor is already in the sky-blue price box. The title bar follows the Windows app color, dark or light. The page inside does not. Zoom stays at 100%. The wood fills the window. Save has a black border. The note is 19px and stays three lines. The First time buying check is the same sky blue as the open price box. Sunday dates in the calendar get a green border and a check on hover. Other days get a red border and an X. Pinning the window to the taskbar uses the Turnip Prophet icon. Unpin the old one first. Closing the window leaves the pin, and opening that pin uses the same icon.
 
 A small Windows tracker for Daisy Mae's turnip prices. Type each price as the week goes, it saves on this PC, and it tells you whether to sell or wait.
 
@@ -26,9 +26,9 @@ Pick one. Do not run both at once. Weeks go to `%AppData%\TurnipProphet\turnips.
 $d = Join-Path $env:TEMP 'TurnipProphet'
 if (Test-Path $d) { Remove-Item $d -Recurse -Force }
 New-Item -ItemType Directory -Path $d | Out-Null
-Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/v1.2.zip' -OutFile "$d\src.zip"
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
 Expand-Archive "$d\src.zip" $d -Force
-Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-1.2\TurnipProphet-Setup.exe" -Verb RunAs -Wait
+Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\TurnipProphet-Setup.exe" -Verb RunAs -Wait
 Remove-Item $d -Recurse -Force
 ```
 
@@ -40,9 +40,9 @@ Windows asks for permission. SmartScreen may say the installer is unrecognized. 
 $d = Join-Path $env:TEMP 'TurnipProphet'
 if (Test-Path $d) { Remove-Item $d -Recurse -Force }
 New-Item -ItemType Directory -Path $d | Out-Null
-Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/v1.2.zip' -OutFile "$d\src.zip"
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
 Expand-Archive "$d\src.zip" $d -Force
-powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-1.2\Install.ps1"
+powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\Install.ps1"
 Remove-Item $d -Recurse -Force
 ```
 
