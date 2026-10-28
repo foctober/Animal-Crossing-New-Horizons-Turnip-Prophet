@@ -1,6 +1,6 @@
 # Install
 
-Version 1.1. You need 64-bit Windows 10 or 11. The window is the app. If it cannot start, your browser opens instead.
+Version 1.2 test. You need 64-bit Windows 10 or 11. The window is the app. If it cannot start, your browser opens instead. There is no system tray icon.
 
 Pick one install. Do not run both at once. They share the same weeks file, `%AppData%\TurnipProphet\turnips.json`.
 
@@ -12,9 +12,9 @@ Quit Turnip Prophet first if it is already open. Paste one whole block into Powe
 $d = Join-Path $env:TEMP 'TurnipProphet'
 if (Test-Path $d) { Remove-Item $d -Recurse -Force }
 New-Item -ItemType Directory -Path $d | Out-Null
-Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/v1.2.zip' -OutFile "$d\src.zip"
 Expand-Archive "$d\src.zip" $d -Force
-Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\TurnipProphet-Setup.exe" -Verb RunAs -Wait
+Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-v1.2\TurnipProphet-Setup.exe" -Verb RunAs -Wait
 Remove-Item $d -Recurse -Force
 ```
 
@@ -23,7 +23,8 @@ Windows asks for permission because the app installs into Program Files.
 Default folder: `C:\Program Files\Turnip Prophet`.
 
 - Installs the program there
-- Puts **Turnip Prophet** on the public desktop and in the Start menu
+- Puts **Turnip Prophet** in the Start menu
+- Desktop icon is a checkbox on the installer. It is checked unless you turn it off
 - Adds an entry in Windows Settings, Apps
 - Does not delete the weeks file
 
@@ -41,9 +42,9 @@ The log for this copy is `%LocalAppData%\TurnipProphet\turnips.log`.
 $d = Join-Path $env:TEMP 'TurnipProphet'
 if (Test-Path $d) { Remove-Item $d -Recurse -Force }
 New-Item -ItemType Directory -Path $d | Out-Null
-Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/v1.2.zip' -OutFile "$d\src.zip"
 Expand-Archive "$d\src.zip" $d -Force
-powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\Install.ps1"
+powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-v1.2\Install.ps1"
 Remove-Item $d -Recurse -Force
 ```
 
@@ -73,7 +74,7 @@ The log for this copy is `C:\Tools\Turnips\turnips.log`.
 
 A second open does not start a second copy. It brings the window back.
 
-Quit from the button in the window, or right-click the tray icon and choose Quit. Closing the window alone leaves the app running on purpose.
+Closing the window saves the weeks file, then quits. The Quit button does the same. There is no tray icon.
 
 The bottom of the window shows the real path to the weeks file. On a normal account that is `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`.
 
@@ -82,7 +83,7 @@ If AppData has no weeks file yet, the first launch copies `C:\Tools\Turnips\turn
 ## If it does not open
 
 - "No free local port" means something is holding ports 47821–47840. Quit the other copy. In Task Manager, end **Turnip Prophet** or a Windows PowerShell process whose command line contains `Turnips.ps1`.
-- The installer says it cannot open `TurnipProphet.exe` for writing. The app is still running. Closing the window does not quit it. Click Abort, quit from the tray icon, then run the installer again. Retry works too, once the tray icon is gone.
+- The installer says it cannot open `TurnipProphet.exe` for writing. The app is still running. Click Abort, close the Turnip Prophet window, then run the installer again. If the window is already gone, end **Turnip Prophet** in Task Manager.
 
 ## Data
 

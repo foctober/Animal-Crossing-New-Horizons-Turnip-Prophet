@@ -853,6 +853,32 @@ function saveNow() {
   });
 }
 
+function flushSave() {
+  window.clearTimeout(saveTimer);
+  var week = active();
+  if (week) readFormInto(week);
+  var body = JSON.stringify(state);
+  try {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/state", false);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(body);
+    return;
+  } catch (e) {}
+  try {
+    navigator.sendBeacon("/api/state", new Blob([body], { type: "application/json" }));
+  } catch (e) {}
+}
+
+function flushSaveAndExit() {
+  flushSave();
+  try {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/exit-saved", false);
+    xhr.send("");
+  } catch (e) {}
+}
+
 var calCursor = null;
 
 function syncSundayFace() {
@@ -1126,10 +1152,12 @@ function bind() {
   $("importBtn").addEventListener("click", importUrl);
   $("importUrl").addEventListener("keydown", function (e) { if (e.key === "Enter") importUrl(); });
   $("quitBtn").addEventListener("click", function () {
+    flushSave();
     fetch("/api/shutdown", { method: "POST" }).finally(function () {
       document.body.innerHTML = '<p class="bye">Turnip Prophet has quit. You can close this window.</p>';
     });
   });
+  window.addEventListener("pagehide", function () { flushSave(); });
   window.addEventListener("resize", function () {
     drawChart();
     fitSavedLine();

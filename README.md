@@ -1,6 +1,6 @@
 # Animal Crossing: New Horizons - Turnip Prophet
 
-**Version 1.1.** Zoom stays at 100%. The wood fills the window. Save has a black border. The note is 19px and stays three lines. The First time buying check is the same sky blue as the open price box. Sunday dates in the calendar get a green border and a check on hover. Other days get a red border and an X. Pinning the window to the taskbar uses the Turnip Prophet icon. Unpin the old one first. Closing the window leaves the pin, and opening that pin uses the same icon.
+**Version 1.2 test.** No system tray icon. Closing the window saves, then quits. The installer always adds a Start menu shortcut. A desktop icon is a checkbox, on unless you turn it off. Pinning the window to the taskbar still uses the Turnip Prophet icon. Zoom stays at 100%. The wood fills the window. Save has a black border. The note is 19px and stays three lines. The First time buying check is the same sky blue as the open price box. Sunday dates in the calendar get a green border and a check on hover. Other days get a red border and an X. Pinning the window to the taskbar uses the Turnip Prophet icon. Unpin the old one first. Closing the window leaves the pin, and opening that pin uses the same icon.
 
 A small Windows tracker for Daisy Mae's turnip prices. Type each price as the week goes, it saves on this PC, and it tells you whether to sell or wait.
 
@@ -26,9 +26,9 @@ Pick one. Do not run both at once. Weeks go to `%AppData%\TurnipProphet\turnips.
 $d = Join-Path $env:TEMP 'TurnipProphet'
 if (Test-Path $d) { Remove-Item $d -Recurse -Force }
 New-Item -ItemType Directory -Path $d | Out-Null
-Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/v1.2.zip' -OutFile "$d\src.zip"
 Expand-Archive "$d\src.zip" $d -Force
-Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\TurnipProphet-Setup.exe" -Verb RunAs -Wait
+Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-v1.2\TurnipProphet-Setup.exe" -Verb RunAs -Wait
 Remove-Item $d -Recurse -Force
 ```
 
@@ -40,13 +40,13 @@ Windows asks for permission. SmartScreen may say the installer is unrecognized. 
 $d = Join-Path $env:TEMP 'TurnipProphet'
 if (Test-Path $d) { Remove-Item $d -Recurse -Force }
 New-Item -ItemType Directory -Path $d | Out-Null
-Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/v1.2.zip' -OutFile "$d\src.zip"
 Expand-Archive "$d\src.zip" $d -Force
-powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\Install.ps1"
+powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-v1.2\Install.ps1"
 Remove-Item $d -Recurse -Force
 ```
 
-The shortcut, the tray icon, and the window icon are the teal leaf.
+The shortcut and the window icon are the teal leaf. There is no tray icon.
 
 ## What you see
 
@@ -65,7 +65,7 @@ Under the prices is the prediction: the banner, the odds, the chart, the twelve 
 3. Read the banner. It says sell or wait, in plain words.
 4. Next Sunday, click **New Week**. If this week was a sure pattern, the new week starts with that filled in as "last week's pattern."
 
-Weeks are stored in `%AppData%\TurnipProphet\turnips.json` (usually `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`). Neither install keeps the weeks in the program folder. Quit from the button in the window, or right-click the tray icon. Closing the window alone leaves the app running so the next double-click just reopens it.
+Weeks are stored in `%AppData%\TurnipProphet\turnips.json` (usually `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`). Neither install keeps the weeks in the program folder. Closing the window saves, then quits. The Quit button does the same.
 
 ## Saving
 
@@ -147,16 +147,16 @@ Open **Turnip Prophet** from the desktop or the Start menu. A second launch does
 | --- | --- |
 | `TurnipProphet-Setup.exe` | Windows installer. Puts `TurnipProphet.exe` in Program Files. |
 | `Install.ps1` | PowerShell install. Copies the script app to `C:\Tools\Turnips`. |
-| `Turnips.ps1` | The PowerShell app. Local page plus the tray icon. |
+| `Turnips.ps1` | The PowerShell app. Local page, no tray icon. |
 | `Launch.vbs` / `Run.cmd` | Start the PowerShell app with no PowerShell window. |
-| `TurnipProphet.ico` | The leaf icon for the shortcut, the tray, and the installer. |
+| `TurnipProphet.ico` | The leaf icon for the shortcut and the installer. |
 | `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the left side. `wood.png` is the right side, tiled at 360 by 180. `FinkHeavy.ttf` is the font on both sides. |
 | `predictions.js` | Unmodified Turnip Prophet engine. |
 | `turnips.json` | Your weeks. Lives in `%AppData%\TurnipProphet\`, not next to the program and not in git. |
 
 ## Updating
 
-Quit the app first (tray icon or the Quit button).
+Quit the app first (close the window, or the Quit button). That writes the weeks file again.
 
 - Installer: run `TurnipProphet-Setup.exe` again over the same folder.
 - PowerShell: `git pull`, then `powershell -ExecutionPolicy Bypass -File .\Install.ps1`.

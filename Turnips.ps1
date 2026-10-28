@@ -373,24 +373,6 @@ function Main {
     '/wood.png' = @{ Rel = 'www\wood.png'; Type = 'image/png' }
   }
 
-  $script:Icon = New-Object System.Windows.Forms.NotifyIcon
-  $leaf = Join-Path $Root 'TurnipProphet.ico'
-  if (Test-Path -LiteralPath $leaf) {
-    $script:AppIcon = New-Object System.Drawing.Icon($leaf)
-    $script:Icon.Icon = $script:AppIcon
-  } else {
-    $script:Icon.Icon = [System.Drawing.SystemIcons]::Application
-  }
-  $script:Icon.Visible = $true
-  $script:Icon.Text = 'Turnip Prophet'
-  $menu = New-Object System.Windows.Forms.ContextMenuStrip
-  $openItem = $menu.Items.Add('Open')
-  [void]$openItem.Add_Click({ Open-AppWindow -Port $script:Port })
-  $quitItem = $menu.Items.Add('Quit')
-  [void]$quitItem.Add_Click({ $script:StopServer = $true })
-  $script:Icon.ContextMenuStrip = $menu
-  $script:Icon.Add_DoubleClick({ Open-AppWindow -Port $script:Port })
-
   $script:AppContext = New-Object System.Windows.Forms.ApplicationContext
   $ctx = $script:AppContext
   $script:Timer = New-Object System.Windows.Forms.Timer
@@ -413,10 +395,6 @@ function Main {
   $script:Timer.Start()
 
   try { Open-AppWindow -Port $script:Port } catch { Write-Log $_.Exception.Message }
-  try {
-    $script:Icon.ShowBalloonTip(3000, 'Turnip Prophet', 'Tracker is open. Right-click this icon to quit.', [System.Windows.Forms.ToolTipIcon]::Info)
-  } catch {
-  }
 
   [System.Windows.Forms.Application]::Run($ctx)
 }

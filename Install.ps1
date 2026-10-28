@@ -75,7 +75,7 @@ $sc.Save()
 Write-Host "Installed to $dest"
 Write-Host "Shortcut: $lnk"
 Write-Host 'Opening Turnip Prophet...'
-Write-Host 'Quit from the window, or right-click the tray icon.'
+Write-Host 'Quit from the Quit button, or close the window. Closing saves first. There is no tray icon.'
 
 $launcher = Join-Path $dest 'Launch.vbs'
 Start-Process -FilePath (Join-Path $env:SystemRoot 'System32\wscript.exe') -ArgumentList ('"' + $launcher + '"')

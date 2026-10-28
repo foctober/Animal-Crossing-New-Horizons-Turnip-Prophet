@@ -47,11 +47,12 @@ var neededFiles = []string{
 }
 
 type App struct {
-	Install string
-	Data    string
-	Work    string
-	logPath string
-	onQuit  func()
+	Install     string
+	Data        string
+	Work        string
+	logPath     string
+	onQuit      func()
+	onExitSaved func()
 }
 
 func MissingFiles(install string) []string {
@@ -170,6 +171,7 @@ func (a *App) Handler() http.Handler {
 	mux.HandleFunc("/api/info", a.handleInfo)
 	mux.HandleFunc("/api/state", a.handleState)
 	mux.HandleFunc("/api/shutdown", a.handleShutdown)
+	mux.HandleFunc("/api/exit-saved", a.handleExitSaved)
 	mux.HandleFunc("/favicon.ico", a.handleIcon)
 	mux.HandleFunc("/TurnipProphet.ico", a.handleIcon)
 	mux.HandleFunc("/", a.handleFile)
@@ -215,6 +217,20 @@ func (a *App) handleState(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusOK, []byte(`{"ok":true}`))
 	default:
 		http.Error(w, "not found", http.StatusNotFound)
+	}
+}
+
+func (a *App) handleExitSaved(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "not found", http.StatusNotFound)
+		return
+	}
+	writeJSON(w, http.StatusOK, []byte(`{"ok":true}`))
+	if f, ok := w.(http.Flusher); ok {
+		f.Flush()
+	}
+	if a.onExitSaved != nil {
+		go a.onExitSaved()
 	}
 }
 

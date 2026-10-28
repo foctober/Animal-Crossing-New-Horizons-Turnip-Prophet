@@ -28,8 +28,8 @@ func attachPage() {
 	page := edge.NewChromium()
 	page.DataPath = filepath.Join(appWork, "webview")
 	page.AcceleratorKeyCallback = blockZoomKey
-	if !page.Embed(uintptr(trayWnd)) {
-		procShowWindow.Call(uintptr(trayWnd), swHide)
+	if !page.Embed(uintptr(frameWnd)) {
+		procShowWindow.Call(uintptr(frameWnd), swHide)
 		openBrowser()
 		return
 	}
