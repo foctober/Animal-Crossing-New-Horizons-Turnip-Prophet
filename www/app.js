@@ -208,6 +208,12 @@ function markDue() {
     if (id === due) el.classList.add("due");
     else el.classList.remove("due");
   });
+  var day = null;
+  if (due === "buy") day = "sun";
+  else if (due && due.charAt(0) === "p") day = String(Math.floor(Number(due.slice(1)) / 2));
+  document.querySelectorAll("#priceGrid [data-day]").forEach(function (el) {
+    el.classList.toggle("today", el.getAttribute("data-day") === day);
+  });
 }
 
 function focusDue() {
@@ -1091,7 +1097,7 @@ function buildPriceGrid() {
   var buyRow = document.createElement("div");
   buyRow.className = "buy-row";
   var buyLabel = document.createElement("label");
-  buyLabel.appendChild(document.createTextNode("Sunday Buy Price"));
+  buyLabel.setAttribute("data-day", "sun");
   var line = document.createElement("div");
   line.className = "buy-line";
   var buy = document.createElement("input");
@@ -1127,6 +1133,7 @@ function buildPriceGrid() {
     row.className = "price-row";
     var name = document.createElement("span");
     name.textContent = day;
+    name.setAttribute("data-day", String(d));
     row.appendChild(name);
     for (var h = 0; h < 2; h++) {
       var input = document.createElement("input");

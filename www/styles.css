@@ -791,6 +791,11 @@ main textarea::placeholder {
   opacity: 1;
 }
 
+main label.today,
+main .price-row span.today {
+  color: #4eb6f5;
+}
+
 main label.check,
 main #status {
   color: #111;
