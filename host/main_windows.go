@@ -278,6 +278,7 @@ func showFrame() {
 	}
 	procShowWindow.Call(uintptr(frameWnd), swShowNormal)
 	procSetForegroundWindow.Call(uintptr(frameWnd))
+	setTitleBarTheme(frameWnd)
 	if browser != nil {
 		_ = browser.Show()
 		browser.Resize()

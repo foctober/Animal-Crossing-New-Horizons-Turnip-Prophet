@@ -27,6 +27,8 @@ var (
 	procIsWindowVisible             = user32.NewProc("IsWindowVisible")
 	procSendMessageW                = user32.NewProc("SendMessageW")
 	procSHGetPropertyStoreForWindow = shell32.NewProc("SHGetPropertyStoreForWindow")
+	procDwmSetWindowAttribute       = windows.NewLazySystemDLL("dwmapi.dll").NewProc("DwmSetWindowAttribute")
+	procRegGetValueW                = windows.NewLazySystemDLL("advapi32.dll").NewProc("RegGetValueW")
 	procCoInitializeEx              = windows.NewLazySystemDLL("ole32.dll").NewProc("CoInitializeEx")
 	procCoUninitialize              = windows.NewLazySystemDLL("ole32.dll").NewProc("CoUninitialize")
 
@@ -119,11 +121,45 @@ func stampWindow(hwnd windows.HWND) {
 	setPropStr(store, methods[6], 4, "Turnip Prophet")
 	syscall.SyscallN(methods[7], store)
 	syscall.SyscallN(methods[2], store)
+	setTitleBarTheme(hwnd)
 
 	icon := loadIcon()
 	if icon != 0 {
 		procSendMessageW.Call(uintptr(hwnd), wmSetIcon, iconBig, uintptr(icon))
 		procSendMessageW.Call(uintptr(hwnd), wmSetIcon, iconSmall, uintptr(icon))
+	}
+}
+
+func appsPreferLight() bool {
+	var val uint32 = 1
+	size := uint32(unsafe.Sizeof(val))
+	r, _, _ := procRegGetValueW.Call(
+		0x80000001,
+		uintptr(unsafe.Pointer(utf16Ptr(`Software\Microsoft\Windows\CurrentVersion\Themes\Personalize`))),
+		uintptr(unsafe.Pointer(utf16Ptr("AppsUseLightTheme"))),
+		0x10,
+		0,
+		uintptr(unsafe.Pointer(&val)),
+		uintptr(unsafe.Pointer(&size)),
+	)
+	if r != 0 {
+		return true
+	}
+	return val != 0
+}
+
+func setTitleBarTheme(hwnd windows.HWND) {
+	var dark int32
+	if !appsPreferLight() {
+		dark = 1
+	}
+	for _, attr := range []uintptr{20, 19} {
+		procDwmSetWindowAttribute.Call(
+			uintptr(hwnd),
+			attr,
+			uintptr(unsafe.Pointer(&dark)),
+			unsafe.Sizeof(dark),
+		)
 	}
 }
 
