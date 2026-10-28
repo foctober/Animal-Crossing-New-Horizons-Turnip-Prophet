@@ -210,6 +210,15 @@ function markDue() {
   });
 }
 
+function focusDue() {
+  var id = dueSlotId();
+  if (!id) return;
+  var el = $(id);
+  if (!el || el.disabled) return;
+  el.focus();
+  if (typeof el.select === "function") el.select();
+}
+
 function syncPrevLock() {
   var on = $("firstBuy").checked;
   $("prevPattern").disabled = on;
@@ -1215,6 +1224,7 @@ function boot() {
     renderWeekList();
     if (seeded) saveNow();
     predict();
+    window.setTimeout(focusDue, 80);
   }).catch(function () {
     status("Could not load saved weeks.");
   });
