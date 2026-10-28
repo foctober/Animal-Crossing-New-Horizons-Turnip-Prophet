@@ -1194,6 +1194,7 @@ function boot() {
   bind();
   fetch("/api/info").then(function (r) { return r.json(); }).then(function (info) {
     $("dataPath").textContent = info.data || (info.root + "\\turnips.json");
+    document.documentElement.classList.toggle("os-dark", !!info.dark);
     fitSavedLine();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSavedLine);
   }).catch(function () {});

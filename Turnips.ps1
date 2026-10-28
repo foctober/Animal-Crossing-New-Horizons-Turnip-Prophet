@@ -237,7 +237,12 @@ function Serve-Client {
     if ($method -eq 'GET' -and $path -eq '/api/info') {
       $jsonRoot = $Root.Replace('\', '\\')
       $dataPath = (Get-TurnipDataFile).Replace('\', '\\')
-      $json = '{"app":"turnip-prophet","version":1,"root":"' + $jsonRoot + '","data":"' + $dataPath + '"}'
+      $dark = 'false'
+      try {
+        $theme = Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name AppsUseLightTheme -ErrorAction Stop
+        if ([int]$theme.AppsUseLightTheme -eq 0) { $dark = 'true' }
+      } catch {}
+      $json = '{"app":"turnip-prophet","version":1,"root":"' + $jsonRoot + '","data":"' + $dataPath + '","dark":' + $dark + '}'
       $payload = [Text.Encoding]::UTF8.GetBytes($json)
       Send-Response $req.Stream '200 OK' 'application/json; charset=utf-8' $payload
       return

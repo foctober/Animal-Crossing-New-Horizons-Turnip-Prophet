@@ -195,6 +195,7 @@ func (a *App) handleInfo(w http.ResponseWriter, r *http.Request) {
 		"version": 1,
 		"root":    a.Install,
 		"data":    a.Data,
+		"dark":    windowsAppDark(),
 	})
 	writeJSON(w, http.StatusOK, b)
 }

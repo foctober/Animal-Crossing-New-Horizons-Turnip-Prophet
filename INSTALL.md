@@ -74,7 +74,7 @@ The log for this copy is `C:\Tools\Turnips\turnips.log`.
 
 A second open does not start a second copy. It brings the window back.
 
-Closing the window saves the weeks file, then quits. The Quit button does the same. There is no tray icon. On open, the cursor is already in the sky-blue box, so you can type the next price. The title bar matches the Windows app color. Dark Windows gets a dark bar. Light Windows gets a light bar. The prices and boxes stay the same.
+Closing the window saves the weeks file, then quits. The Quit button does the same. There is no tray icon. On open, the cursor is already in the sky-blue box, so you can type the next price. The title bar and the scrollbars match the Windows app color. Dark Windows gets a dark bar and dark scrollbars. Light Windows gets light ones. The prices, boxes, note, and chart stay the same.
 
 The bottom of the window shows the real path to the weeks file. On a normal account that is `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`.
 
