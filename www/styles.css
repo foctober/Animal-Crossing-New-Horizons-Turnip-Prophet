@@ -110,7 +110,7 @@ button:disabled { opacity: 0.45; cursor: default; }
 
 .app {
   display: grid;
-  grid-template-columns: 430px minmax(0, 1fr);
+  grid-template-columns: 500px minmax(0, 1fr);
   height: 100%;
   min-height: 100%;
   align-items: stretch;
@@ -185,11 +185,11 @@ aside {
   white-space: nowrap;
 }
 
-.week .date { color: #fff; font-weight: 700; text-shadow: none; }
-.week .marks { display: inline-flex; gap: 4px; align-items: baseline; margin-left: auto; color: #fff; font-weight: 700; text-shadow: none; }
+.week .date { color: #fff; font-weight: 700; text-shadow: none; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.week .marks { display: inline-flex; gap: 4px; align-items: baseline; margin-left: auto; color: #fff; font-weight: 700; text-shadow: none; flex: 0 0 auto; }
 .week .tag { color: #fff; font-weight: 700; text-shadow: none; }
 .week .buy {
-  color: var(--grass);
+  color: #4eb6f5;
   font-weight: 700;
   text-shadow: none;
   animation: buyglow 1.5s ease-in-out infinite;
@@ -200,15 +200,37 @@ aside {
   text-shadow: none;
   animation: bellglow 1.5s ease-in-out infinite;
 }
+.week .sold.low {
+  color: #d10f0f;
+  font-weight: 700;
+  text-shadow: none;
+  animation: soldlow 1.5s ease-in-out infinite;
+}
+.week .sold.high {
+  color: var(--grass);
+  font-weight: 700;
+  text-shadow: none;
+  animation: soldhigh 1.5s ease-in-out infinite;
+}
 
 @keyframes buyglow {
-  0%, 100% { text-shadow: 0 0 4px var(--grass); }
-  50% { text-shadow: 0 0 10px #e7ffd4, 0 0 16px var(--grass); }
+  0%, 100% { text-shadow: 0 0 4px #4eb6f5; }
+  50% { text-shadow: 0 0 10px #e7f6ff, 0 0 16px #4eb6f5; }
 }
 
 @keyframes bellglow {
   0%, 100% { text-shadow: 0 0 4px var(--animal); }
   50% { text-shadow: 0 0 10px #ffe36a, 0 0 16px var(--animal); }
+}
+
+@keyframes soldlow {
+  0%, 100% { text-shadow: 0 0 4px #d10f0f; }
+  50% { text-shadow: 0 0 10px #ffd0d0, 0 0 16px #d10f0f; }
+}
+
+@keyframes soldhigh {
+  0%, 100% { text-shadow: 0 0 4px var(--grass); }
+  50% { text-shadow: 0 0 10px #e7ffd4, 0 0 16px var(--grass); }
 }
 
 .week.on {

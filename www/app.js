@@ -260,27 +260,30 @@ function renderWeekList() {
     week.prices.slice(1).forEach(function (v) {
       if (v != null && (best == null || v > best)) best = v;
     });
+    var sold = null;
+    var soldIdx = Number(week.soldAt);
+    if (soldIdx >= 1 && soldIdx <= 12 && week.prices[soldIdx] != null && week.prices[soldIdx] !== "") {
+      sold = Number(week.prices[soldIdx]);
+      if (!Number.isFinite(sold)) sold = null;
+    }
     function tag(text) {
       var el = document.createElement("span");
       el.className = "tag";
       el.textContent = text;
       return el;
     }
-    if (buy != null) {
-      marks.appendChild(tag("Buy"));
-      var buyEl = document.createElement("b");
-      buyEl.className = "buy";
-      buyEl.textContent = "(" + buy + ")";
-      marks.appendChild(buyEl);
-    }
-    if (buy != null && best != null) marks.appendChild(tag("/"));
-    if (best != null) {
-      marks.appendChild(tag("High"));
-      var bestEl = document.createElement("b");
-      bestEl.className = "best";
-      bestEl.textContent = "(" + best + ")";
-      marks.appendChild(bestEl);
-    }
+    var parts = [];
+    if (buy != null) parts.push({ label: "Buy", value: buy, cls: "buy" });
+    if (best != null) parts.push({ label: "High", value: best, cls: "best" });
+    if (sold != null) parts.push({ label: "Sold", value: sold, cls: best != null && sold < Number(best) ? "sold low" : "sold high" });
+    parts.forEach(function (part, i) {
+      if (i) marks.appendChild(tag("/"));
+      marks.appendChild(tag(part.label));
+      var el = document.createElement("b");
+      el.className = part.cls;
+      el.textContent = "(" + part.value + ")";
+      marks.appendChild(el);
+    });
     btn.appendChild(date);
     btn.appendChild(marks);
     btn.addEventListener("click", function () { selectWeek(week.id); });
