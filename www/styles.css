@@ -346,12 +346,10 @@ input[type="number"].due {
   font-weight: 700;
   line-height: 1.2;
 }
-.buy-heading .w,
-.buy-heading .b {
+.buy-heading .w {
+  color: #fff;
   text-shadow: var(--edge-black);
 }
-.buy-heading .w { color: #fff; }
-.buy-heading .b { color: #4eb6f5; }
 
 input[type="number"] {
   width: 4.6rem;

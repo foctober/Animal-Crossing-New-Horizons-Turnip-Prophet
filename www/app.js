@@ -1099,7 +1099,7 @@ function buildPriceGrid() {
   var buyLabel = document.createElement("label");
   var heading = document.createElement("span");
   heading.className = "buy-heading";
-  [["Sunday", "w"], ["Buy", "b"], ["Price", "w"]].forEach(function (part, i) {
+  [["Sunday", "w"], ["Buy", "w"], ["Price:", "w"]].forEach(function (part, i) {
     if (i) heading.appendChild(document.createTextNode(" "));
     var bit = document.createElement("span");
     bit.className = part[1];
