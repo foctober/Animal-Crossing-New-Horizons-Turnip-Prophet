@@ -227,6 +227,7 @@ function focusDue() {
 
 function syncPrevLock() {
   var on = $("firstBuy").checked;
+  $("firstBuy").parentElement.classList.toggle("on", on);
   $("prevPattern").disabled = on;
   $("prevHint").textContent = on
     ? "A first purchase is always a small spike. Last week does not change it."
