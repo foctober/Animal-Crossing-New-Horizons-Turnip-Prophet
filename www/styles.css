@@ -356,7 +356,6 @@ input[type="number"].due {
   color: #111;
   text-shadow: var(--edge-white);
 }
-.buy-heading .colon { margin-left: 8px; }
 
 input[type="number"] {
   width: 4.6rem;

@@ -1108,7 +1108,7 @@ function buildPriceGrid() {
     heading.appendChild(bit);
   });
   var colon = document.createElement("span");
-  colon.className = "w colon";
+  colon.className = "w";
   colon.textContent = ":";
   heading.appendChild(colon);
   buyLabel.appendChild(heading);
