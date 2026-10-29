@@ -1130,6 +1130,21 @@ function buildPriceGrid() {
   buyRow.appendChild(buyLabel);
   root.appendChild(buyRow);
 
+  var sellHeading = document.createElement("div");
+  sellHeading.className = "buy-heading";
+  [["Weekly", "w"], ["Sell", "w"], ["Prices", "w"]].forEach(function (part, i) {
+    if (i) sellHeading.appendChild(document.createTextNode(" "));
+    var bit = document.createElement("span");
+    bit.className = part[1];
+    bit.textContent = part[0];
+    sellHeading.appendChild(bit);
+  });
+  var sellColon = document.createElement("span");
+  sellColon.className = "w";
+  sellColon.textContent = ":";
+  sellHeading.appendChild(sellColon);
+  root.appendChild(sellHeading);
+
   var head = document.createElement("div");
   head.className = "price-head";
   ["", "8:00 AM\n– 11:59 AM", "12:00 PM\n– 10:00 PM"].forEach(function (text) {
