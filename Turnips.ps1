@@ -100,7 +100,7 @@ function Open-AppWindow([int]$Port) {
     Start-Process -FilePath $browser -ArgumentList @(
       "--user-data-dir=$profile",
       "--app=$url",
-      '--window-size=1360,900',
+      '--window-size=1360,960',
       '--no-first-run',
       '--disable-sync'
     ) | Out-Null

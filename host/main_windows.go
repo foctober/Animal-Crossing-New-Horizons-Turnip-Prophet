@@ -159,7 +159,7 @@ func openBrowser() {
 	cmd := exec.Command(browser,
 		"--user-data-dir="+profile,
 		"--app="+url,
-		"--window-size=1360,900",
+		"--window-size=1360,960",
 		"--no-first-run",
 		"--disable-sync",
 	)
@@ -363,7 +363,7 @@ func main() {
 	}
 	screenW, _, _ := procGetSystemMetrics.Call(0)
 	screenH, _, _ := procGetSystemMetrics.Call(1)
-	const winW, winH = 1360, 900
+	const winW, winH = 1360, 960
 	posX := (int32(screenW) - winW) / 2
 	posY := (int32(screenH) - winH) / 2
 	if posX < 0 {
