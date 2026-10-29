@@ -309,6 +309,7 @@ label.check {
   padding-bottom: 0;
 }
 label.check input { width: 15px; height: 15px; margin: 0; flex: 0 0 auto; accent-color: #4eb6f5; }
+.buy-row > label { padding-left: calc(15px + 8px); }
 
 input[type="number"], input[type="text"], input[type="date"], select, textarea {
   background: #fff;
