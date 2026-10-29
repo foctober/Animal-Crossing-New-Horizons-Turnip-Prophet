@@ -34,7 +34,7 @@ Remove-Item $d -Recurse -Force
 
 Windows asks for permission. SmartScreen may say the installer is unrecognized. More info, then Run anyway, if you trust this repo. The app goes in `C:\Program Files\Turnip Prophet`.
 
-**PowerShell.** No installer. The app goes in `C:\Tools\Turnips`. Paste this whole block into PowerShell:
+**PowerShell.** Same app, no installer. The page, the weeks file, and the 1360 by 960 window match the Program Files copy. The app goes in `C:\Tools\Turnips`. Paste this whole block into PowerShell:
 
 ```powershell
 $d = Join-Path $env:TEMP 'TurnipProphet'

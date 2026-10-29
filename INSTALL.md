@@ -38,6 +38,8 @@ The log for this copy is `%LocalAppData%\TurnipProphet\turnips.log`.
 
 ## PowerShell
 
+Same app as the installer. Same page, same weeks file, same 1360 by 960 window. Closing the window saves and quits. There is no tray icon.
+
 ```powershell
 $d = Join-Path $env:TEMP 'TurnipProphet'
 if (Test-Path $d) { Remove-Item $d -Recurse -Force }

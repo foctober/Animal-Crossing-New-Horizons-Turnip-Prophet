@@ -1,5 +1,5 @@
 # Animal Crossing: New Horizons - Turnip Prophet
-# Local window for weekly turnip prices. Data stays in this folder.
+# Same page as the Program Files app. Weeks stay in %AppData%\TurnipProphet.
 $ErrorActionPreference = 'Stop'
 
 $psExe = Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'
@@ -89,7 +89,28 @@ function Find-Browser {
   return $null
 }
 
-function Open-AppWindow([int]$Port) {
+function Set-ChromeWindowSize {
+  $pref = Join-Path $Root 'profile\Default\Preferences'
+  if (-not (Test-Path -LiteralPath $pref)) { return }
+  try {
+    $text = [IO.File]::ReadAllText($pref)
+    $m = [regex]::Match($text, '"window_placement":\{[^{}]*\}')
+    if (-not $m.Success) { return }
+    $block = $m.Value
+    $block2 = [regex]::Replace($block, '"maximized":(true|false)', '"maximized":false')
+    $block2 = [regex]::Replace($block2, '"left":-?\d+', '"left":40')
+    $block2 = [regex]::Replace($block2, '"top":-?\d+', '"top":40')
+    $block2 = [regex]::Replace($block2, '"right":-?\d+', '"right":1400')
+    $block2 = [regex]::Replace($block2, '"bottom":-?\d+', '"bottom":1000')
+    if ($block2 -eq $block) { return }
+    $text2 = $text.Remove($m.Index, $m.Length).Insert($m.Index, $block2)
+    $enc = New-Object System.Text.UTF8Encoding $false
+    [IO.File]::WriteAllText($pref, $text2, $enc)
+  } catch {
+  }
+}
+
+function Open-AppWindow([int]$Port, [bool]$Fresh) {
   $url = "http://127.0.0.1:$Port/"
   $browser = Find-Browser
   if ($browser) {
@@ -97,6 +118,7 @@ function Open-AppWindow([int]$Port) {
     if (-not (Test-Path -LiteralPath $profile)) {
       New-Item -ItemType Directory -Path $profile | Out-Null
     }
+    if ($Fresh) { Set-ChromeWindowSize }
     Start-Process -FilePath $browser -ArgumentList @(
       "--user-data-dir=$profile",
       "--app=$url",
@@ -106,6 +128,18 @@ function Open-AppWindow([int]$Port) {
     ) | Out-Null
   } else {
     Start-Process $url | Out-Null
+  }
+}
+
+function Test-BrowserOpen {
+  $needle = '*' + $Root + '\profile*'
+  try {
+    $hits = @(Get-CimInstance Win32_Process -ErrorAction Stop | Where-Object {
+      ($_.Name -eq 'msedge.exe' -or $_.Name -eq 'chrome.exe') -and $_.CommandLine -like $needle
+    })
+    return $hits.Count -gt 0
+  } catch {
+    return $true
   }
 }
 
@@ -264,6 +298,11 @@ function Serve-Client {
       Send-Response $req.Stream '200 OK' 'application/json; charset=utf-8' $payload
       return
     }
+    if ($method -eq 'POST' -and $path -eq '/api/exit-saved') {
+      $payload = [Text.Encoding]::UTF8.GetBytes('{"ok":true}')
+      Send-Response $req.Stream '200 OK' 'application/json; charset=utf-8' $payload
+      return
+    }
     if ($method -eq 'POST' -and $path -eq '/api/shutdown') {
       $payload = [Text.Encoding]::UTF8.GetBytes('{"ok":true}')
       Send-Response $req.Stream '200 OK' 'application/json; charset=utf-8' $payload
@@ -348,7 +387,7 @@ function Main {
     $raw = (Get-Content -LiteralPath $portFile -Raw).Trim()
     $old = 0
     if ([int]::TryParse($raw, [ref]$old) -and $old -gt 0 -and (Test-TurnipPort $old)) {
-      Open-AppWindow -Port $old
+      Open-AppWindow -Port $old -Fresh $false
       return
     }
     Remove-Item -LiteralPath $portFile -Force -ErrorAction SilentlyContinue
@@ -380,6 +419,8 @@ function Main {
 
   $script:AppContext = New-Object System.Windows.Forms.ApplicationContext
   $ctx = $script:AppContext
+  $script:WindowSeen = $false
+  $script:WindowTick = 0
   $script:Timer = New-Object System.Windows.Forms.Timer
   $script:Timer.Interval = 40
   $script:Timer.Add_Tick({
@@ -392,6 +433,12 @@ function Main {
     } catch {
       Write-Log $_.Exception.Message
     }
+    $script:WindowTick++
+    if (($script:WindowTick % 15) -eq 0) {
+      $open = Test-BrowserOpen
+      if ($open) { $script:WindowSeen = $true }
+      elseif ($script:WindowSeen) { $script:StopServer = $true }
+    }
     if ($script:StopServer) {
       $script:Timer.Stop()
       $script:AppContext.ExitThread()
@@ -399,7 +446,7 @@ function Main {
   })
   $script:Timer.Start()
 
-  try { Open-AppWindow -Port $script:Port } catch { Write-Log $_.Exception.Message }
+  try { Open-AppWindow -Port $script:Port -Fresh $true } catch { Write-Log $_.Exception.Message }
 
   [System.Windows.Forms.Application]::Run($ctx)
 }
