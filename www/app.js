@@ -1100,13 +1100,17 @@ function buildPriceGrid() {
   var buyLabel = document.createElement("label");
   var heading = document.createElement("span");
   heading.className = "buy-heading";
-  [["Sunday", "w"], ["Buy", "w"], ["Price:", "w"]].forEach(function (part, i) {
+  [["Sunday", "w"], ["Buy", "w"], ["Price", "w"]].forEach(function (part, i) {
     if (i) heading.appendChild(document.createTextNode(" "));
     var bit = document.createElement("span");
     bit.className = part[1];
     bit.textContent = part[0];
     heading.appendChild(bit);
   });
+  var colon = document.createElement("span");
+  colon.className = "w colon";
+  colon.textContent = ":";
+  heading.appendChild(colon);
   buyLabel.appendChild(heading);
   var line = document.createElement("div");
   line.className = "buy-line";
