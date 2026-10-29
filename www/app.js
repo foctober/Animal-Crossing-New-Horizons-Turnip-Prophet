@@ -1097,7 +1097,16 @@ function buildPriceGrid() {
   var buyRow = document.createElement("div");
   buyRow.className = "buy-row";
   var buyLabel = document.createElement("label");
-  buyLabel.setAttribute("data-day", "sun");
+  var heading = document.createElement("span");
+  heading.className = "buy-heading";
+  [["Sunday", "w"], ["Buy", "b"], ["Price", "w"]].forEach(function (part, i) {
+    if (i) heading.appendChild(document.createTextNode(" "));
+    var bit = document.createElement("span");
+    bit.className = part[1];
+    bit.textContent = part[0];
+    heading.appendChild(bit);
+  });
+  buyLabel.appendChild(heading);
   var line = document.createElement("div");
   line.className = "buy-line";
   var buy = document.createElement("input");
