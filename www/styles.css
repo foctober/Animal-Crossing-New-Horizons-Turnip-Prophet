@@ -145,14 +145,14 @@ aside {
   max-width: none;
 }
 
-/* Horizon sits just under the pink, between the last two tries and closer to this one. */
+/* Horizon sits on the top edge of the marked line, just under the pink. */
 .field-bg {
   left: 0;
   top: 0;
   transform: none;
   z-index: 0;
   width: 100%;
-  height: 118.5%;
+  height: 122.4%;
   object-fit: cover;
   object-position: center top;
 }
