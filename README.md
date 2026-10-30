@@ -1,6 +1,6 @@
 # Animal Crossing: New Horizons - Turnip Prophet
 
-**Version 1.3, test branch.** Not on main yet. The left side is separate pictures, and their positions are locked: the title logo on top, the grass and sky behind, the turnip in front, and the leaf stamp on the white of the turnip. Nothing is merged. The stamp file is the original, 2048×2048, 2,891,046 bytes. The app only shrinks how big it looks. The title logo is 1869×1242. The horizon sits just under the pink on the turnip. The Windows installer and the PowerShell install are the same app. Weeks are unchanged. Full-size copies are in [dopebeat-artwork](https://github.com/foctober/dopebeat-artwork) under `turnip-prophet/`.
+**Version 1.3.** The left side is separate pictures, and their positions are locked: the title logo on top, the grass and sky behind, the turnip in front, and the leaf stamp on the white of the turnip. Nothing is merged. The stamp file is the original, 2048×2048, 2,891,046 bytes. The app only shrinks how big it looks. The title logo is 1869×1242. The horizon sits just under the pink on the turnip. The Windows installer and the PowerShell install are the same app. Weeks are unchanged. Full-size copies are in [dopebeat-artwork](https://github.com/foctober/dopebeat-artwork) under `turnip-prophet/`.
 
 A small Windows tracker for Daisy Mae's turnip prices. Type each price as the week goes, it saves on this PC, and it tells you whether to sell or wait.
 
@@ -26,9 +26,9 @@ Pick one. Do not run both at once. Weeks go to `%AppData%\TurnipProphet\turnips.
 $d = Join-Path $env:TEMP 'TurnipProphet'
 if (Test-Path $d) { Remove-Item $d -Recurse -Force }
 New-Item -ItemType Directory -Path $d | Out-Null
-Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/v1.3.zip' -OutFile "$d\src.zip"
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
 Expand-Archive "$d\src.zip" $d -Force
-Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-1.3\TurnipProphet-Setup.exe" -Verb RunAs -Wait
+Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\TurnipProphet-Setup.exe" -Verb RunAs -Wait
 Remove-Item $d -Recurse -Force
 ```
 
@@ -40,9 +40,9 @@ Windows asks for permission. SmartScreen may say the installer is unrecognized. 
 $d = Join-Path $env:TEMP 'TurnipProphet'
 if (Test-Path $d) { Remove-Item $d -Recurse -Force }
 New-Item -ItemType Directory -Path $d | Out-Null
-Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/v1.3.zip' -OutFile "$d\src.zip"
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
 Expand-Archive "$d\src.zip" $d -Force
-powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-1.3\Install.ps1"
+powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\Install.ps1"
 Remove-Item $d -Recurse -Force
 ```
 
