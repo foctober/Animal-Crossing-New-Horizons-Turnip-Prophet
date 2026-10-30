@@ -1,6 +1,6 @@
 # Install
 
-Version 1.3. You need 64-bit Windows 10 or 11. The window is the app. If it cannot start, your browser opens instead. There is no system tray icon. The left side uses separate pictures: logo, field, turnip, and the original leaf stamp on the white of the turnip (2048×2048, 2,891,046 bytes). Their positions are locked. The Windows installer and the PowerShell install are the same app.
+Version 1.3. You need 64-bit Windows 10 or 11. The window is the app. If it cannot start, your browser opens instead. There is no system tray icon. The Windows installer and the PowerShell install are the same app.
 
 Pick one install. Do not run both at once. They share the same weeks file, `%AppData%\TurnipProphet\turnips.json`.
 
@@ -38,7 +38,7 @@ The log for this copy is `%LocalAppData%\TurnipProphet\turnips.log`.
 
 ## PowerShell
 
-Same app as the installer. Same pictures, same page, same weeks file, same 1360 by 960 window. The stamp file is the same original. Closing the window saves and quits. There is no tray icon.
+Same app as the installer. Same page, same weeks file, same window. Closing the window saves and quits. There is no tray icon.
 
 ```powershell
 $d = Join-Path $env:TEMP 'TurnipProphet'
@@ -76,7 +76,7 @@ The log for this copy is `C:\Tools\Turnips\turnips.log`.
 
 A second open does not start a second copy. It brings the window back.
 
-Closing the window saves the weeks file, then quits. The Quit button does the same. There is no tray icon. On open, the cursor is already in the sky-blue box, so you can type the next price. The title bar and the scrollbars match the Windows app color. Dark Windows gets a dark bar and dark scrollbars. Light Windows gets light ones. The prices, boxes, note, and chart stay the same. This is version 1.3. Week cards show Buy in the open-box sky blue and High in the title yellow. Sold appears only after you pick when you sold. That price is New Week green when it matches the high, and Delete Week red when it is lower. The day next to the open price box is that same sky blue, with the same black outline. The other days stay yellow. Sunday Buy Price: sits above the box, left aligned. It is black text with a white outline, same as First time buying. When First time buying is checked, that label's outline turns the open-box sky blue. Unchecked, the outline stays white. Weekly Sell Prices: sits under that box, left aligned, in the same size and style. The window opens at 1360 by 960 so that save note sits just inside the bottom. Width is unchanged. The word noon in the shop-hours line is white with a black outline.
+Closing the window saves the weeks file, then quits. The Quit button does the same. There is no tray icon. On open, the cursor is already in the price box for the shop window that is open now. The window frame and the scrollbars follow your Windows color. This is version 1.3.
 
 The bottom of the window shows the real path to the weeks file. On a normal account that is `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`.
 

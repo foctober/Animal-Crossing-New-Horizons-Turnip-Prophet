@@ -1,6 +1,6 @@
 # Animal Crossing: New Horizons - Turnip Prophet
 
-**Version 1.3.** The left side is separate pictures, and their positions are locked: the title logo on top, the grass and sky behind, the turnip in front, and the leaf stamp on the white of the turnip. Nothing is merged. The stamp file is the original, 2048×2048, 2,891,046 bytes. The app only shrinks how big it looks. The title logo is 1869×1242. The horizon sits just under the pink on the turnip. The Windows installer and the PowerShell install are the same app. Weeks are unchanged. Full-size copies are in [dopebeat-artwork](https://github.com/foctober/dopebeat-artwork) under `turnip-prophet/`.
+**Version 1.3.**
 
 A small Windows tracker for Daisy Mae's turnip prices. Type each price as the week goes, it saves on this PC, and it tells you whether to sell or wait.
 
@@ -8,7 +8,7 @@ The price math is the same engine as [turnipprophet.io](https://turnipprophet.io
 
 ## What it looks like
 
-The left side is the week list, on a separate grass and sky picture. A separate turnip sits on top of it. A separate leaf stamp sits on the white of the turnip. The title logo is another picture, also separate.
+The left side is your saved weeks. The right side is this week's prices.
 
 ![Entering the week's prices. Friday afternoon is the open shop window, so that box has the turning rainbow border.](docs/prices.png)
 
@@ -50,13 +50,11 @@ The shortcut and the window icon are the teal leaf. There is no tray icon.
 
 ## What you see
 
-The left side is the week list. The grass and sky are one picture. The turnip is a second picture laid on top, not baked in. The logo is the third. Grass is the bottom quarter. The turnip crown crosses the horizon the same way as before, and the leaves reach into the sky. The right side is where you type the prices, on orange wood that matches the title. The grain is one seamless tile, repeated at a small size so it does not show up as one big picture. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines in the Animal Crossing font, both the same size: **Animal Crossing: New Horizons** and **Turnip Prophet**, in the same yellow as the logo with the same thick black outline as the yellow text on the price side. Those two lines sit as far below the logo as they sit above the week cards. New Week uses that font too, the same size as Quit, in plain black. New Week, the turnipprophet.io link, and Quit are the same height as the week cards. The week cards use that font too. The date is plain white. Buy is the same sky blue as the open price box, and High is that same yellow. Both prices still pulse. After you pick when you sold, the card adds / Sold and that price. Sold is the New Week green when it was the high, and the Delete Week red when it was lower. It pulses with the other two. Clear when you sold and Sold comes off the card.
+The left side lists your weeks. Each card shows the date, what you paid, and the best price so far. After you record when you sold, that price is on the card too. **New Week** starts the next Sunday.
 
-The price side uses the Animal Crossing font, FinkHeavy. Yellow text and the green Saved note have a black outline. Shop hours, Daisy Mae, 90, 110, and the saved-file line are white with a black outline. That saved-file line grows to fill the space beside the link and stays on one line. Black wood text has a white outline. Delete Week is white text with a black outline on the red button. A thin red bar under the footer credits Mike Bryant and Ninji and says this project is not affiliated with Nintendo. That bar, the shop-hours lines, the Daisy Mae line, the save note, the banner detail, the pattern odds, the chart key, and the pattern-table note are one size. The top three card titles, First time buying, Sunday Buy Price, the weekdays, the banner headline, and Note are the larger matching size. Cards and input boxes have a thin black border. The price box for the open shop window is a bright sky blue, the same blue as the sky on the left, with a thick rainbow border that turns and a white glow on the same 1.5 second pulse as Buy and High. Text inside the white cards, inputs, Sunday button, and calendar stays plain black.
+The right side is where you type this week's prices. The box for the shop window that is open now is marked, so you can see where to type. Under the prices it says whether to sell or wait, shows the chart, and can open the full pattern list.
 
-The top three fields are three equal cards. Inside each card the label is left-aligned with its box. The date and both dropdowns stay left aligned. Their text, the price boxes, and the twelve cards under the chart sit in the vertical middle. The twelve cards are 17px and one and a half times the height of the price boxes. The notes are 18px, and the buttons and inputs are 19px. Price boxes are centered left to right as well. The date, the two dropdowns, every price box, the paste box, and Import, Delete Week, and Save are the same height as the week cards. Those labels are the same size as New Week, Quit, and the turnipprophet.io link. Last week's pattern stays grey while First time buying is checked. Uncheck that and the pattern box is bold like the other two. The price box for the shop window that is open right now is bright sky blue, with a thick rainbow border that turns and a white glow on the same 1.5 second pulse as Buy and High. The day next to that box is the same sky blue, with the same black outline. The other days stay yellow. Sunday Buy Price: sits above the box, the same size as First time buying, left aligned. It is black text with a white outline, same as First time buying. When First time buying is checked, that label's outline turns the open-box sky blue. Unchecked, the outline stays white. The window opens at 1360 by 960. Width is unchanged. The extra height fits Weekly Sell Prices and leaves the save note just inside the bottom edge. The word noon in the shop-hours line is white with a black outline. Every other price box keeps the thin black border. On a week that has not started yet, Sunday Buy Price is the one marked, because that is the first price to enter. On this week, Sunday morning is the buy box, and Monday through Saturday follow 8:00 AM and noon. A finished week is not marked. Outside shop hours nothing is marked.
-
-Under the prices is the prediction: the banner, the odds, the chart, the twelve sell slots, and the full pattern table if you open it. The table text is 14px, the same as the prices on the chart.
+A bar at the bottom credits Mike Bryant and Ninji. This project is not affiliated with Nintendo.
 
 ## What you do each week
 
@@ -150,7 +148,7 @@ Open **Turnip Prophet** from the desktop or the Start menu. A second launch does
 | `Turnips.ps1` | The PowerShell app. Local page, no tray icon. |
 | `Launch.vbs` / `Run.cmd` | Start the PowerShell app with no PowerShell window. |
 | `TurnipProphet.ico` | The leaf icon for the shortcut and the installer. |
-| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the grass and sky. `turnip.png` is the turnip. `stamp.png` is the leaf stamp on the white of the turnip, the original 2048×2048 file, 2,891,046 bytes. `wood.png` is the right side, tiled at 360 by 180. `FinkHeavy.ttf` is the font on both sides. |
+| `www\` | The page you look at: layout, pictures, and font. |
 | `predictions.js` | Unmodified Turnip Prophet engine. |
 | `turnips.json` | Your weeks. Lives in `%AppData%\TurnipProphet\`, not next to the program and not in git. |
 
