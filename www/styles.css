@@ -145,14 +145,14 @@ aside {
   max-width: none;
 }
 
-/* Horizon meets the pink on the turnip, a little above the old quarter-grass line. */
+/* Horizon sits just under the pink, between the last two tries and closer to this one. */
 .field-bg {
   left: 0;
   top: 0;
   transform: none;
   z-index: 0;
   width: 100%;
-  height: 115.5%;
+  height: 118.5%;
   object-fit: cover;
   object-position: center top;
 }
