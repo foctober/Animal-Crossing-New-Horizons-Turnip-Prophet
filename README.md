@@ -1,6 +1,6 @@
 # Animal Crossing: New Horizons - Turnip Prophet
 
-**Version 1.3, test branch.** Not on main yet. The left side is three separate pictures: the title logo, the grass and sky, and the turnip on top. They are not merged. Grass is about one quarter of that panel, same as before. The turnip crosses the horizon by the same amount as the old picture. Weeks are unchanged.
+**Version 1.3, test branch.** Not on main yet. The left side is three separate pictures, and their positions are locked: the title logo on top, the grass and sky behind, and the turnip in front. They are not merged. The horizon sits just under the pink on the turnip. Weeks are unchanged. Full-size copies of the field and the turnip are in [dopebeat-artwork](https://github.com/foctober/dopebeat-artwork) under `turnip-prophet/`.
 
 A small Windows tracker for Daisy Mae's turnip prices. Type each price as the week goes, it saves on this PC, and it tells you whether to sell or wait.
 
