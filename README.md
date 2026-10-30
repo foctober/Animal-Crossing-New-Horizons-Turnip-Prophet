@@ -1,6 +1,6 @@
 # Animal Crossing: New Horizons - Turnip Prophet
 
-**Version 1.3, test branch.** Not on main yet. The left side is three separate pictures, and their positions are locked: the title logo on top, the grass and sky behind, and the turnip in front. They are not merged. The title logo is the higher-resolution file, 1869×1242. The horizon sits just under the pink on the turnip. Weeks are unchanged. Full-size copies of the logo, the field, and the turnip are in [dopebeat-artwork](https://github.com/foctober/dopebeat-artwork) under `turnip-prophet/`.
+**Version 1.3, test branch.** Not on main yet. The left side is separate pictures, and their positions are locked: the title logo on top, the grass and sky behind, and the turnip in front. A leaf stamp sits on the white of the turnip. It is not merged into the turnip. The stamp file stays 2048×2048. The title logo is 1869×1242. The horizon sits just under the pink on the turnip. Weeks are unchanged. Full-size copies are in [dopebeat-artwork](https://github.com/foctober/dopebeat-artwork) under `turnip-prophet/`.
 
 A small Windows tracker for Daisy Mae's turnip prices. Type each price as the week goes, it saves on this PC, and it tells you whether to sell or wait.
 
@@ -8,7 +8,7 @@ The price math is the same engine as [turnipprophet.io](https://turnipprophet.io
 
 ## What it looks like
 
-The left side is the week list, on a separate grass and sky picture. A separate turnip sits on top of it. The title logo is the third picture, also separate.
+The left side is the week list, on a separate grass and sky picture. A separate turnip sits on top of it. A separate leaf stamp sits on the white of the turnip. The title logo is another picture, also separate.
 
 ![Entering the week's prices. Saturday afternoon is the open shop window, so that box has the turning rainbow border.](docs/prices.png)
 
@@ -150,7 +150,7 @@ Open **Turnip Prophet** from the desktop or the Start menu. A second launch does
 | `Turnips.ps1` | The PowerShell app. Local page, no tray icon. |
 | `Launch.vbs` / `Run.cmd` | Start the PowerShell app with no PowerShell window. |
 | `TurnipProphet.ico` | The leaf icon for the shortcut and the installer. |
-| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the grass and sky. `turnip.png` is the turnip on top of it. `wood.png` is the right side, tiled at 360 by 180. `FinkHeavy.ttf` is the font on both sides. |
+| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the grass and sky. `turnip.png` is the turnip. `stamp.png` is the leaf stamp on the white of the turnip, still 2048 by 2048. `wood.png` is the right side, tiled at 360 by 180. `FinkHeavy.ttf` is the font on both sides. |
 | `predictions.js` | Unmodified Turnip Prophet engine. |
 | `turnips.json` | Your weeks. Lives in `%AppData%\TurnipProphet\`, not next to the program and not in git. |
 

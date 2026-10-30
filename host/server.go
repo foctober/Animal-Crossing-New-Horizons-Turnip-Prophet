@@ -33,6 +33,7 @@ var siteFiles = map[string]fileSpec{
 	"/logo.png":       {filepath.Join("www", "logo.png"), "image/png"},
 	"/field.jpg":      {filepath.Join("www", "field.jpg"), "image/jpeg"},
 	"/turnip.png":     {filepath.Join("www", "turnip.png"), "image/png"},
+	"/stamp.png":      {filepath.Join("www", "stamp.png"), "image/png"},
 	"/wood.png":       {filepath.Join("www", "wood.png"), "image/png"},
 }
 
@@ -45,6 +46,7 @@ var neededFiles = []string{
 	filepath.Join("www", "logo.png"),
 	filepath.Join("www", "field.jpg"),
 	filepath.Join("www", "turnip.png"),
+	filepath.Join("www", "stamp.png"),
 	filepath.Join("www", "wood.png"),
 }
 

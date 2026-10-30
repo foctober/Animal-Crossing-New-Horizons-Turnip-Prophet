@@ -374,7 +374,7 @@ function Stop-Turnip {
 
 function Main {
   Get-TurnipDataFile | Out-Null
-  foreach ($needed in @('predictions.js', 'TurnipProphet.ico', 'www\index.html', 'www\app.js', 'www\styles.css', 'www\logo.png', 'www\field.jpg', 'www\turnip.png', 'www\wood.png')) {
+  foreach ($needed in @('predictions.js', 'TurnipProphet.ico', 'www\index.html', 'www\app.js', 'www\styles.css', 'www\logo.png', 'www\field.jpg', 'www\turnip.png', 'www\stamp.png', 'www\wood.png')) {
     $full = Join-Path $Root $needed
     if (-not (Test-Path -LiteralPath $full)) {
       Show-Error "Missing $needed. Run Install.ps1 again from the repo."
@@ -415,6 +415,7 @@ function Main {
     '/logo.png' = @{ Rel = 'www\logo.png'; Type = 'image/png' }
     '/field.jpg' = @{ Rel = 'www\field.jpg'; Type = 'image/jpeg' }
     '/turnip.png' = @{ Rel = 'www\turnip.png'; Type = 'image/png' }
+    '/stamp.png' = @{ Rel = 'www\stamp.png'; Type = 'image/png' }
     '/wood.png' = @{ Rel = 'www\wood.png'; Type = 'image/png' }
   }
 

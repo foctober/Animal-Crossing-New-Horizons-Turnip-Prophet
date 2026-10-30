@@ -136,7 +136,8 @@ aside {
 }
 
 .field-bg,
-.turnip-fg {
+.turnip-fg,
+.stamp-fg {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -162,6 +163,14 @@ aside {
   top: 6.8%;
   z-index: 1;
   height: 93.2%;
+  width: auto;
+}
+
+/* Leaf stamp sits on the white of the turnip. The file stays 2048 by 2048. */
+.stamp-fg {
+  top: 72.9%;
+  z-index: 1;
+  height: 12.7%;
   width: auto;
 }
 

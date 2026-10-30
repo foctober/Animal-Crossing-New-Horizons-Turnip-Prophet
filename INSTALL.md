@@ -1,6 +1,6 @@
 # Install
 
-Version 1.3 test. You need 64-bit Windows 10 or 11. The window is the app. If it cannot start, your browser opens instead. There is no system tray icon. The left side uses three pictures: logo, field, and turnip. They stay separate.
+Version 1.3 test. You need 64-bit Windows 10 or 11. The window is the app. If it cannot start, your browser opens instead. There is no system tray icon. The left side uses separate pictures: logo, field, turnip, and a leaf stamp on the turnip. They stay separate.
 
 Pick one install. Do not run both at once. They share the same weeks file, `%AppData%\TurnipProphet\turnips.json`.
 
