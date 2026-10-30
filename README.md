@@ -10,7 +10,7 @@ The price math is the same engine as [turnipprophet.io](https://turnipprophet.io
 
 The left side is the week list, on a separate grass and sky picture. A separate turnip sits on top of it. A separate leaf stamp sits on the white of the turnip. The title logo is another picture, also separate.
 
-![Entering the week's prices. Saturday afternoon is the open shop window, so that box has the turning rainbow border.](docs/prices.png)
+![Entering the week's prices. Friday afternoon is the open shop window, so that box has the turning rainbow border.](docs/prices.png)
 
 ![The sell-or-wait banner, the chart, and the credit bar](docs/chart.png)
 
