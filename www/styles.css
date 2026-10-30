@@ -208,8 +208,10 @@ aside {
   color: #f8d050;
   text-shadow: var(--edge-black);
 }
-.brand h1 { font-size: 22px; margin-top: 22px; }
-.brand .app-name { font-size: 22px; }
+.brand .app-name {
+  font-size: 46px;
+  margin-top: 22px;
+}
 
 .week-list {
   display: flex;
