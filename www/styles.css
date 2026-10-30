@@ -166,11 +166,12 @@ aside {
   width: auto;
 }
 
-/* Leaf stamp fills the white center of the turnip. The file stays 2048 by 2048. */
+/* Leaf stamp sits in the middle of the white. The file stays 2048 by 2048. */
 .stamp-fg {
-  top: 71.2%;
+  top: 68.5%;
+  left: 56%;
   z-index: 1;
-  height: 16%;
+  height: 14.5%;
   width: auto;
 }
 
