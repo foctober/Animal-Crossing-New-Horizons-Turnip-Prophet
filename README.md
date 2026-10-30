@@ -1,6 +1,6 @@
 # Animal Crossing: New Horizons - Turnip Prophet
 
-**Version 1.3, test branch.** Not on main yet. The left side is separate pictures, and their positions are locked: the title logo on top, the grass and sky behind, and the turnip in front. A leaf stamp sits on the white of the turnip. It is not merged into the turnip. The stamp file stays 2048×2048. The title logo is 1869×1242. The horizon sits just under the pink on the turnip. Weeks are unchanged. Full-size copies are in [dopebeat-artwork](https://github.com/foctober/dopebeat-artwork) under `turnip-prophet/`.
+**Version 1.3, test branch.** Not on main yet. The left side is separate pictures, and their positions are locked: the title logo on top, the grass and sky behind, the turnip in front, and the leaf stamp on the white of the turnip. Nothing is merged. The stamp file is the original, 2048×2048, 2,891,046 bytes. The app only shrinks how big it looks. The title logo is 1869×1242. The horizon sits just under the pink on the turnip. The Windows installer and the PowerShell install are the same app. Weeks are unchanged. Full-size copies are in [dopebeat-artwork](https://github.com/foctober/dopebeat-artwork) under `turnip-prophet/`.
 
 A small Windows tracker for Daisy Mae's turnip prices. Type each price as the week goes, it saves on this PC, and it tells you whether to sell or wait.
 
@@ -150,7 +150,7 @@ Open **Turnip Prophet** from the desktop or the Start menu. A second launch does
 | `Turnips.ps1` | The PowerShell app. Local page, no tray icon. |
 | `Launch.vbs` / `Run.cmd` | Start the PowerShell app with no PowerShell window. |
 | `TurnipProphet.ico` | The leaf icon for the shortcut and the installer. |
-| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the grass and sky. `turnip.png` is the turnip. `stamp.png` is the leaf stamp on the white of the turnip, still 2048 by 2048. `wood.png` is the right side, tiled at 360 by 180. `FinkHeavy.ttf` is the font on both sides. |
+| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the grass and sky. `turnip.png` is the turnip. `stamp.png` is the leaf stamp on the white of the turnip, the original 2048×2048 file, 2,891,046 bytes. `wood.png` is the right side, tiled at 360 by 180. `FinkHeavy.ttf` is the font on both sides. |
 | `predictions.js` | Unmodified Turnip Prophet engine. |
 | `turnips.json` | Your weeks. Lives in `%AppData%\TurnipProphet\`, not next to the program and not in git. |
 

@@ -1,6 +1,6 @@
 # Install
 
-Version 1.3 test. You need 64-bit Windows 10 or 11. The window is the app. If it cannot start, your browser opens instead. There is no system tray icon. The left side uses separate pictures: logo, field, turnip, and a leaf stamp on the turnip. They stay separate.
+Version 1.3 test. You need 64-bit Windows 10 or 11. The window is the app. If it cannot start, your browser opens instead. There is no system tray icon. The left side uses separate pictures: logo, field, turnip, and the original leaf stamp on the white of the turnip (2048×2048, 2,891,046 bytes). Their positions are locked. The Windows installer and the PowerShell install are the same app.
 
 Pick one install. Do not run both at once. They share the same weeks file, `%AppData%\TurnipProphet\turnips.json`.
 
@@ -38,7 +38,7 @@ The log for this copy is `%LocalAppData%\TurnipProphet\turnips.log`.
 
 ## PowerShell
 
-Same app as the installer. Same page, same weeks file, same 1360 by 960 window. Closing the window saves and quits. There is no tray icon.
+Same app as the installer. Same pictures, same page, same weeks file, same 1360 by 960 window. The stamp file is the same original. Closing the window saves and quits. There is no tray icon.
 
 ```powershell
 $d = Join-Path $env:TEMP 'TurnipProphet'
