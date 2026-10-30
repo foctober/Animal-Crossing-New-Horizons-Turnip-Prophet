@@ -1,6 +1,6 @@
 # Animal Crossing: New Horizons - Turnip Prophet
 
-**Version 1.2.** No system tray icon. Closing the window saves, then quits. The installer always adds a Start menu shortcut. A desktop icon is a checkbox, on unless you turn it off. Pinning the window to the taskbar still uses the Turnip Prophet icon. On open, the cursor is already in the sky-blue price box. The title bar and the scrollbars follow the Windows app color, dark or light. Text boxes, the chart, and the rest of the page do not. Week cards show Buy in that same sky blue and High in the title yellow. Sold is added only after you pick when you sold: New Week green if it was the high, Delete Week red if it was lower. Zoom stays at 100%. The wood fills the window. Save has a black border. The note is 19px and stays three lines. The First time buying check is the same sky blue as the open price box. Sunday dates in the calendar get a green border and a check on hover. Other days get a red border and an X. Pinning the window to the taskbar uses the Turnip Prophet icon. Unpin the old one first. Closing the window leaves the pin, and opening that pin uses the same icon.
+**Version 1.3, test branch.** Not on main yet. The left side is three separate pictures: the title logo, the grass and sky, and the turnip on top. They are not merged. Grass is about one quarter of that panel, same as before. The turnip crosses the horizon by the same amount as the old picture. Weeks are unchanged.
 
 A small Windows tracker for Daisy Mae's turnip prices. Type each price as the week goes, it saves on this PC, and it tells you whether to sell or wait.
 
@@ -8,7 +8,7 @@ The price math is the same engine as [turnipprophet.io](https://turnipprophet.io
 
 ## What it looks like
 
-The left side is the week list, on close-up grass with a white turnip in the middle. The right side is where you type the prices, on orange wood grain tiled small so it repeats.
+The left side is the week list, on a separate grass and sky picture. A separate turnip sits on top of it. The title logo is the third picture, also separate.
 
 ![Entering the week's prices. Saturday afternoon is the open shop window, so that box has the turning rainbow border.](docs/prices.png)
 
@@ -26,9 +26,9 @@ Pick one. Do not run both at once. Weeks go to `%AppData%\TurnipProphet\turnips.
 $d = Join-Path $env:TEMP 'TurnipProphet'
 if (Test-Path $d) { Remove-Item $d -Recurse -Force }
 New-Item -ItemType Directory -Path $d | Out-Null
-Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/v1.3.zip' -OutFile "$d\src.zip"
 Expand-Archive "$d\src.zip" $d -Force
-Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\TurnipProphet-Setup.exe" -Verb RunAs -Wait
+Start-Process -FilePath "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-v1.3\TurnipProphet-Setup.exe" -Verb RunAs -Wait
 Remove-Item $d -Recurse -Force
 ```
 
@@ -40,9 +40,9 @@ Windows asks for permission. SmartScreen may say the installer is unrecognized. 
 $d = Join-Path $env:TEMP 'TurnipProphet'
 if (Test-Path $d) { Remove-Item $d -Recurse -Force }
 New-Item -ItemType Directory -Path $d | Out-Null
-Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/main.zip' -OutFile "$d\src.zip"
+Invoke-WebRequest 'https://github.com/foctober/Animal-Crossing-New-Horizons-Turnip-Prophet/archive/refs/heads/v1.3.zip' -OutFile "$d\src.zip"
 Expand-Archive "$d\src.zip" $d -Force
-powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-main\Install.ps1"
+powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip-Prophet-v1.3\Install.ps1"
 Remove-Item $d -Recurse -Force
 ```
 
@@ -50,7 +50,7 @@ The shortcut and the window icon are the teal leaf. There is no tray icon.
 
 ## What you see
 
-The left side is the week list, on a close-up field that fades into sky. The grass is the bottom quarter, with the white turnip in the middle. The top of it sits just over the grass and the leaves reach into the sky. The right side is where you type the prices, on orange wood that matches the title. The grain is one seamless tile, repeated at a small size so it does not show up as one big picture. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines in the Animal Crossing font, both the same size: **Animal Crossing: New Horizons** and **Turnip Prophet**, in the same yellow as the logo with the same thick black outline as the yellow text on the price side. Those two lines sit as far below the logo as they sit above the week cards. New Week uses that font too, the same size as Quit, in plain black. New Week, the turnipprophet.io link, and Quit are the same height as the week cards. The week cards use that font too. The date is plain white. Buy is the same sky blue as the open price box, and High is that same yellow. Both prices still pulse. After you pick when you sold, the card adds / Sold and that price. Sold is the New Week green when it was the high, and the Delete Week red when it was lower. It pulses with the other two. Clear when you sold and Sold comes off the card.
+The left side is the week list. The grass and sky are one picture. The turnip is a second picture laid on top, not baked in. The logo is the third. Grass is the bottom quarter. The turnip crown crosses the horizon the same way as before, and the leaves reach into the sky. The right side is where you type the prices, on orange wood that matches the title. The grain is one seamless tile, repeated at a small size so it does not show up as one big picture. Across the top of the list is the Animal Crossing: New Horizons logo, then the title on two lines in the Animal Crossing font, both the same size: **Animal Crossing: New Horizons** and **Turnip Prophet**, in the same yellow as the logo with the same thick black outline as the yellow text on the price side. Those two lines sit as far below the logo as they sit above the week cards. New Week uses that font too, the same size as Quit, in plain black. New Week, the turnipprophet.io link, and Quit are the same height as the week cards. The week cards use that font too. The date is plain white. Buy is the same sky blue as the open price box, and High is that same yellow. Both prices still pulse. After you pick when you sold, the card adds / Sold and that price. Sold is the New Week green when it was the high, and the Delete Week red when it was lower. It pulses with the other two. Clear when you sold and Sold comes off the card.
 
 The price side uses the Animal Crossing font, FinkHeavy. Yellow text and the green Saved note have a black outline. Shop hours, Daisy Mae, 90, 110, and the saved-file line are white with a black outline. That saved-file line grows to fill the space beside the link and stays on one line. Black wood text has a white outline. Delete Week is white text with a black outline on the red button. A thin red bar under the footer credits Mike Bryant and Ninji and says this project is not affiliated with Nintendo. That bar, the shop-hours lines, the Daisy Mae line, the save note, the banner detail, the pattern odds, the chart key, and the pattern-table note are one size. The top three card titles, First time buying, Sunday Buy Price, the weekdays, the banner headline, and Note are the larger matching size. Cards and input boxes have a thin black border. The price box for the open shop window is a bright sky blue, the same blue as the sky on the left, with a thick rainbow border that turns and a white glow on the same 1.5 second pulse as Buy and High. Text inside the white cards, inputs, Sunday button, and calendar stays plain black.
 
@@ -150,7 +150,7 @@ Open **Turnip Prophet** from the desktop or the Start menu. A second launch does
 | `Turnips.ps1` | The PowerShell app. Local page, no tray icon. |
 | `Launch.vbs` / `Run.cmd` | Start the PowerShell app with no PowerShell window. |
 | `TurnipProphet.ico` | The leaf icon for the shortcut and the installer. |
-| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the left side. `wood.png` is the right side, tiled at 360 by 180. `FinkHeavy.ttf` is the font on both sides. |
+| `www\` | The window you actually look at. `logo.png` is the wide title art. `field.jpg` is the grass and sky. `turnip.png` is the turnip on top of it. `wood.png` is the right side, tiled at 360 by 180. `FinkHeavy.ttf` is the font on both sides. |
 | `predictions.js` | Unmodified Turnip Prophet engine. |
 | `turnips.json` | Your weeks. Lives in `%AppData%\TurnipProphet\`, not next to the program and not in git. |
 
