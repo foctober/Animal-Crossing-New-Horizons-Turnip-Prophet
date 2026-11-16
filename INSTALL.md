@@ -1,6 +1,6 @@
 # Install
 
-Version 1.3. You need 64-bit Windows 10 or 11. The window is the app. If it cannot start, your browser opens instead. There is no system tray icon. The Windows installer and the PowerShell install are the same app.
+Version 1.4. You need 64-bit Windows 10 or 11. The window is the app. If it cannot start, your browser opens instead. There is no system tray icon. The Windows installer and the PowerShell install are the same app.
 
 Pick one install. Do not run both at once. They share the same weeks file, `%AppData%\TurnipProphet\turnips.json`.
 
@@ -76,7 +76,7 @@ The log for this copy is `C:\Tools\Turnips\turnips.log`.
 
 A second open does not start a second copy. It brings the window back.
 
-Closing the window saves the weeks file, then quits. The Quit button does the same. There is no tray icon. On open, the cursor is already in the price box for the shop window that is open now. The window frame and the scrollbars follow your Windows color. This is version 1.3.
+Closing the window saves the weeks file, then quits. The Quit button does the same. There is no tray icon. On open, the cursor is already in the price box for the shop window that is open now. The window frame and the scrollbars follow your Windows color. This is version 1.4. The sell or hold line uses the same pattern math as the website. It sells when the only thing left is a few bells that are not guaranteed, and it holds when a better price is still guaranteed or the ceiling is still high enough to matter.
 
 The bottom of the window shows the real path to the weeks file. On a normal account that is `C:\Users\<you>\AppData\Roaming\TurnipProphet\turnips.json`.
 

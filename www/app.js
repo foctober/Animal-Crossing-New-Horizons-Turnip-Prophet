@@ -374,44 +374,83 @@ function advice(rows, entered, firstBuy) {
 
   var next = future[0];
   var bestFuture = future[0];
+  var sure = future[0];
+  var low = future[0].min;
   future.forEach(function (slot) {
     if (slot.max > bestFuture.max) bestFuture = slot;
+    if (slot.min > sure.min) sure = slot;
+    if (slot.min < low) low = slot.min;
   });
 
-  if (bestFuture.max < best.price && next.max <= current) {
-    var head;
-    if (best.idx === last) {
-      head = "Sell now. This is the high (" + current + " on " + currentName + ").";
-    } else {
-      head = "Sell now. The peak was " + best.price + " on " + slotName(best.idx) + ".";
+  var cap = function (n) { return n.charAt(0).toUpperCase() + n.slice(1); };
+  var guar = all.weekGuaranteedMinimum;
+  var pot = all.weekMax;
+  // A couple of bells over the price in hand is not a hold.
+  // A guaranteed better price, or a real gap up to the ceiling, still is.
+  var near = 5;
+
+  if (Number.isFinite(guar) && guar > current) {
+    if (next.min > current) {
+      return {
+        tone: "wait",
+        headline: "Hold. " + cap(next.name) + " is at least " + next.min + " on every pattern left.",
+        detail: "You are at " + current + ". It can reach " + next.max + ". " + patternLine,
+        odds: odds
+      };
     }
+    if (sure.min > current) {
+      return {
+        tone: "wait",
+        headline: "Hold for " + sure.name + ". It is at least " + sure.min + " on every pattern left.",
+        detail: "You are at " + current + ". The next price (" + next.name + ") is " + next.min + "\u2013" + next.max + ", so it may dip first. " + patternLine,
+        odds: odds
+      };
+    }
+    return {
+      tone: "wait",
+      headline: "Hold. Every pattern left still has a price of at least " + guar + ".",
+      detail: "You are at " + current + " on " + currentName + ". The next price can be " + next.min + "\u2013" + next.max + ". The ceiling is " + pot + ". " + patternLine,
+      odds: odds
+    };
+  }
+
+  var upside = bestFuture.max - current;
+  if (upside <= near) {
+    var missed = best && best.idx !== last && best.price > current
+      ? " The high already passed at " + best.price + " on " + slotName(best.idx) + "."
+      : "";
+    var head = upside <= 0
+      ? (best && best.idx === last
+        ? "Sell now. This is the high (" + current + " on " + currentName + ")."
+        : "Sell now. Nothing left beats " + current + ".")
+      : "Sell now. " + current + " is the price.";
+    var why = upside <= 0
+      ? cap(next.name) + " only reaches " + next.min + "\u2013" + next.max + ". Waiting loses bells."
+      : cap(bestFuture.name) + " can still reach " + bestFuture.max + ", but that is not guaranteed. It can drop to " + low + ". Waiting for " + upside + " more bell" + (upside === 1 ? "" : "s") + " is not worth it.";
     return {
       tone: "sell",
       headline: head,
-      detail: currentName.charAt(0).toUpperCase() + currentName.slice(1) + " is " + current +
-        ". " + next.name.charAt(0).toUpperCase() + next.name.slice(1) +
-        " only reaches " + next.min + "\u2013" + next.max + ". Waiting loses bells. " + patternLine,
+      detail: cap(currentName) + " is " + current + "." + missed + " " + why + " " + patternLine,
       odds: odds
     };
   }
 
-  if (next.max > current) {
-    var later = bestFuture.idx !== next.idx
-      ? " Later, " + bestFuture.name + " can still reach " + bestFuture.max + "."
-      : "";
+  if (next.max <= current) {
     return {
       tone: "wait",
-      headline: "Wait. " + next.name.charAt(0).toUpperCase() + next.name.slice(1) + " can still reach " + next.max + ".",
-      detail: "You are at " + current + " on " + currentName + "." + later + " " + patternLine,
+      headline: "Hold for " + bestFuture.name + ". It can still reach " + bestFuture.max + ".",
+      detail: "The next price (" + next.name + ") is only " + next.min + "\u2013" + next.max + ", so it may dip before that. You are at " + current + ". " + patternLine,
       odds: odds
     };
   }
 
+  var later = bestFuture.idx !== next.idx
+    ? " A later price can still reach " + bestFuture.max + "."
+    : "";
   return {
     tone: "wait",
-    headline: "Hold for " + bestFuture.name + ". It can still reach " + bestFuture.max + ".",
-    detail: "The next price (" + next.name + ") is only " + next.min + "\u2013" + next.max +
-      ", so it may dip before that. You are at " + current + ". " + patternLine,
+    headline: "Hold. The ceiling is still " + bestFuture.max + ".",
+    detail: "You are at " + current + " on " + currentName + ". " + cap(next.name) + " can be " + next.min + "\u2013" + next.max + ", so it can drop." + later + " " + patternLine,
     odds: odds
   };
 }

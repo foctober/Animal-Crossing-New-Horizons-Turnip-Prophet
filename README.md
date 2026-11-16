@@ -1,8 +1,8 @@
 # Animal Crossing: New Horizons - Turnip Prophet
 
-**Version 1.3.**
+**Version 1.4.**
 
-A Windows tracker for Daisy Mae's turnip prices. Enter each price through the week. It saves on this PC and tells you whether to sell or wait.
+A Windows tracker for Daisy Mae's turnip prices. Enter each price through the week. It saves on this PC and tells you whether to sell or hold.
 
 The prediction uses the same engine as [turnipprophet.io](https://turnipprophet.io): Mike Bryant's [ac-nh-turnip-prices](https://github.com/mikebryant/ac-nh-turnip-prices), based on Ninji's reverse engineering of the game. This project adds a window, a desktop shortcut, and a saved history. It is not the website, and it is not affiliated with Nintendo.
 
@@ -81,10 +81,10 @@ Set **When did you sell?** Each day has two windows: 8:00 AM – 11:59 AM, then 
 
 The banner is the main result.
 
-- **Sell now** means every remaining price this week is worse than one you already saw.
-- **Wait** means a later price can still beat the current offer.
+- **Sell now** means nothing left can beat the price you have, or the best it can still reach is only a few bells higher and that higher price is not guaranteed. Waiting for 147 to become 150 is a sell.
+- **Hold** means a later price is still guaranteed to beat what you have, or the ceiling is high enough that selling now would give up real bells. Waiting at 132 when every pattern left is still at least 138 is a hold. A price under the guaranteed minimum is a hold.
 - The green band on the chart is the range still possible. Gold dots are prices you entered. The faint dashed line is your buy price. The gold dashed vertical line is now. Everything to the right has not happened yet.
-- **Guaranteed minimum** and **Potential maximum** mean the same thing as on the website. The minimum is the best price still possible in what remains. The maximum is the highest price still possible.
+- **Guaranteed minimum** and **Potential maximum** are the website's numbers, unchanged. The minimum is the best price the worst pattern left still has coming. If your price is under it, hold. The maximum is the highest price still possible.
 - **Every pattern line** is the full website output: one row for each way the week can still play out.
 
 Past days you skipped stay as ranges. Those prices are gone. Only slots after your last entered price are still ahead.

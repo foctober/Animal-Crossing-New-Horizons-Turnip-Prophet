@@ -10,20 +10,20 @@ InstallDirRegKey HKLM "Software\TurnipProphet" "InstallDir"
 RequestExecutionLevel admin
 SetCompressor /SOLID lzma
 
-!define APP_VERSION "1.3.0"
-VIProductVersion "1.3.0.0"
-VIFileVersion "1.3.0.0"
+!define APP_VERSION "1.4.0"
+VIProductVersion "1.4.0.0"
+VIFileVersion "1.4.0.0"
 VIAddVersionKey /LANG=1033 "ProductName" "Turnip Prophet"
-VIAddVersionKey /LANG=1033 "ProductVersion" "1.3.0"
-VIAddVersionKey /LANG=1033 "FileVersion" "1.3.0"
-VIAddVersionKey /LANG=1033 "FileDescription" "Turnip Prophet 1.3 setup"
+VIAddVersionKey /LANG=1033 "ProductVersion" "1.4.0"
+VIAddVersionKey /LANG=1033 "FileVersion" "1.4.0"
+VIAddVersionKey /LANG=1033 "FileDescription" "Turnip Prophet 1.4 setup"
 VIAddVersionKey /LANG=1033 "CompanyName" "foctober"
 
 !define MUI_ICON "..\TurnipProphet.ico"
 !define MUI_UNICON "..\TurnipProphet.ico"
 !define MUI_ABORTWARNING
-!define MUI_WELCOMEPAGE_TITLE "Turnip Prophet 1.3"
-!define MUI_WELCOMEPAGE_TEXT "This installs Turnip Prophet 1.3 into Program Files.$\r$\n$\r$\nQuit Turnip Prophet first if it is already open. Closing the window quits it.$\r$\n$\r$\nYour weeks stay in your Windows profile. Uninstall does not delete them."
+!define MUI_WELCOMEPAGE_TITLE "Turnip Prophet 1.4"
+!define MUI_WELCOMEPAGE_TEXT "This installs Turnip Prophet 1.4 into Program Files.$\r$\n$\r$\nQuit Turnip Prophet first if it is already open. Closing the window quits it.$\r$\n$\r$\nYour weeks stay in your Windows profile. Uninstall does not delete them."
 !define MUI_FINISHPAGE_TEXT "Turnip Prophet is installed in Program Files.$\r$\n$\r$\nIt is in the Start menu. A desktop icon is there too if you left that box checked.$\r$\n$\r$\nThere is no system tray icon. Closing the window quits the app.$\r$\n$\r$\nYour weeks stay in AppData\Roaming\TurnipProphet. Uninstall leaves that folder alone."
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_TEXT "Open Turnip Prophet"
@@ -77,7 +77,7 @@ Section "Turnip Prophet" SecCore
   WriteUninstaller "$INSTDIR\Uninstall.exe"
 
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TurnipProphet" "DisplayName" "Turnip Prophet"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TurnipProphet" "DisplayVersion" "1.3.0"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TurnipProphet" "DisplayVersion" "1.4.0"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TurnipProphet" "UninstallString" '"$INSTDIR\Uninstall.exe"'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TurnipProphet" "DisplayIcon" "$INSTDIR\TurnipProphet.ico"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TurnipProphet" "Publisher" "foctober"
