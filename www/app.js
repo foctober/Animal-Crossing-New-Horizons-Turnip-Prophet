@@ -704,7 +704,7 @@ function drawChart() {
 function paidLine(sell, buy) {
   if (!Number.isFinite(buy) || !buy) return "";
   var times = Math.round((sell / buy) * 100) / 100;
-  return " That is " + times.toFixed(2) + "× the " + buy + " you paid Daisy Mae.";
+  return " That is " + times.toFixed(2) + "x the " + buy + " you paid Daisy Mae.";
 }
 
 function bestBeforeIndex(entered, idx14) {
