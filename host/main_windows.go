@@ -375,7 +375,7 @@ func main() {
 	hwnd, _, err := procCreateWindowExW.Call(
 		0,
 		uintptr(unsafe.Pointer(class)),
-		uintptr(unsafe.Pointer(utf16Ptr("Turnip Prophet"))),
+		uintptr(unsafe.Pointer(utf16Ptr("Turnip Prophet v1.4"))),
 		wsOverlapped,
 		uintptr(posX), uintptr(posY), winW, winH,
 		0, 0, hinst, 0,
