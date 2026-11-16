@@ -1,6 +1,6 @@
 # Install
 
-Version 1.4. You need 64-bit Windows 10 or 11. The window is the app. If it cannot start, your browser opens instead. There is no system tray icon. The Windows installer and the PowerShell install are the same app.
+Version 1.4. You need 64-bit Windows 10 or 11. The window is the app. The title bar says Turnip Prophet v1.4. If it cannot start, your browser opens instead. There is no system tray icon. The Windows installer and the PowerShell install are the same app.
 
 Pick one install. Do not run both at once. They share the same weeks file, `%AppData%\TurnipProphet\turnips.json`.
 

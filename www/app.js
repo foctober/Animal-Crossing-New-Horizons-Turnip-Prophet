@@ -179,7 +179,7 @@ function fillForm(week) {
   }
   syncPrevLock();
   $("siteLink").href = permalink(week);
-  document.title = "Turnip Prophet v1.4 \u00b7 " + pretty(week.id);
+  document.title = "Turnip Prophet v1.4";
   markDue();
 }
 
@@ -1041,7 +1041,7 @@ function onSunday() {
   }
   week.id = snapped;
   state.activeId = snapped;
-  document.title = "Turnip Prophet v1.4 \u00b7 " + pretty(snapped);
+  document.title = "Turnip Prophet v1.4";
   syncSundayFace();
   renderWeekList();
   saveSoon();

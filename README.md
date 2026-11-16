@@ -12,7 +12,7 @@ The left side is your saved weeks. The right side is this week's prices.
 
 ![Entering the week's prices. The open shop window has the rainbow border.](docs/prices.png)
 
-![The sell-or-wait banner, the chart, and the credit line](docs/chart.png)
+![The sell or hold banner, the chart, and the credit line](docs/chart.png)
 
 ![Every pattern line, with the same numbers as the website](docs/patterns.png)
 
@@ -46,7 +46,7 @@ powershell -ExecutionPolicy Bypass -File "$d\Animal-Crossing-New-Horizons-Turnip
 Remove-Item $d -Recurse -Force
 ```
 
-The shortcut and window icon are the teal leaf. There is no system tray icon.
+The window title is **Turnip Prophet v1.4** on both installs.
 
 ## What you see
 
